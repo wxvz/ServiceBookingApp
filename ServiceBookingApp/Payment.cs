@@ -11,6 +11,8 @@ namespace ServiceBookingApp
         
         // Primary key
         public int PaymentId { get; set; }
+
+        // Foreign keys
         public int BookingId { get; set; }
 
         // Payment details
