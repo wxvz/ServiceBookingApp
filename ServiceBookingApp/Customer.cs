@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace ServiceBookingApp
 {
-    internal class Customer
+    public class Customer
     {
+        // Primary key
+        public int CustomerId { get; set; }
+
+        // Customer details
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; }  = string.Empty;
         public string Address { get; set; } = string.Empty;
         public string PhoneNumber {  get; set; } = string.Empty;
         public string Password {  get; set; } = string.Empty;
+
+        // Navigation property
         public virtual List<Booking> Bookings { get; set; }
 
     }

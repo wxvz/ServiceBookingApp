@@ -8,12 +8,24 @@ namespace ServiceBookingApp
 {
     public class Booking
     {
-        public Business Business { get; set; } = new Business();
-        public Service Service { get; set; } = new Service();
+      
+        // Primary key
+        public int BookingId { get; set; }
+
+        // Foreign keys
+        public int BusinessId { get; set; } 
+        public int ServiceId { get; set; }
+        public int PaymentId { get; set; }
+
+        // Customer detail
         public DateTime Date { get; set; }
-        public string CustomerName { get; set; } = string.Empty;
-        public string CustomerEmail { get; set; } = string.Empty;
-        public string PhoneNumber { get; set; } = string.Empty;
-        
+        public DateTime Time { get; set; }
+
+        // Navigation properties
+        public virtual Business Business { get; set; }
+        public virtual Service Service { get; set; }
+        public virtual Payment Payment { get; set; }
+        public virtual Customer Customer { get; set; }
+
     }
 }

@@ -71,6 +71,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BookingSchedule.cs" />
+    <Compile Include="Payment.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="ServiceBookingContext.cs" />
     <Page Include="BusinessLogin.xaml">

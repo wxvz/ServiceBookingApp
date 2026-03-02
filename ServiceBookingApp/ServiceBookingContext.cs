@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ServiceBookingApp
 {
-    internal class ServiceBookingContext
+    internal class ServiceBookingContext : DbContext
     {
-
+        public ServiceBookingContext() : base("ServiceBookingContext") {}
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Business> Businesses { get; set; }
+        public DbSet<BookingSchedule> BookingSchedules { get; set; }
+        public DbSet<Payment> Payments { get; set; }
     }
 }
