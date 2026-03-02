@@ -8,5 +8,6 @@ namespace ServiceBookingApp
 {
     internal class ServiceBookingContext
     {
+
     }
 }
