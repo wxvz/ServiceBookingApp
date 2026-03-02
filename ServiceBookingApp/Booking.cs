@@ -20,12 +20,19 @@ namespace ServiceBookingApp
         // Customer detail
         public DateTime Date { get; set; }
         public DateTime Time { get; set; }
+        public Enum BookingStatus { get; set; }
 
         // Navigation properties
         public virtual Business Business { get; set; }
         public virtual Service Service { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual Customer Customer { get; set; }
-
+ 
     }
+    enum BookingStatus
+    {
+        Complete,
+        Pending
+    }
+    
 }
