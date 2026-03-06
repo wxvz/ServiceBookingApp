@@ -19,7 +19,8 @@ namespace DataManagement
                     Name = "Dublin Hair & Beauty",
                     City = "Dublin",
                     Email = "admin@dublinhairbeauty.ie",
-                    PhoneNumber = "+353 1 234 5678"
+                    PhoneNumber = "+353 1 234 5678",
+                    Password = "admin123"
                 };
 
                 // Example Customer
