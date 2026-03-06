@@ -11,13 +11,16 @@ namespace ServiceBookingApp
     public class ServiceSchedule
     {
         // Primary key
-        [Key, ForeignKey("Service")]
+        public int ServiceScheduleId { get; set; }
+
+        // Foreign key
         public int ServiceId { get; set; }
 
         // Schedule details
         public DayOfWeek DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+        public bool IsActive { get; set; } = true;  // To disable specific days
 
         // Navigation property
         public virtual Service Service { get; set; }
