@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ServiceBookingApp
 {
-    internal class ServiceSchedule
+    public class ServiceSchedule
     {
-
         // Primary key
-        public int Id { get; set; }
-
-        // Foreign key
+        [Key, ForeignKey("Service")]
         public int ServiceId { get; set; }
 
         // Schedule details

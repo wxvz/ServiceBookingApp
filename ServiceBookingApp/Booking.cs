@@ -16,12 +16,12 @@ namespace ServiceBookingApp
         public int CustomerId { get; set; }
         public int BusinessId { get; set; } 
         public int ServiceId { get; set; }
-        public int PaymentId { get; set; }
+        public int? PaymentId { get; set; }  
 
-        // Customer detail
+        // Booking details
         public DateTime Date { get; set; }
         public DateTime Time { get; set; }
-        public Enum BookingStatus { get; set; }
+        public BookingStatus BookingStatus { get; set; }
 
         // Navigation properties
         public virtual Business Business { get; set; }
@@ -30,10 +30,13 @@ namespace ServiceBookingApp
         public virtual Customer Customer { get; set; }
  
     }
-    enum BookingStatus
+    
+    public enum BookingStatus
     {
-        Complete,
-        Pending
+        Pending,
+        Confirmed,
+        Completed,
+        Cancelled
     }
     
 }

@@ -14,26 +14,29 @@ namespace ServiceBookingApp
 
         // Foreign keys
         public int BookingId { get; set; }
+        public int BusinessId { get; set; }
 
         // Payment details
         public decimal Amount { get; set; }
         public DateTime PaymentDate { get; set; }
-        public Enum PaymentStatus { get; set; }
-        public Enum PaymentMethod { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
 
         // Navigation properties
-        public Booking Booking { get; set; }
-        public Business Business { get; set; }
+        public virtual Booking Booking { get; set; }
+        public virtual Business Business { get; set; }
 
     }
+    
     // Enums for payment status and method
-    enum PaymentStatus
+    public enum PaymentStatus
     {
         Pending,
         Completed,
         Failed
     }
-    enum PaymentMethod
+    
+    public enum PaymentMethod
     {
         Card,
         Cash

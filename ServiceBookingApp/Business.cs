@@ -21,6 +21,7 @@ namespace ServiceBookingApp
         // Navigation properties
         public virtual List<Service> Services { get; set; }
         public virtual List<Booking> Bookings { get; set; }
+        public virtual List<Payment> Payments { get; set; }
 
     }
     
