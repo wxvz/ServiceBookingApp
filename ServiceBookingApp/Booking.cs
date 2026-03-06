@@ -13,6 +13,7 @@ namespace ServiceBookingApp
         public int BookingId { get; set; }
 
         // Foreign keys
+        public int CustomerId { get; set; }
         public int BusinessId { get; set; } 
         public int ServiceId { get; set; }
         public int PaymentId { get; set; }

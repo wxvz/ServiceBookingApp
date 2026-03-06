@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBookingApp
 {
-    internal class BookingSchedule
+    internal class ServiceSchedule
     {
 
         // Primary key
@@ -14,6 +14,8 @@ namespace ServiceBookingApp
 
         // Foreign key
         public int ServiceId { get; set; }
+
+        // Schedule details
         public DayOfWeek DayOfWeek { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }

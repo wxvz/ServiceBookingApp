@@ -9,12 +9,12 @@ namespace ServiceBookingApp
 {
     internal class ServiceBookingContext : DbContext
     {
-        public ServiceBookingContext() : base("ServiceBookingContext") {}
+        public ServiceBookingContext() : base("ServiceBookingData") {}
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Business> Businesses { get; set; }
-        public DbSet<BookingSchedule> BookingSchedules { get; set; }
+        public DbSet<ServiceSchedule> ServiceSchedules { get; set; }
         public DbSet<Payment> Payments { get; set; }
     }
 }
