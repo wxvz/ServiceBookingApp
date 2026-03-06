@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceBookingApp
 {
-    internal class ServiceBookingContext : DbContext
+    public class ServiceBookingContext : DbContext
     {
         public ServiceBookingContext() : base("ServiceBookingData") {}
         public DbSet<Customer> Customers { get; set; }
