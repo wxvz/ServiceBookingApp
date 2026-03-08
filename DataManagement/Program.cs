@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +20,7 @@ namespace DataManagement
                     City = "Dublin",
                     Email = "admin@dublinhairbeauty.ie",
                     PhoneNumber = "+353 1 234 5678",
-                    Password = "admin123"
+                    Password = "admin123" // TODO: Hash with BCrypt
                 };
 
                 // Example Customer
@@ -30,7 +30,7 @@ namespace DataManagement
                     Email = "guest@example.ie",
                     Address = "15 O'Connell Street, Dublin 1",
                     PhoneNumber = "+353 87 123 4567",
-                    Password = "guest123"
+                    Password = "guest123" // TODO: Hash with BCrypt
                 };
 
                 // Example Service
