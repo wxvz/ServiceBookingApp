@@ -33,7 +33,32 @@ namespace ServiceBookingApp
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            // Will implement the logic to sign up the business here later
+            if (passwordPBX.Password != confirmPasswordPBX.Password)
+            {
+                MessageBox.Show("Passwords do not match!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            using (ServiceBookingContext db = new ServiceBookingContext())
+            {
+                var newBusiness = new Business
+                {
+                    Name = businessNameTBX.Text,
+                    City = CityTBX.Text,
+                    Email = emailTBX.Text,
+                    PhoneNumber = phoneTBX.Text,
+                    Password = passwordPBX.Password // TODO: Hash with BCrypt
+                };
+
+                db.Businesses.Add(newBusiness);
+                db.SaveChanges();
+
+                MessageBox.Show("Business account created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                BusinessLogin businessLogin = new BusinessLogin();
+                businessLogin.Show();
+                this.Close();
+            }
         }
     }
 }
