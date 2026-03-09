@@ -14,6 +14,7 @@ namespace DataManagement
             using (ServiceBookingContext db = new ServiceBookingContext())
             {
                 // Example Business
+               /*
                 var adminBusiness = new Business
                 {
                     Name = "Dublin Hair & Beauty",
@@ -84,6 +85,7 @@ namespace DataManagement
 
                 Console.WriteLine("=== Sample Data Created Successfully! ===");
                 Console.ReadKey();
+               */
             }
         }
     }
