@@ -15,12 +15,11 @@ namespace ServiceBookingApp
         // Foreign keys
         public int CustomerId { get; set; }
         public int BusinessId { get; set; } 
-        public int ServiceId { get; set; }
-        public int? PaymentId { get; set; }  
+        public int ServiceId { get; set; } 
 
         // Booking details
         public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
         public BookingStatus BookingStatus { get; set; }
 
         // Navigation properties

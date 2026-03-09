@@ -89,10 +89,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessDashboard.xaml.cs">
+      <DependentUpon>BusinessDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Payment.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="ServiceBookingContext.cs" />
     <Compile Include="ServiceSchedule.cs" />
+    <Page Include="BusinessDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BusinessLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

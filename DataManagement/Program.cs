@@ -59,8 +59,17 @@ namespace DataManagement
                     Business = adminBusiness,
                     Service = haircut,
                     Date = DateTime.Today.AddDays(7),
-                    Time = DateTime.Now.AddDays(7).AddHours(10), // 10 AM appointment
+                    Time = new TimeSpan(10, 0, 0), // 10 AM appointment
                     BookingStatus = BookingStatus.Pending
+                };
+
+                var payment = new Payment
+                {
+                    Booking = booking,
+                    Amount = haircut.Price,
+                    PaymentDate = DateTime.Now,
+                    PaymentMethod = PaymentMethod.Card,
+                    PaymentStatus = PaymentStatus.Completed
                 };
 
                 // Add to database
