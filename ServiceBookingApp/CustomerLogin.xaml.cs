@@ -15,18 +15,18 @@ using System.Windows.Shapes;
 namespace ServiceBookingApp
 {
 
-    public partial class BusinessLogin : Page
+    public partial class CustomerLogin : Page
     {
         ServiceBookingContext db = new ServiceBookingContext();
 
-        public BusinessLogin()
+        public CustomerLogin()
         {
             InitializeComponent();
         }
 
-        private void SignUpBusinessLink_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void SignUpCustomerLink_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            this.NavigationService.Navigate(new BusinessSignup());
+            this.NavigationService.Navigate(new CustomerSignup());
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -42,25 +42,25 @@ namespace ServiceBookingApp
                 string email = emailTextBox.Text;
                 string password = passwordBox.Password;
 
-                var business = db.Businesses.FirstOrDefault(b => b.Email == email);
+                var customer = db.Customers.FirstOrDefault(c => c.Email == email);
 
-                if (business == null)
+                if (customer == null)
                 {
                     MessageBox.Show("No account found with that email.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                     emailTextBox.Text = string.Empty;
                     return;
                 }
 
-                var businessEmail = db.Businesses
-                    .Where(b => b.Email == email)
-                    .Select(b => b.Email);
+                var customerEmail = db.Customers
+                    .Where(c => c.Email == email)
+                    .Select(c => c.Email);
 
-                var businessPassword = db.Businesses
-                    .Where(b => b.Email == businessEmail.FirstOrDefault())
-                    .Select(b => b.Password)
+                var customerPassword = db.Customers
+                    .Where(c => c.Email == customerEmail.FirstOrDefault())
+                    .Select(c => c.Password)
                     .FirstOrDefault();
 
-                if (string.IsNullOrEmpty(businessPassword))
+                if (string.IsNullOrEmpty(customerPassword))
                 {
                     MessageBox.Show("Incorrect password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                     passwordBox.Password = string.Empty;
@@ -68,12 +68,12 @@ namespace ServiceBookingApp
                 }
 
                 // Verifying the password using BCrypt
-                if (BCrypt.Net.BCrypt.Verify(password, businessPassword))
+                if (BCrypt.Net.BCrypt.Verify(password, customerPassword))
                 {
                     MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    SessionManager.Login(business); // Set the current business in the session
+                    SessionManager.Login(customer); // Set the current customer in the session
 
-                    this.NavigationService.Navigate(new BusinessDashboard());
+                    this.NavigationService.Navigate(new CustomerDashboard());
                 }
                 else
                 {
