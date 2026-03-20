@@ -17,7 +17,7 @@ namespace ServiceBookingApp
     /// <summary>
     /// Interaction logic for BusinessSignup.xaml
     /// </summary>
-    public partial class BusinessSignup : Window
+    public partial class BusinessSignup : Page
     {
         public BusinessSignup()
         {
@@ -26,9 +26,7 @@ namespace ServiceBookingApp
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            BusinessLogin businessLogin = new BusinessLogin();
-            businessLogin.Show();
-            this.Close();
+            this.NavigationService.GoBack();
         }
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
@@ -36,6 +34,8 @@ namespace ServiceBookingApp
             if (passwordPBX.Password != confirmPasswordPBX.Password)
             {
                 MessageBox.Show("Passwords do not match!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                passwordPBX.Password = string.Empty;   
+                confirmPasswordPBX.Password = string.Empty;
                 return;
             }
 
@@ -58,9 +58,7 @@ namespace ServiceBookingApp
 
                 MessageBox.Show("Business account created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                BusinessLogin businessLogin = new BusinessLogin();
-                businessLogin.Show();
-                this.Close();
+                this.NavigationService.GoBack();
             }
         }
     }

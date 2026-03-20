@@ -92,6 +92,9 @@
     <Compile Include="BusinessDashboard.xaml.cs">
       <DependentUpon>BusinessDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202603201345474_InitialCreate.cs" />
     <Compile Include="Migrations\202603201345474_InitialCreate.Designer.cs">
       <DependentUpon>202603201345474_InitialCreate.cs</DependentUpon>
@@ -129,6 +132,9 @@
     <Page Include="CustomerSignup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

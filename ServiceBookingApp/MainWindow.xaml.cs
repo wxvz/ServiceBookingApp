@@ -19,20 +19,7 @@ namespace ServiceBookingApp
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void customerBtn_Click(object sender, RoutedEventArgs e)
-        {
-            CustomerLogin cLogin = new CustomerLogin();
-            cLogin.Show();
-            this.Close();
-        }
-
-        private void businessBtn_Click(object sender, RoutedEventArgs e)
-        {
-            BusinessLogin bLogin = new BusinessLogin();
-            bLogin.Show();
-            this.Close();
+            MainFrame.Navigate(new HomePage());
         }
     }
 }

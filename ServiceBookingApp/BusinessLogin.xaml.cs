@@ -17,7 +17,7 @@ namespace ServiceBookingApp
     /// <summary>
     /// Interaction logic for BusinessLogin.xaml
     /// </summary>
-    public partial class BusinessLogin : Window
+    public partial class BusinessLogin : Page
     {
         public BusinessLogin()
         {
@@ -26,10 +26,7 @@ namespace ServiceBookingApp
 
         private void SignUpBusinessLink_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            BusinessSignup bSignup = new BusinessSignup();
-            bSignup.Show();
-            this.Close();
-
+            this.NavigationService.Navigate(new BusinessSignup());
         }
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
@@ -39,9 +36,7 @@ namespace ServiceBookingApp
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+            this.NavigationService.GoBack();
         }
     }
 }

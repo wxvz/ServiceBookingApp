@@ -1,4 +1,4 @@
-<Window x:Class="ServiceBookingApp.BusinessSignup"
+<Page x:Class="ServiceBookingApp.BusinessSignup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="BusinessSignup" 
         MinHeight="596" MinWidth="890" MaxHeight="650" MaxWidth="1000"
-        WindowStartupLocation="CenterScreen">
+        Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -135,4 +135,4 @@
                 VerticalAlignment="Center" Margin="0,0,0,-350" Width="100" Click="SignUpBtn_Click"/>
         
     </Grid>
-</Window>
+</Page>
