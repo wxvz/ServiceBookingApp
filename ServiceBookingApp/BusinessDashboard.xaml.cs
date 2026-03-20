@@ -19,9 +19,17 @@ namespace ServiceBookingApp
     /// </summary>
     public partial class BusinessDashboard : Window
     {
+        ServiceBookingContext db = new ServiceBookingContext();
         public BusinessDashboard()
         {
             InitializeComponent();
+        }
+
+        private void LoadBusiness(object sender, RoutedEventArgs e)
+        {
+            var query = from b in db.Businesses
+                        where b.Email == "test"
+                        select b;
         }
     }
 }

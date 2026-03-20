@@ -41,13 +41,13 @@ namespace ServiceBookingApp
 
             using (ServiceBookingContext db = new ServiceBookingContext())
             {
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(passwordPBX.Password);
                 var newCustomer = new Customer
                 {
                     Name = firstNameTBX.Text + " " + lastNameTBX.Text,
                     Email = emailTBX.Text,
-                    Address = string.Empty,
                     PhoneNumber = phoneTBX.Text,
-                    Password = passwordPBX.Password // TODO: Hash with BCrypt
+                    Password = hashedPassword 
                 };
 
                 db.Customers.Add(newCustomer);
