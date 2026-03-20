@@ -29,7 +29,7 @@ namespace ServiceBookingApp
             this.NavigationService.Navigate(new BusinessSignup());
         }
 
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             // Will implement the logic to log in the business here later
         }

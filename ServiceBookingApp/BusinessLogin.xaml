@@ -77,7 +77,7 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="4"
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Center" Margin="0,20,0,0" Width="100" Click="loginBtn_Click"/>
+                VerticalAlignment="Center" Margin="0,20,0,0" Width="100" Click="LoginBtn_Click"/>
         
         <BulletDecorator Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,90,0,0">
             <BulletDecorator.Bullet>

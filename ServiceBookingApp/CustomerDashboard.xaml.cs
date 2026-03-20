@@ -10,26 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ServiceBookingApp
 {
     /// <summary>
-    /// Interaction logic for BusinessDashboard.xaml
+    /// Interaction logic for CustomerDashboard.xaml
     /// </summary>
-    public partial class BusinessDashboard : Page
+    public partial class CustomerDashboard : Page
     {
-        ServiceBookingContext db = new ServiceBookingContext();
-        public BusinessDashboard()
+        public CustomerDashboard()
         {
             InitializeComponent();
-        }
-
-        private void LoadBusiness(object sender, RoutedEventArgs e)
-        {
-            var query = from b in db.Businesses
-                        where b.Email == "test"
-                        select b;
         }
     }
 }

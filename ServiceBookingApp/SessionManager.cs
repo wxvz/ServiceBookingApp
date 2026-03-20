@@ -13,14 +13,14 @@ namespace ServiceBookingApp
 
         // Path to store local session file in the user's AppData folder
         private static readonly string SessionFile = "../../ServiceBooking_Session.txt";
-;
 
-        public static void Login(Business user)
+
+        public static void Login(Business business)
         {
-            CurrentBusiness = user;
+            CurrentBusiness = business;
             CurrentCustomer = null;
             // Save to local storage
-            File.WriteAllText(SessionFile, $"Business:{user.BusinessId}");
+            File.WriteAllText(SessionFile, $"Business:{business.BusinessId}");
         }
 
         public static void Login(Customer customer)

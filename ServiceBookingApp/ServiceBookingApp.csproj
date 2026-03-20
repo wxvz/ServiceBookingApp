@@ -92,6 +92,9 @@
     <Compile Include="BusinessDashboard.xaml.cs">
       <DependentUpon>BusinessDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomerDashboard.xaml.cs">
+      <DependentUpon>CustomerDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,10 @@
     <Page Include="BusinessSignup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomerDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerLogin.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -11,7 +11,7 @@ namespace DataManagement
     {
         static void Main(string[] args)
         {
-            Data();
+            //Data();
         }
         static void Data()
         {
