@@ -92,6 +92,19 @@
     <Compile Include="BusinessDashboard.xaml.cs">
       <DependentUpon>BusinessDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202603201345474_InitialCreate.cs" />
+    <Compile Include="Migrations\202603201345474_InitialCreate.Designer.cs">
+      <DependentUpon>202603201345474_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202603201409249_UpdateOneToOneMappings.cs" />
+    <Compile Include="Migrations\202603201409249_UpdateOneToOneMappings.Designer.cs">
+      <DependentUpon>202603201409249_UpdateOneToOneMappings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202603201446263_SeedingAndNaming.cs" />
+    <Compile Include="Migrations\202603201446263_SeedingAndNaming.Designer.cs">
+      <DependentUpon>202603201446263_SeedingAndNaming.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Payment.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="ServiceBookingContext.cs" />
@@ -158,6 +171,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202603201345474_InitialCreate.resx">
+      <DependentUpon>202603201345474_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202603201409249_UpdateOneToOneMappings.resx">
+      <DependentUpon>202603201409249_UpdateOneToOneMappings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202603201446263_SeedingAndNaming.resx">
+      <DependentUpon>202603201446263_SeedingAndNaming.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

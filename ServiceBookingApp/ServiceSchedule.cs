@@ -13,8 +13,6 @@ namespace ServiceBookingApp
         // Primary key
         public int ServiceScheduleId { get; set; }
 
-        // Foreign key
-        public int ServiceId { get; set; }
 
         // Schedule details
         public DayOfWeek DayOfWeek { get; set; }

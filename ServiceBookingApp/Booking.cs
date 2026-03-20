@@ -20,7 +20,7 @@ namespace ServiceBookingApp
         // Booking details
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
-        public BookingStatus BookingStatus { get; set; }
+        public BookingStatus Status { get; set; }
 
         // Navigation properties
         public virtual Business Business { get; set; }

@@ -19,12 +19,12 @@ namespace ServiceBookingApp
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // One to one Relationship Booking Has One Payment / payment must have a booking
+            // Booking (Principal) to Payment (Dependent)
             modelBuilder.Entity<Booking>()
                 .HasOptional(b => b.Payment)
                 .WithRequired(p => p.Booking);
 
-            // One to one Relationship Service Has One Service Schedule / Service Schedule must have a Service
+            // Service (Principal) to ServiceSchedule (Dependent)
             modelBuilder.Entity<Service>()
                 .HasOptional(s => s.ServiceSchedule)
                 .WithRequired(ss => ss.Service);

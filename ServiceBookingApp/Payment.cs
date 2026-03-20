@@ -13,14 +13,13 @@ namespace ServiceBookingApp
         public int PaymentId { get; set; }
 
         // Foreign keys
-        public int BookingId { get; set; }
         public int BusinessId { get; set; }
 
         // Payment details
         public decimal Amount { get; set; }
         public DateTime PaymentDate { get; set; }
-        public PaymentStatus PaymentStatus { get; set; }
-        public PaymentMethod PaymentMethod { get; set; }
+        public PaymentStatus Status { get; set; }
+        public PaymentMethod Method { get; set; }
 
         // Navigation properties
         public virtual Booking Booking { get; set; }
