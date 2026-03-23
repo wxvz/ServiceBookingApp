@@ -11,8 +11,8 @@ namespace ServiceBookingApp
         public static Customer CurrentCustomer { get; private set; }
         public static bool IsLoggedIn => CurrentBusiness != null || CurrentCustomer != null;
 
-        // Path to store local session file in the user's AppData folder
-        private static readonly string SessionFile = "../../ServiceBooking_Session.txt";
+        // Using a simple text file for session persistence.
+        private static readonly string SessionFile = "../../User_Session.txt";
 
 
         public static void Login(Business business)

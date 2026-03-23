@@ -49,7 +49,6 @@ namespace ServiceBookingApp
                 if (business == null)
                 {
                     MessageBox.Show("No account found with that email.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                    emailTextBox.Text = string.Empty;
                     return;
                 }
 

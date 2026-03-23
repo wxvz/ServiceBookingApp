@@ -46,6 +46,33 @@ namespace ServiceBookingApp
             totalRevenueTBX.Text = $"Total Revenue: €{totalRevenue:F2}";
         }
 
+        private void ServicesButton_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardFrame.Navigate(new ServicesPage());
+            DashboardFrame.Visibility = Visibility.Visible;
+            HideDashboardContent();
+        }
+
+        private void DashboardButton_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardFrame.Visibility = Visibility.Hidden;
+            ShowDashboardContent();
+            LoadBusiness(null, null); // Refresh stats
+        }
+
+        private void HideDashboardContent()
+        {
+            totalBookingsTBX.Visibility = Visibility.Hidden;
+            totalRevenueTBX.Visibility = Visibility.Hidden;
+            // Hide other dashboard specific elements if needed
+        }
+
+        private void ShowDashboardContent()
+        {
+            totalBookingsTBX.Visibility = Visibility.Visible;
+            totalRevenueTBX.Visibility = Visibility.Visible;
+        }
+
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             SessionManager.Logout();
@@ -53,6 +80,11 @@ namespace ServiceBookingApp
 
             // Navigate back to the login page  
             NavigationService.Navigate(new BusinessLogin());
+        }
+
+        private void SchedulesButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

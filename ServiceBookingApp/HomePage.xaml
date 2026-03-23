@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
       Title="HomePage"
-      Background="White">
+      Background="White"
+      Loaded="SessionCheck">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -44,7 +45,7 @@
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" Click="customerBtn_Click"/>
 
-        <TextBlock Text="OR" 
+        <TextBlock Text="Or" 
             FontSize="18"  
             HorizontalAlignment="Center" 
             VerticalAlignment="Bottom" 

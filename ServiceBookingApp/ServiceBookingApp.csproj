@@ -124,6 +124,9 @@
     <Compile Include="Service.cs" />
     <Compile Include="ServiceBookingContext.cs" />
     <Compile Include="ServiceSchedule.cs" />
+    <Compile Include="ServicesPage.xaml.cs">
+      <DependentUpon>ServicesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SessionManager.cs" />
     <Page Include="BusinessDashboard.xaml">
       <SubType>Designer</SubType>
@@ -179,6 +182,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ServicesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

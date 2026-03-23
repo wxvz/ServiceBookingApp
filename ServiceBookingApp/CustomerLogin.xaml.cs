@@ -33,12 +33,14 @@ namespace ServiceBookingApp
         {
             try
             {
+                // Basic input validation
                 if (string.IsNullOrWhiteSpace(emailTextBox.Text) || string.IsNullOrWhiteSpace(passwordBox.Password))
                 {
                     MessageBox.Show("Please enter both email and password.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
+                // Retrieve the email and password from the input fields
                 string email = emailTextBox.Text;
                 string password = passwordBox.Password;
 
@@ -47,10 +49,9 @@ namespace ServiceBookingApp
                 if (customer == null)
                 {
                     MessageBox.Show("No account found with that email.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                    emailTextBox.Text = string.Empty;
                     return;
                 }
-
+                // Retrieve the stored email and password for the customer
                 var customerEmail = db.Customers
                     .Where(c => c.Email == email)
                     .Select(c => c.Email);
