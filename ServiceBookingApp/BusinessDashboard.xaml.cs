@@ -30,5 +30,10 @@ namespace ServiceBookingApp
             SessionManager.LoadSession();
             businessName.Text = SessionManager.CurrentBusiness.Name;
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
