@@ -51,6 +51,7 @@
                 Grid.Row="1" Margin="170,95,0,0"/>
         
         <TextBox x:Name="emailTextBox"
+                 
                  FontSize="18"
                  Grid.Row="1"
                  Grid.ColumnSpan="4"

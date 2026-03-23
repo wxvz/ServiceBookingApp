@@ -53,6 +53,8 @@ namespace ServiceBookingApp
         {
             if (!File.Exists(SessionFile)) return;
 
+            if (IsLoggedIn) return; // Already logged in, no need to load
+
             try
             {
                 string[] sessionData = File.ReadAllText(SessionFile).Split(':');

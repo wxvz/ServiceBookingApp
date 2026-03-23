@@ -89,7 +89,7 @@ namespace ServiceBookingApp
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
+            this.NavigationService.Navigate(new HomePage());
         }
     }
 }
