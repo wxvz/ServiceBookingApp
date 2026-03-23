@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceBookingApp"
         mc:Ignorable="d"
-        Title="BusinessDashboard" Height="450" Width="800"
+        Title="BusinessDashboard" MinHeight="550" MinWidth="800" MaxHeight="600" MaxWidth="1000"
         Loaded="LoadBusiness">
-    <Grid Background="Lavender">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
+            <RowDefinition Height="4*"/>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="4*"/>
@@ -20,18 +21,46 @@
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Welcome!" 
+
+        <Rectangle Fill="Purple" Grid.Row="0" Grid.ColumnSpan="3"/>
+
+        <TextBlock Text="Dashboard" 
            FontSize="20" 
            FontWeight="Bold" 
+           Foreground="AliceBlue"
            HorizontalAlignment="Center" 
            VerticalAlignment="Center" 
            Grid.ColumnSpan="3" 
-           Grid.Row="0"/>
+           Grid.Row="0"
+           Grid.Column="1"/>
+        <TextBlock x:Name="businessName"
+           Text="" 
+           FontSize="16" 
+           FontWeight="Bold" 
+           Foreground="AliceBlue"
+           HorizontalAlignment="Center" 
+           VerticalAlignment="Center" 
+           Grid.ColumnSpan="1" 
+           Grid.Row="0"
+           Grid.Column="0"/>        
         <Button Content="Dashboard" 
                 FontSize="16" 
                 Grid.Column="0"
-                Grid.Row="1"
-                />
-        
+                Grid.Row="1"/>
+        <Button Content="Bookings"
+                FontSize="16" 
+                Grid.Column="0"
+                Grid.Row="2"/>
+        <Button Content="Services"
+                FontSize="16" 
+                Grid.Column="0"
+                Grid.Row="3"/>
+        <Button Content="Logout" 
+                FontSize="16" 
+                Grid.Column="0"
+                Grid.Row="4" 
+                Click="LogoutButton_Click"/>
+        <Frame x:Name="DashboardFrame"  NavigationUIVisibility="Hidden" Grid.ColumnSpan="2"  Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
+
     </Grid>
 </Page>

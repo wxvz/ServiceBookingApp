@@ -27,9 +27,8 @@ namespace ServiceBookingApp
 
         private void LoadBusiness(object sender, RoutedEventArgs e)
         {
-            var query = from b in db.Businesses
-                        where b.Email == "test"
-                        select b;
+            SessionManager.LoadSession();
+            businessName.Text = SessionManager.CurrentBusiness.Name;
         }
     }
 }

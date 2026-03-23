@@ -17,6 +17,12 @@ namespace ServiceBookingApp
 
         public static void Login(Business business)
         {
+            // Clear local storage
+            if (File.Exists(SessionFile))
+            {
+                File.Delete(SessionFile);
+            }
+
             CurrentBusiness = business;
             CurrentCustomer = null;
             // Save to local storage
@@ -35,8 +41,7 @@ namespace ServiceBookingApp
         {
             CurrentBusiness = null;
             CurrentCustomer = null;
-            
-            // Clear local storage
+
             if (File.Exists(SessionFile))
             {
                 File.Delete(SessionFile);

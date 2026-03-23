@@ -5,6 +5,7 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Windows.Controls;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ServiceBookingApp.ServiceBookingContext>
     {
@@ -16,6 +17,8 @@
 
         protected override void Seed(ServiceBookingApp.ServiceBookingContext context)
         {
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword("1234");
+
             //Seeeeeeeding Dataaaaaa
             context.Businesses.AddOrUpdate(
                 b => b.Email,
@@ -23,16 +26,16 @@
                 {
                     Name = "Dublin Hair & Beauty",
                     City = "Dublin",
-                    Email = "admin@dublinhairbeauty.ie",
+                    Email = "admin@example.ie",
                     PhoneNumber = "+353 1 234 5678",
-                    Password = "admin123" // TODO: Hash with BCrypt
+                    Password = hashedPassword 
                 }
             );
 
             // Save changes so the Business Id is generated for dependents
             context.SaveChanges(); 
 
-            var adminBusiness = context.Businesses.FirstOrDefault(b => b.Email == "admin@dublinhairbeauty.ie");
+            var adminBusiness = context.Businesses.FirstOrDefault(b => b.Email == "admin@example.ie");
 
             context.Customers.AddOrUpdate(
                 c => c.Email,
