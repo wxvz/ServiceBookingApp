@@ -26,8 +26,13 @@ namespace ServiceBookingApp
 
             // Service (Principal) to ServiceSchedule (Dependent)
             modelBuilder.Entity<Service>()
-                .HasOptional(s => s.ServiceSchedule)
-                .WithRequired(ss => ss.Service);
+                .HasMany(s => s.ServiceSchedules)
+                .WithRequired(ss => ss.Service)
+                .HasForeignKey(ss => ss.ServiceId)
+                .WillCascadeOnDelete(true); // Cascade delete schedules when a service is deleted
+
+
+
 
             // Bookings in a business with many bookings and have business id will not cascade delete
             modelBuilder.Entity<Booking>()

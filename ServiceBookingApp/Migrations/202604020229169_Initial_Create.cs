@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial_Create : DbMigration
     {
         public override void Up()
         {
@@ -17,7 +17,7 @@
                         ServiceId = c.Int(nullable: false),
                         Date = c.DateTime(nullable: false),
                         Time = c.Time(nullable: false, precision: 7),
-                        BookingStatus = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.BookingId)
                 .ForeignKey("dbo.Services", t => t.ServiceId, cascadeDelete: true)
@@ -45,12 +45,11 @@
                 c => new
                     {
                         PaymentId = c.Int(nullable: false),
-                        BookingId = c.Int(nullable: false),
                         BusinessId = c.Int(nullable: false),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PaymentDate = c.DateTime(nullable: false),
-                        PaymentStatus = c.Int(nullable: false),
-                        PaymentMethod = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
+                        Method = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PaymentId)
                 .ForeignKey("dbo.Businesses", t => t.BusinessId)
@@ -77,7 +76,7 @@
                 "dbo.ServiceSchedules",
                 c => new
                     {
-                        ServiceScheduleId = c.Int(nullable: false),
+                        ServiceScheduleId = c.Int(nullable: false, identity: true),
                         ServiceId = c.Int(nullable: false),
                         DayOfWeek = c.Int(nullable: false),
                         StartTime = c.Time(nullable: false, precision: 7),
@@ -85,8 +84,8 @@
                         IsActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ServiceScheduleId)
-                .ForeignKey("dbo.Services", t => t.ServiceScheduleId)
-                .Index(t => t.ServiceScheduleId);
+                .ForeignKey("dbo.Services", t => t.ServiceId, cascadeDelete: true)
+                .Index(t => t.ServiceId);
             
             CreateTable(
                 "dbo.Customers",
@@ -108,11 +107,11 @@
             DropForeignKey("dbo.Payments", "PaymentId", "dbo.Bookings");
             DropForeignKey("dbo.Bookings", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.Bookings", "BusinessId", "dbo.Businesses");
-            DropForeignKey("dbo.ServiceSchedules", "ServiceScheduleId", "dbo.Services");
+            DropForeignKey("dbo.ServiceSchedules", "ServiceId", "dbo.Services");
             DropForeignKey("dbo.Services", "BusinessId", "dbo.Businesses");
             DropForeignKey("dbo.Bookings", "ServiceId", "dbo.Services");
             DropForeignKey("dbo.Payments", "BusinessId", "dbo.Businesses");
-            DropIndex("dbo.ServiceSchedules", new[] { "ServiceScheduleId" });
+            DropIndex("dbo.ServiceSchedules", new[] { "ServiceId" });
             DropIndex("dbo.Services", new[] { "BusinessId" });
             DropIndex("dbo.Payments", new[] { "BusinessId" });
             DropIndex("dbo.Payments", new[] { "PaymentId" });

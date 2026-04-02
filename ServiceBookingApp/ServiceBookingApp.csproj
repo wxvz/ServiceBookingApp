@@ -98,68 +98,60 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BusinessDashboard.xaml.cs">
+    <Compile Include="Migrations\202604020229169_Initial_Create.cs" />
+    <Compile Include="Migrations\202604020229169_Initial_Create.Designer.cs">
+      <DependentUpon>202604020229169_Initial_Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Business\Dashboard\BusinessDashboard.xaml.cs">
       <DependentUpon>BusinessDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerDashboard.xaml.cs">
+    <Compile Include="Views\Customer\Dashboard\CustomerDashboard.xaml.cs">
       <DependentUpon>CustomerDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditService.xaml.cs">
-      <DependentUpon>EditService.xaml</DependentUpon>
+    <Compile Include="Views\Business\Dashboard\EditServiceSchedulePage.xaml.cs">
+      <DependentUpon>EditServiceSchedulePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HomePage.xaml.cs">
+    <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202603201345474_InitialCreate.cs" />
-    <Compile Include="Migrations\202603201345474_InitialCreate.Designer.cs">
-      <DependentUpon>202603201345474_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202603201409249_UpdateOneToOneMappings.cs" />
-    <Compile Include="Migrations\202603201409249_UpdateOneToOneMappings.Designer.cs">
-      <DependentUpon>202603201409249_UpdateOneToOneMappings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202603201446263_SeedingAndNaming.cs" />
-    <Compile Include="Migrations\202603201446263_SeedingAndNaming.Designer.cs">
-      <DependentUpon>202603201446263_SeedingAndNaming.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Payment.cs" />
-    <Compile Include="Service.cs" />
-    <Compile Include="ServiceBookingContext.cs" />
-    <Compile Include="ServiceSchedule.cs" />
-    <Compile Include="ServicesPage.xaml.cs">
-      <DependentUpon>ServicesPage.xaml</DependentUpon>
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="Data\ServiceBookingContext.cs" />
+    <Compile Include="Models\ServiceSchedule.cs" />
+    <Compile Include="Views\Business\Dashboard\CreateServicesPage.xaml.cs">
+      <DependentUpon>CreateServicesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SessionManager.cs" />
-    <Page Include="BusinessDashboard.xaml">
+    <Compile Include="Helper\SessionManager.cs" />
+    <Page Include="Views\Business\Dashboard\BusinessDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BusinessLogin.xaml">
+    <Page Include="Views\Business\Auth\BusinessLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="BusinessSignup.xaml">
+    <Page Include="Views\Business\Auth\BusinessSignup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomerDashboard.xaml">
+    <Page Include="Views\Customer\Dashboard\CustomerDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomerLogin.xaml">
+    <Page Include="Views\Customer\Auth\CustomerLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CustomerSignup.xaml">
+    <Page Include="Views\Customer\Auth\CustomerSignup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="EditService.xaml">
+    <Page Include="Views\Business\Dashboard\EditServiceSchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="HomePage.xaml">
+    <Page Include="Views\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
@@ -170,27 +162,28 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Booking.cs" />
-    <Compile Include="Business.cs" />
-    <Compile Include="BusinessLogin.xaml.cs">
+    <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Business.cs" />
+    <Compile Include="Views\Business\Auth\BusinessLogin.xaml.cs">
       <DependentUpon>BusinessLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusinessSignup.xaml.cs">
+    <Compile Include="Views\Business\Auth\BusinessSignup.xaml.cs">
       <DependentUpon>BusinessSignup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerLogin.xaml.cs">
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Views\Customer\Auth\CustomerLogin.xaml.cs">
       <DependentUpon>CustomerLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomerSignup.xaml.cs">
+    <Compile Include="Views\Customer\Auth\CustomerSignup.xaml.cs">
       <DependentUpon>CustomerSignup.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ServicesPage.xaml">
+    <Page Include="Views\Business\Dashboard\CreateServicesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -207,14 +200,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202603201345474_InitialCreate.resx">
-      <DependentUpon>202603201345474_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202603201409249_UpdateOneToOneMappings.resx">
-      <DependentUpon>202603201409249_UpdateOneToOneMappings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202603201446263_SeedingAndNaming.resx">
-      <DependentUpon>202603201446263_SeedingAndNaming.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202604020229169_Initial_Create.resx">
+      <DependentUpon>202604020229169_Initial_Create.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -251,6 +238,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

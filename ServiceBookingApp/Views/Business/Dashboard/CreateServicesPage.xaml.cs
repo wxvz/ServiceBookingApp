@@ -5,11 +5,11 @@ using System.Windows.Controls;
 
 namespace ServiceBookingApp
 {
-    public partial class ServicesPage : Page
+    public partial class CreateServicesPage : Page
     {
         ServiceBookingContext db = new ServiceBookingContext();
 
-        public ServicesPage()
+        public CreateServicesPage()
         {
             InitializeComponent();
         }
@@ -25,9 +25,7 @@ namespace ServiceBookingApp
             {
                 MessageBox.Show("No business session found. Please log in as a business to manage services.");
                 return;
-
             } else {
-
                 var services = db.Services
                                  .Where(s => s.BusinessId == SessionManager.CurrentBusiness.BusinessId)
                                  .ToList();
@@ -45,19 +43,16 @@ namespace ServiceBookingApp
                 MessageBox.Show("Please fill in all required fields (Name, Price, Duration).");
                 return;
             }
-
             if (!decimal.TryParse(PriceBox.Text, out decimal price))
             {
                 MessageBox.Show("Invalid Price.");
                 return;
             }
-
             if (!int.TryParse(DurationBox.Text, out int durationMinutes))
             {
                 MessageBox.Show("Invalid Duration (minutes).");
                 return;
             }
-
             try
             {
                 var newService = new Service

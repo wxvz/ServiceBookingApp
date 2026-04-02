@@ -7,13 +7,13 @@ namespace ServiceBookingApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.5.1")]
-    public sealed partial class UpdateOneToOneMappings : IMigrationMetadata
+    public sealed partial class Initial_Create : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateOneToOneMappings));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_Create));
         
         string IMigrationMetadata.Id
         {
-            get { return "202603201409249_UpdateOneToOneMappings"; }
+            get { return "202604020229169_Initial_Create"; }
         }
         
         string IMigrationMetadata.Source

@@ -27,7 +27,7 @@ namespace ServiceBookingApp
         // Navigation properties
         public virtual Business Business { get; set; }
         public virtual List<Booking> Bookings { get; set; }
-        public virtual ServiceSchedule ServiceSchedule { get; set; }
+        public virtual ICollection<ServiceSchedule> ServiceSchedules { get; set; }
         
     }
 }

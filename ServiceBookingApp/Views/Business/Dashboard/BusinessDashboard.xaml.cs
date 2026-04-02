@@ -19,6 +19,7 @@ namespace ServiceBookingApp
     /// </summary>
     public partial class BusinessDashboard : Page
     {
+       
         ServiceBookingContext db = new ServiceBookingContext();
         public BusinessDashboard()
         {
@@ -27,7 +28,7 @@ namespace ServiceBookingApp
 
         private void LoadBusiness(object sender, RoutedEventArgs e)
         { 
-
+            
             // Load the current business from the session and display its name
             SessionManager.LoadSession();
             businessName.Text = SessionManager.CurrentBusiness.Name;
@@ -48,7 +49,7 @@ namespace ServiceBookingApp
 
         private void ServicesButton_Click(object sender, RoutedEventArgs e)
         {
-            DashboardFrame.Navigate(new ServicesPage());
+            DashboardFrame.Navigate(new CreateServicesPage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
         }
@@ -64,7 +65,7 @@ namespace ServiceBookingApp
         {
             totalBookingsTBX.Visibility = Visibility.Hidden;
             totalRevenueTBX.Visibility = Visibility.Hidden;
-            // Hide other dashboard specific elements if needed
+            // Hide other dashboard specific elements
         }
 
         private void ShowDashboardContent()
@@ -79,12 +80,21 @@ namespace ServiceBookingApp
             MessageBox.Show("You have been logged out.");
 
             // Navigate back to the login page  
-            NavigationService.Navigate(new BusinessLogin());
+            NavigationService.Navigate(new HomePage());
+        }
+    
+        private void CreateServices_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardFrame.Navigate(new CreateServicesPage());
+            DashboardFrame.Visibility = Visibility.Visible;
+            HideDashboardContent();
         }
 
-        private void SchedulesButton_Click(object sender, RoutedEventArgs e)
+        private void EditSchedules_Click(object sender, RoutedEventArgs e)
         {
-
+            DashboardFrame.Navigate(new EditServiceSchedulePage());
+            DashboardFrame.Visibility = Visibility.Visible;
+            HideDashboardContent();
         }
     }
 }
