@@ -26,7 +26,6 @@
         </Grid.ColumnDefinitions>
 
         <Rectangle Fill="CadetBlue" Grid.Row="0" Grid.ColumnSpan="3"/>
-        <Rectangle Fill="LightGray" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" />
 
         <TextBlock Text="Dashboard" 
            FontSize="20" 
@@ -70,6 +69,12 @@
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
                     Grid.Column="2" Grid.Row="2"/>
+        
+        <!-- TODO: Statistics charts -->
+         
+        <!-- Navigation -->
+        
+        <Rectangle Fill="LightGray" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" />
 
         <StackPanel Grid.Column="0" Grid.Row="1"  Grid.RowSpan="5">
             <Button Content="Dashboard" 
