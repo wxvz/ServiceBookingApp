@@ -19,12 +19,12 @@ namespace ServiceBookingApp
     /// <summary>
     /// Interaction logic for EditService.xaml
     /// </summary>
-    public partial class EditServiceSchedulePage : Page
+    public partial class manageServiceSchedulePage : Page
     {
         private ServiceBookingContext db = new ServiceBookingContext();
         private List<ServiceSchedule> allSchedules = new List<ServiceSchedule>();
         
-        public EditServiceSchedulePage()
+        public manageServiceSchedulePage()
         {
             InitializeComponent();
         }
