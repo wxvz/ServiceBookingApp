@@ -10,7 +10,7 @@ namespace ServiceBookingApp
         ServiceBookingContext db = new ServiceBookingContext();
         private Service _selectedService;
 
-        public CreateServicesPage()
+        public ManageServicesPage()
         {
             InitializeComponent();
         }
