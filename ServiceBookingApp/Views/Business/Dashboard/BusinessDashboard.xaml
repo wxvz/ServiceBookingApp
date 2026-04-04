@@ -92,7 +92,7 @@
             <Expander Grid.Row="3" Grid.Column="0" Header="Services" FontSize="16" Margin="10,0" VerticalAlignment="Center" Background="Transparent" Foreground="#FF03A9F4">
                 <StackPanel Margin="10,0,0,0">
                     <Button Content="Manage Services" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageServices_Click" />
-                    <Button Content="Edit Schedules" Style="{StaticResource MaterialDesignFlatButton}" Click="EditSchedules_Click" />
+                    <Button Content="Manage Schedules" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageSchedules_Click" />
                 </StackPanel>
             </Expander>
 

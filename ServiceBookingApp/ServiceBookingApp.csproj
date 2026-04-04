@@ -108,8 +108,8 @@
     <Compile Include="Views\Customer\Dashboard\CustomerDashboard.xaml.cs">
       <DependentUpon>CustomerDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Business\Dashboard\EditServiceSchedulePage.xaml.cs">
-      <DependentUpon>EditServiceSchedulePage.xaml</DependentUpon>
+    <Compile Include="Views\Business\Dashboard\ManageServiceSchedulePage.xaml.cs">
+      <DependentUpon>ManageServiceSchedulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -147,7 +147,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Business\Dashboard\EditServiceSchedulePage.xaml">
+    <Page Include="Views\Business\Dashboard\ManageServiceSchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -85,14 +85,14 @@ namespace ServiceBookingApp
     
         private void ManageServices_Click(object sender, RoutedEventArgs e)
         {
-            DashboardFrame.Navigate(new CreateServicesPage());
+            DashboardFrame.Navigate(new ManageServicesPage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
         }
 
-        private void EditSchedules_Click(object sender, RoutedEventArgs e)
+        private void ManageSchedules_Click(object sender, RoutedEventArgs e)
         {
-            DashboardFrame.Navigate(new EditServiceSchedulePage());
+            DashboardFrame.Navigate(new ManageServiceSchedulePage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
         }
