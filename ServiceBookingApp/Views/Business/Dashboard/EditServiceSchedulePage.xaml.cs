@@ -185,7 +185,7 @@ namespace ServiceBookingApp
 
                 if (conflictingSchedule != null)
                 {
-                    MessageBox.Show("This schedule conflicts with an existing active schedule for the same service.");
+                    MessageBox.Show("An existing active schedule exists for the same service.");
                     return;
                 }
 
@@ -326,8 +326,7 @@ namespace ServiceBookingApp
 
         private void ClearInputs()
         {
-            ServiceFilterComboBox.SelectedItem = null;
-            ServiceFilterComboBox.Tag = null;
+            
             DayComboBox.SelectedItem = null;
             StartTimeBox.Text = "09:00";
             EndTimeBox.Text = "17:00";

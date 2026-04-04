@@ -119,8 +119,8 @@
     <Compile Include="Models\Service.cs" />
     <Compile Include="Data\ServiceBookingContext.cs" />
     <Compile Include="Models\ServiceSchedule.cs" />
-    <Compile Include="Views\Business\Dashboard\CreateServicesPage.xaml.cs">
-      <DependentUpon>CreateServicesPage.xaml</DependentUpon>
+    <Compile Include="Views\Business\Dashboard\ManageServicesPage.xaml.cs">
+      <DependentUpon>ManageServicesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\SessionManager.cs" />
     <Page Include="Views\Business\Dashboard\BusinessDashboard.xaml">
@@ -181,7 +181,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Business\Dashboard\CreateServicesPage.xaml">
+    <Page Include="Views\Business\Dashboard\ManageServicesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

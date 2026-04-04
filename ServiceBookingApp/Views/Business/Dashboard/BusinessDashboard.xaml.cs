@@ -83,7 +83,7 @@ namespace ServiceBookingApp
             NavigationService.Navigate(new HomePage());
         }
     
-        private void CreateServices_Click(object sender, RoutedEventArgs e)
+        private void ManageServices_Click(object sender, RoutedEventArgs e)
         {
             DashboardFrame.Navigate(new CreateServicesPage());
             DashboardFrame.Visibility = Visibility.Visible;
