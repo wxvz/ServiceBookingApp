@@ -8,6 +8,7 @@ namespace ServiceBookingApp
     public partial class CreateServicesPage : Page
     {
         ServiceBookingContext db = new ServiceBookingContext();
+        private Service _selectedService;
 
         public CreateServicesPage()
         {
@@ -89,6 +90,80 @@ namespace ServiceBookingApp
                 MessageBox.Show("Invalid service selection.");
                 return;
             }
+
+            _selectedService = service;
+
+            // Populate textboxes
+            UpdateNameBox.Text = service.Name;
+            UpdatePriceBox.Text = service.Price.ToString("F2");
+            UpdateDurationBox.Text = service.Duration.TotalMinutes.ToString();
+            UpdateDescriptionBox.Text = service.Description;
+
+            // Show Update Panel n Hide Create Panel
+            CreateServicePanel.Visibility = Visibility.Collapsed;
+            UpdateServicePanel.Visibility = Visibility.Visible;
+        }
+
+        private void UpdateService_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedService == null) return;
+
+            // Validation
+            if (string.IsNullOrWhiteSpace(UpdateNameBox.Text) ||
+                string.IsNullOrWhiteSpace(UpdatePriceBox.Text) ||
+                string.IsNullOrWhiteSpace(UpdateDurationBox.Text))
+            {
+                MessageBox.Show("Please fill in all required fields (Name, Price, Duration).");
+                return;
+            }
+            if (!decimal.TryParse(UpdatePriceBox.Text, out decimal price))
+            {
+                MessageBox.Show("Invalid Price.");
+                return;
+            }
+            if (!int.TryParse(UpdateDurationBox.Text, out int durationMinutes))
+            {
+                MessageBox.Show("Invalid Duration (minutes).");
+                return;
+            }
+
+            try
+            {
+                // Updating service
+                _selectedService.Name = UpdateNameBox.Text;
+                _selectedService.Price = price;
+                _selectedService.Duration = TimeSpan.FromMinutes(durationMinutes);
+                _selectedService.Description = UpdateDescriptionBox.Text;
+
+                db.SaveChanges();
+
+                MessageBox.Show("Service updated successfully!");
+                LoadServices();
+
+                // Switch back to create form
+                CancelUpdate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating service: {ex.Message}");
+            }
+        }
+
+        private void CancelUpdateService_Click(object sender, RoutedEventArgs e)
+        {
+            CancelUpdate();
+        }
+
+        private void CancelUpdate()
+        {
+            _selectedService = null;
+            UpdateNameBox.Text = "";
+            UpdatePriceBox.Text = "";
+            UpdateDurationBox.Text = "";
+            UpdateDescriptionBox.Text = "";
+
+            UpdateServicePanel.Visibility = Visibility.Collapsed;
+            CreateServicePanel.Visibility = Visibility.Visible;
         }
 
         private void DeleteService_Click(object sender, RoutedEventArgs e)

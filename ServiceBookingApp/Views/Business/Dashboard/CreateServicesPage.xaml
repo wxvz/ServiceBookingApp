@@ -16,39 +16,77 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <TextBlock Text="Create Services" FontSize="24" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="Manage Services" FontSize="24" FontWeight="Bold" Margin="10"/>
 
-        <!-- Add Service Form -->
-        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" CornerRadius="5">
-            <StackPanel>
-                <TextBlock Text="Add New Service" FontWeight="Bold" Margin="0,0,0,10"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <!-- Add Service Form -->
+            <Border x:Name="CreateServicePanel" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" CornerRadius="5">
+                <StackPanel>
+                    <TextBlock Text="Add New Service" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                    <TextBlock Text="Name:" VerticalAlignment="Center" Margin="5"/>
-                    <TextBox x:Name="NameBox" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Name:" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="NameBox" Grid.Column="1" Margin="5"/>
 
-                    <TextBlock Text="Price:" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
-                    <TextBox x:Name="PriceBox" Grid.Column="3" Margin="5"/>
+                        <TextBlock Text="Price:" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="PriceBox" Grid.Column="3" Margin="5"/>
 
-                    <TextBlock Text="Duration (min):" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
-                    <TextBox x:Name="DurationBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
-                    
-                    <TextBlock Text="Description:" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
-                    <TextBox x:Name="DescriptionBox" Grid.Row="1" Grid.Column="3" Margin="5"/>
-                </Grid>
-                <Button Content="Add Service" HorizontalAlignment="Center" Width="110" Margin="0,10,0,5" Click="AddService_Click"/>
-            </StackPanel>
-        </Border>
+                        <TextBlock Text="Duration (min):" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="DurationBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Description:" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="DescriptionBox" Grid.Row="1" Grid.Column="3" Margin="5"/>
+                    </Grid>
+                    <Button Content="Add Service" HorizontalAlignment="Center" Width="110" Margin="0,10,0,5" Click="AddService_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Update Service Form -->
+            <Border x:Name="UpdateServicePanel" BorderBrush="Gray" BorderThickness="1" Margin="10" 
+                    Padding="10" CornerRadius="5" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Update Service" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Name:" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="UpdateNameBox" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Price:" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="UpdatePriceBox" Grid.Column="3" Margin="5"/>
+
+                        <TextBlock Text="Duration (min):" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="UpdateDurationBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Description:" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+                        <TextBox x:Name="UpdateDescriptionBox" Grid.Row="1" Grid.Column="3" Margin="5"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,5">
+                        <Button Content="Update" Width="110" Margin="5" Click="UpdateService_Click"/>
+                        <Button Content="Cancel" Width="110" Margin="5" Click="CancelUpdateService_Click" Background="Gray" BorderBrush="Gray"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
 
         <!-- Services List -->
         <DataGrid x:Name="ServicesDataGrid" Grid.Row="2" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
