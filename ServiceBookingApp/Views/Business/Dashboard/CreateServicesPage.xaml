@@ -15,8 +15,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Manage Services" FontSize="24" FontWeight="Bold" Margin="10"/>
+        <!-- Header -->
+        <TextBlock Text="Create Services" FontSize="24" FontWeight="Bold" Margin="10"/>
 
+        <!-- Add Service Form -->
         <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="10" Padding="10" CornerRadius="5">
             <StackPanel>
                 <TextBlock Text="Add New Service" FontWeight="Bold" Margin="0,0,0,10"/>
@@ -55,6 +57,16 @@
                 <DataGridTextColumn Header="Price (Euro)" Binding="{Binding Price, StringFormat=F2}" Width="110"/>
                 <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="120"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="2*"/>
+                <DataGridTemplateColumn Header="Actions" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Edit" Click="EditService_Click" Margin="2" Tag="{Binding}"/>
+                                <Button Content="Delete" Click="DeleteService_Click" Margin="2" Tag="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

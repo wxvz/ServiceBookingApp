@@ -77,6 +77,56 @@ namespace ServiceBookingApp
             }
         }
 
+        private void EditService_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the button that was clicked
+            var button = sender as Button;
+            // Retrieve the service from the buttons Tag property
+            var service = button?.Tag as Service;
+
+            if (service == null)
+            {
+                MessageBox.Show("Invalid service selection.");
+                return;
+            }
+        }
+
+        private void DeleteService_Click(object sender, RoutedEventArgs e)
+        {
+            // Getting the button that was clicked
+            var button = sender as Button;
+            
+            var service = button?.Tag as Service;
+
+            if (service == null)
+            {
+                MessageBox.Show("Invalid schedule selection.");
+                return;
+            }
+
+            var result = MessageBox.Show(
+                $"Are you sure you want to delete the service: '{service.Name}'?",
+                "Confirm Delete",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    db.Services.Remove(service);
+                    db.SaveChanges();
+                    MessageBox.Show("Service deleted successfully!");
+                    // Reload services
+                    LoadServices();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error deleting service: {ex.Message}");
+                }
+            }
+        }
+
         private void ClearInputs()
         {
             NameBox.Text = "";

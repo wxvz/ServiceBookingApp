@@ -269,8 +269,7 @@ namespace ServiceBookingApp
                 }
             }
         }
-        // Bug: Null after All Services and Save Schedule is clicked. It then Persists after selecting a service and trying to edit the schedule. It then throws an error when trying to save the schedule after editing it. The error is "Object reference not set to an instance of an object." This is because the ServiceFilterComboBox.Tag is null after selecting "All Services" and trying to save a schedule.
-        // The Tag is only set when editing a schedule, but it should be cleared when selecting "All Services" or when saving a new schedule. To fix this, we need to clear the Tag property of the ServiceFilterComboBox when selecting "All Services" or when saving a new schedule.
+
         private void ClearInputs()
         {
             ServiceFilterComboBox.SelectedItem = null;
