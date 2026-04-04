@@ -64,7 +64,6 @@ namespace ServiceBookingApp
         private void LoadServices()
         {
             if (SessionManager.CurrentBusiness == null) return;
-
             try
             {
                 var services = db.Services
@@ -96,11 +95,8 @@ namespace ServiceBookingApp
         }
 
         private void FilterSchedulesByService()
-        {
-            
-
+        { 
             if (ServiceFilterComboBox == null || allSchedules == null) return;
-
             try
             {
                 var selectedValue = ServiceFilterComboBox.SelectedValue;
@@ -127,16 +123,18 @@ namespace ServiceBookingApp
 
         private void LoadDays()
         {
+            // Load days of the week into the DayComboBox
             var days = Enum.GetValues(typeof(DayOfWeek))
                 .Cast<DayOfWeek>()
                 .Select(d => d.ToString())
                 .ToList();
             DayComboBox.ItemsSource = days;
+            UpdateDayComboBox.ItemsSource = days;
         }
 
         private void SaveSchedule_Click(object sender, RoutedEventArgs e)
         {
-            // If "Show All Schedules" is selected, we cannot add a schedule
+            // If "Select a service" is selected, we cannot add a schedule
             if (ServiceFilterComboBox.SelectedIndex == 0) 
             {
                 MessageBox.Show("Please select a service to add a schedule for.");
@@ -219,21 +217,77 @@ namespace ServiceBookingApp
             var button = sender as Button;
             // Retrieve the schedule from the buttons Tag property
             var schedule = button?.Tag as ServiceSchedule;
-            
+
             if (schedule == null)
             {
                 MessageBox.Show("Invalid schedule selection.");
                 return;
             }
-            // Populate the input fields with the schedules data for editing
-            ServiceFilterComboBox.SelectedValue = schedule.ServiceId;
-            DayComboBox.SelectedItem = schedule.DayOfWeek.ToString();
-            StartTimeBox.Text = schedule.StartTime.ToString(@"hh\:mm");
-            EndTimeBox.Text = schedule.EndTime.ToString(@"hh\:mm");
-            ActiveCheckBox.IsChecked = schedule.IsActive;
 
-            ServiceFilterComboBox.Tag = schedule;
+            // Show the Update panel and fill the current values
+            UpdateSchedulePanel.Visibility = Visibility.Visible;
+            UpdateSchedulePanel.Tag = schedule;
 
+            UpdateDayComboBox.SelectedItem = schedule.DayOfWeek.ToString();
+            UpdateStartTimeBox.Text = schedule.StartTime.ToString(@"hh\:mm");
+            UpdateEndTimeBox.Text = schedule.EndTime.ToString(@"hh\:mm");
+            UpdateActiveCheckBox.IsChecked = schedule.IsActive;
+        }
+
+        private void CancelUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateSchedulePanel.Visibility = Visibility.Collapsed;
+            UpdateSchedulePanel.Tag = null;
+        }
+
+        private void UpdateScheduleDb_Click(object sender, RoutedEventArgs e)
+        {
+            var schedule = UpdateSchedulePanel.Tag as ServiceSchedule;
+            if (schedule == null) return;
+
+            if (UpdateDayComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a day.");
+                return;
+            }
+            if (!TimeSpan.TryParse(UpdateStartTimeBox.Text, out TimeSpan startTime))
+            {
+                MessageBox.Show("Invalid start time format. Use HH:MM format.");
+                return;
+            }
+            if (!TimeSpan.TryParse(UpdateEndTimeBox.Text, out TimeSpan endTime))
+            {
+                MessageBox.Show("Invalid service end time format. Use HH:MM format.");
+                return;
+            }
+            if (endTime <= startTime)
+            {
+                MessageBox.Show("Service end time must be after start time.");
+                return;
+            }
+
+            try
+            {
+                var selectedDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), UpdateDayComboBox.SelectedItem.ToString());
+
+                // Optional: Check conflicting logic here if needed (skipping self)
+
+                schedule.DayOfWeek = selectedDay;
+                schedule.StartTime = startTime;
+                schedule.EndTime = endTime;
+                schedule.IsActive = UpdateActiveCheckBox.IsChecked ?? true;
+
+                db.SaveChanges();
+                MessageBox.Show("Schedule updated successfully!");
+
+                UpdateSchedulePanel.Visibility = Visibility.Collapsed;
+                UpdateSchedulePanel.Tag = null;
+                LoadSchedules();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating schedule: {ex.Message}");
+            }
         }
 
         private void DeleteSchedule_Click(object sender, RoutedEventArgs e)

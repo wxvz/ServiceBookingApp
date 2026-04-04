@@ -40,26 +40,65 @@
             </StackPanel>
         </Border>
 
-        <!-- Schedules DataGrid -->
-        <DataGrid Grid.Row="2" x:Name="SchedulesDataGrid" AutoGenerateColumns="False" 
-                  Margin="20" CanUserAddRows="False" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Day" Binding="{Binding DayOfWeek}" Width="120" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Start Time" Binding="{Binding StartTime}" Width="100" IsReadOnly="True"/>
-                <DataGridTextColumn Header="End Time" Binding="{Binding EndTime}" Width="100" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" Width="80" IsReadOnly="True"/>
-                <DataGridTemplateColumn Header="Actions" Width="200">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Content="Edit" Click="EditSchedule_Click" Margin="2" Tag="{Binding}"/>
-                                <Button Content="Delete" Click="DeleteSchedule_Click" Margin="2" Tag="{Binding}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <!-- Schedules Grid and Update Panel -->
+        <Grid Grid.Row="2" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Column="0" x:Name="SchedulesDataGrid" AutoGenerateColumns="False" 
+                      Margin="0,0,15,0" CanUserAddRows="False" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Day" Binding="{Binding DayOfWeek}" Width="120" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Start Time" Binding="{Binding StartTime}" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="End Time" Binding="{Binding EndTime}" Width="100" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Active" Binding="{Binding IsActive}" Width="80" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Actions" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Edit" Click="EditSchedule_Click" Margin="2" Tag="{Binding}"/>
+                                    <Button Content="Delete" Click="DeleteSchedule_Click" Margin="2" Tag="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Update Schedule Panel (Hidden by Default) -->
+            <Border Grid.Column="1" x:Name="UpdateSchedulePanel" Width="280" BorderBrush="LightGray" 
+                    BorderThickness="1" Background="AliceBlue" Padding="15" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Update Schedule" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,10">
+                        <TextBlock Text="Day:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="UpdateDayComboBox" Width="120"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,10">
+                        <TextBlock Text="Start Time:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="UpdateStartTimeBox" Width="120"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,15">
+                        <TextBlock Text="End Time:" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                        <TextBox x:Name="UpdateEndTimeBox" Width="120"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,15">
+                        <CheckBox x:Name="UpdateActiveCheckBox" Content="Active" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Content="Cancel" Click="CancelUpdate_Click" Background="Gray" BorderBrush="Gray" Margin="0,0,10,0"/>
+                        <Button Content="Update Schedule" Click="UpdateScheduleDb_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
 
         <!-- Add New Schedule Section -->
         <Border Grid.Row="3" BorderBrush="Gray" BorderThickness="1" Margin="20" Padding="20">
