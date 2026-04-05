@@ -31,11 +31,35 @@ namespace ServiceBookingApp
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
+            // Validating input fields
             if (passwordPBX.Password != confirmPasswordPBX.Password)
             {
                 MessageBox.Show("Passwords do not match!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 passwordPBX.Password = string.Empty;
                 confirmPasswordPBX.Password = string.Empty;
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(firstNameTBX.Text) ||
+                string.IsNullOrWhiteSpace(lastNameTBX.Text) ||
+                string.IsNullOrWhiteSpace(emailTBX.Text) ||
+                string.IsNullOrWhiteSpace(phoneTBX.Text) ||
+                string.IsNullOrWhiteSpace(passwordPBX.Password))
+            {
+                MessageBox.Show("Please fill in all fields!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            // email must contain both @ and . to be valid
+            if (emailTBX.Text.Contains('@') == false || emailTBX.Text.Contains('.') == false)
+            {
+                MessageBox.Show("Please enter a valid email address!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // phone number validation
+            if (phoneTBX.Text.All(Char.IsDigit) == false || phoneTBX.Text.Length < 7)
+            {
+                MessageBox.Show("Please enter a valid phone number!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
