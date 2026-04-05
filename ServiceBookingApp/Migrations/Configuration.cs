@@ -7,7 +7,7 @@
     using System.Linq;
     using System.Windows.Controls;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ServiceBookingApp.ServiceBookingContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ServiceBookingContext>
     {
         public Configuration()
         {
@@ -15,7 +15,7 @@
             ContextKey = "ServiceBookingApp.ServiceBookingContext";
         }
 
-        protected override void Seed(ServiceBookingApp.ServiceBookingContext context)
+        protected override void Seed(ServiceBookingContext context)
         {
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword("1234");
 
