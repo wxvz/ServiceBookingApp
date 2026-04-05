@@ -72,7 +72,7 @@ namespace ServiceBookingApp
                 if (BCrypt.Net.BCrypt.Verify(password, customerPassword))
                 {
                     MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    SessionManager.Login(customer); // Set the current customer in the session
+                    SessionManager.LogIn(customer); // Set the current customer in the session
 
                     this.NavigationService.Navigate(new CustomerDashboard());
                 }
