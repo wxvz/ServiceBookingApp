@@ -23,11 +23,12 @@ namespace ServiceBookingApp
         {
             InitializeComponent();
         }
-
+        
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            // Navigate back to the previous page (Business Login)
             this.NavigationService.GoBack();
-        }
+        } // Event handler for the Back button click
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -89,12 +90,13 @@ namespace ServiceBookingApp
                     PhoneNumber = phoneTBX.Text,
                     Password = hashedPassword
                 };
+                // Add the new business to the database and save changes
                 db.Businesses.Add(newBusiness);
                 db.SaveChanges();
                 MessageBox.Show("Business account created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 // Navigate to Previous Page (Business Login)
                 this.NavigationService.GoBack();
             }
-        }
+        } // Event handler for the Sign Up button click
     }
 }

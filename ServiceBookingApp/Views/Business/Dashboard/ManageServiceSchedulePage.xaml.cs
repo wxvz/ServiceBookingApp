@@ -63,21 +63,20 @@ namespace ServiceBookingApp
 
         private void LoadServices()
         {
+            // Ensure we have a business session before trying to load services
             if (SessionManager.CurrentBusiness == null) return;
             try
             {
+                // Load all services for the current business to populate the filter combo box and the service selection combo box
                 var services = db.Services
                     .Where(s => s.BusinessId == SessionManager.CurrentBusiness.BusinessId)
                     .ToList();
-
                 ServiceFilterComboBox.ItemsSource = services;
-
-                // Add a dummy Service object to act as the header/placeholder
+                // Add a dummy Service object to act as the placeholder for the "Select a Service" option in the filter combo box
                 var filterServices = new List<Service>
                 {
                     new Service { Name = "--- Select a Service ---", ServiceId = -1 }
                 };
-
                 // Add actual services to the filter list
                 filterServices.AddRange(services);
                 ServiceFilterComboBox.ItemsSource = filterServices;
@@ -95,15 +94,16 @@ namespace ServiceBookingApp
         }
 
         private void FilterSchedulesByService()
-        { 
+        {
+            // If the filter combo box or schedules list is null. Cannot filter so return.
             if (ServiceFilterComboBox == null || allSchedules == null) return;
             try
             {
+                // Get the selected value from the service filter combo box.
                 var selectedValue = ServiceFilterComboBox.SelectedValue;
-
+                // If the selected value is null or the combo box placeholder is selected, do not show any schedules
                 if (selectedValue == null || (int)selectedValue == -1)
                 {
-                    // Do not show any schedules until a specific service is selected
                     SchedulesDataGrid.ItemsSource = null;
                 }
                 else
@@ -119,7 +119,7 @@ namespace ServiceBookingApp
             {
                 MessageBox.Show($"Error filtering schedules: {ex.Message}");
             }
-        }
+        } // Method to filter the displayed schedules based on the selected service in the filter combo box
 
         private void LoadDays()
         {
@@ -130,7 +130,7 @@ namespace ServiceBookingApp
                 .ToList();
             DayComboBox.ItemsSource = days;
             UpdateDayComboBox.ItemsSource = days;
-        }
+        } // Method to load days of the week into the day selection combo boxes
 
         private void SaveSchedule_Click(object sender, RoutedEventArgs e)
         {
@@ -155,24 +155,21 @@ namespace ServiceBookingApp
                 MessageBox.Show("Invalid start time format. Use HH:MM format.");
                 return;
             }
-
             if (!TimeSpan.TryParse(EndTimeBox.Text, out TimeSpan endTime))
             {
                 MessageBox.Show("Invalid service end time format. Use HH:MM format.");
                 return;
             }
-
             if (endTime <= startTime)
             {
                 MessageBox.Show("Service end time must be after start time.");
                 return;
             }
-
             try
             {
+                // Get the selected service ID and day of week
                 int selectedServiceId = (int)ServiceFilterComboBox.SelectedValue;
                 var selectedDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), DayComboBox.SelectedItem.ToString());
-
                 // Check for conflicts with existing active schedules for the same service and day
                 var conflictingSchedule = db.ServiceSchedules
                     .Where(s => s.ServiceId == selectedServiceId &&
@@ -182,13 +179,13 @@ namespace ServiceBookingApp
                                 (endTime > s.StartTime && endTime <= s.EndTime) ||
                                 (startTime <= s.StartTime && endTime >= s.EndTime)))
                     .FirstOrDefault();
-
+                // If a conflicting schedule exists, show an error message and do not add the new schedule
                 if (conflictingSchedule != null)
                 {
                     MessageBox.Show("An existing active schedule exists for the same service.");
                     return;
                 }
-
+                // If no conflicts, create and save the new schedule
                 var newSchedule = new ServiceSchedule
                 {
                     ServiceId = selectedServiceId,
@@ -197,19 +194,19 @@ namespace ServiceBookingApp
                     EndTime = endTime,
                     IsActive = ActiveCheckBox.IsChecked ?? true
                 };
-
+                // Add the new schedule to the database and save changes
                 db.ServiceSchedules.Add(newSchedule);
                 db.SaveChanges();
-
+                // Show success message, clear input fields, and reload schedules to show the new entry
                 MessageBox.Show("Schedule added successfully!");
                 ClearInputs();
-                LoadSchedules(); // Reload and apply current filter
+                LoadSchedules();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error adding schedule: {ex.Message}");
             }
-        }
+        }// Event handler for saving a new schedule to the database
 
         private void EditSchedule_Click(object sender, RoutedEventArgs e)
         {
@@ -217,31 +214,30 @@ namespace ServiceBookingApp
             var button = sender as Button;
             // Retrieve the schedule from the buttons Tag property
             var schedule = button?.Tag as ServiceSchedule;
-
+            // If the schedule is null, show an error message and return
             if (schedule == null)
             {
                 MessageBox.Show("Invalid schedule selection.");
                 return;
             }
-
-            // Show the Update panel and fill the current values
+            // Show the Update panel and fill the current values for the selected schedule
             UpdateSchedulePanel.Visibility = Visibility.Visible;
             UpdateSchedulePanel.Tag = schedule;
-
             UpdateDayComboBox.SelectedItem = schedule.DayOfWeek.ToString();
             UpdateStartTimeBox.Text = schedule.StartTime.ToString(@"hh\:mm");
             UpdateEndTimeBox.Text = schedule.EndTime.ToString(@"hh\:mm");
             UpdateActiveCheckBox.IsChecked = schedule.IsActive;
-        }
+        } // Event handler for showing the update panel and populating it with the selected schedules current values
 
         private void CancelUpdate_Click(object sender, RoutedEventArgs e)
         {
             UpdateSchedulePanel.Visibility = Visibility.Collapsed;
             UpdateSchedulePanel.Tag = null;
-        }
+        }// Event handler for canceling the update of a schedule
 
         private void UpdateScheduleDb_Click(object sender, RoutedEventArgs e)
         {
+            // Retrieve the schedule being updated from the Update panel's Tag property
             var schedule = UpdateSchedulePanel.Tag as ServiceSchedule;
             if (schedule == null) return;
 
@@ -265,21 +261,34 @@ namespace ServiceBookingApp
                 MessageBox.Show("Service end time must be after start time.");
                 return;
             }
-
             try
             {
+                // Get the selected service ID from the schedule being updated and the selected day of week from the update form
+                int selectedServiceId = schedule.ServiceId;
                 var selectedDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), UpdateDayComboBox.SelectedItem.ToString());
-
-                // Optional: Check conflicting logic here if needed (skipping self)
-
+                // Check for conflicts with existing active schedules for the same service and day, excluding the current schedule being updated
+                var conflictingSchedule = db.ServiceSchedules
+                    .Where(s => s.ServiceId == selectedServiceId &&
+                               s.DayOfWeek == selectedDay &&
+                               s.IsActive &&
+                               ((startTime >= s.StartTime && startTime < s.EndTime) ||
+                                (endTime > s.StartTime && endTime <= s.EndTime) ||
+                                (startTime <= s.StartTime && endTime >= s.EndTime)))
+                    .FirstOrDefault();
+                // If a conflicting schedule exists, show an error message and do not add the updated schedule
+                if (conflictingSchedule != null)
+                {
+                    MessageBox.Show("An existing active schedule exists for the same service.");
+                    return;
+                }
+                // If no conflicts, update the schedule with the new values and save changes to the database
                 schedule.DayOfWeek = selectedDay;
                 schedule.StartTime = startTime;
                 schedule.EndTime = endTime;
                 schedule.IsActive = UpdateActiveCheckBox.IsChecked ?? true;
-
                 db.SaveChanges();
+                // Show success message, hide the update panel, and reload schedules to show the updated entry
                 MessageBox.Show("Schedule updated successfully!");
-
                 UpdateSchedulePanel.Visibility = Visibility.Collapsed;
                 UpdateSchedulePanel.Tag = null;
                 LoadSchedules();
@@ -288,26 +297,26 @@ namespace ServiceBookingApp
             {
                 MessageBox.Show($"Error updating schedule: {ex.Message}");
             }
-        }
+        } // Event handler for saving the updated schedule to the database
 
         private void DeleteSchedule_Click(object sender, RoutedEventArgs e)
         {
-  
+            // Get the button that was clicked and retrieve the schedule from its Tag property
             var button = sender as Button;
             var schedule = button?.Tag as ServiceSchedule;
-
+            // If the schedule is null, show an error message and return
             if (schedule == null)
             {
                 MessageBox.Show("Invalid schedule selection.");
                 return;
             }
-
+            // Show a confirmation dialog before deleting the schedule
             var result = MessageBox.Show(
                 $"Are you sure you want to delete the schedule for {schedule.Service.Name} on {schedule.DayOfWeek}?",
                 "Confirm Delete",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
-
+            // If the user confirms, remove the schedule from the database and reload the schedules to reflect the change
             if (result == MessageBoxResult.Yes)
             {
                 try
@@ -322,7 +331,7 @@ namespace ServiceBookingApp
                     MessageBox.Show($"Error deleting schedule: {ex.Message}");
                 }
             }
-        }
+        }// Event handler for deleting a schedule from the database
 
         private void ClearInputs()
         {
@@ -331,6 +340,6 @@ namespace ServiceBookingApp
             StartTimeBox.Text = "09:00";
             EndTimeBox.Text = "17:00";
             ActiveCheckBox.IsChecked = true;
-        }
+        } // Method to clear the input fields after adding a schedule
     }
 }

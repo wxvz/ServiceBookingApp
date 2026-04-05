@@ -19,9 +19,10 @@ namespace ServiceBookingApp
         {
             LoadServices();
         }
-
+        
         private void LoadServices()
         {
+            // Check if business session does not exist, if not show message and return. Else load services for the current business
             if (SessionManager.CurrentBusiness == null)
             {
                 MessageBox.Show("No business session found. Please log in as a business to manage services.");
@@ -32,11 +33,15 @@ namespace ServiceBookingApp
                                  .ToList();
                 ServicesDataGrid.ItemsSource = services;
             }
-        }
+        } // Method to load services for the current business session
 
         private void AddService_Click(object sender, RoutedEventArgs e)
         {
-            // Validation
+            // Trim inputs to remove leading/trailing whitespace
+            NameBox.Text = NameBox.Text.Trim();
+            PriceBox.Text = PriceBox.Text.Trim();
+            DurationBox.Text = DurationBox.Text.Trim();
+            // Validation for required fields and correct data types
             if (string.IsNullOrWhiteSpace(NameBox.Text) ||
                 string.IsNullOrWhiteSpace(PriceBox.Text) ||
                 string.IsNullOrWhiteSpace(DurationBox.Text))
@@ -54,6 +59,7 @@ namespace ServiceBookingApp
                 MessageBox.Show("Invalid Duration (minutes).");
                 return;
             }
+            // Try creating a new service and save to database
             try
             {
                 var newService = new Service
@@ -64,10 +70,10 @@ namespace ServiceBookingApp
                     Duration = TimeSpan.FromMinutes(durationMinutes),
                     Description = DescriptionBox.Text
                 };
-
+                // Adding new service to database
                 db.Services.Add(newService);
                 db.SaveChanges();
-
+                // Show success message, clear inputs and reload services
                 MessageBox.Show("Service added successfully!");
                 ClearInputs();
                 LoadServices();
@@ -76,8 +82,8 @@ namespace ServiceBookingApp
             {
                 MessageBox.Show($"Error adding service: {ex.Message}");
             }
-        }
-
+        }  // Event handler for adding a new service
+        
         private void EditService_Click(object sender, RoutedEventArgs e)
         {
             // Get the button that was clicked
@@ -102,13 +108,13 @@ namespace ServiceBookingApp
             // Show Update Panel n Hide Create Panel
             CreateServicePanel.Visibility = Visibility.Collapsed;
             UpdateServicePanel.Visibility = Visibility.Visible;
-        }
+        }// Event handler for editing an existing service
 
         private void UpdateService_Click(object sender, RoutedEventArgs e)
         {
+            // If no service is selected, return.
             if (_selectedService == null) return;
-
-            // Validation
+            // Validation for required fields and correct data types
             if (string.IsNullOrWhiteSpace(UpdateNameBox.Text) ||
                 string.IsNullOrWhiteSpace(UpdatePriceBox.Text) ||
                 string.IsNullOrWhiteSpace(UpdateDurationBox.Text))
@@ -134,57 +140,57 @@ namespace ServiceBookingApp
                 _selectedService.Price = price;
                 _selectedService.Duration = TimeSpan.FromMinutes(durationMinutes);
                 _selectedService.Description = UpdateDescriptionBox.Text;
-
+                // Save changes to database
                 db.SaveChanges();
-
+                // Show success message and reload services
                 MessageBox.Show("Service updated successfully!");
                 LoadServices();
-
                 // Switch back to create form
                 CancelUpdate();
             }
             catch (Exception ex)
             {
+                // Show error message if update fails
                 MessageBox.Show($"Error updating service: {ex.Message}");
             }
-        }
+        }// Event handler for updating an existing service
 
         private void CancelUpdateService_Click(object sender, RoutedEventArgs e)
         {
             CancelUpdate();
-        }
+        }// Event handler for canceling the update process
 
         private void CancelUpdate()
         {
+            // Clear selected service and reset form
             _selectedService = null;
             UpdateNameBox.Text = "";
             UpdatePriceBox.Text = "";
             UpdateDurationBox.Text = "";
             UpdateDescriptionBox.Text = "";
-
             UpdateServicePanel.Visibility = Visibility.Collapsed;
             CreateServicePanel.Visibility = Visibility.Visible;
-        }
+        }// Method to reset the update form and switch back to the create service form
 
         private void DeleteService_Click(object sender, RoutedEventArgs e)
         {
             // Getting the button that was clicked
             var button = sender as Button;
-            
+            // Retrieving the service from the button's Tag property
             var service = button?.Tag as Service;
-
+            // If the service is null, show an error message and return
             if (service == null)
             {
                 MessageBox.Show("Invalid schedule selection.");
                 return;
             }
-
+            // Show confirmation dialog before deleting the service
             var result = MessageBox.Show(
                 $"Are you sure you want to delete the service: '{service.Name}'?",
                 "Confirm Delete",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
-
+            // If the user confirms deletion, try to remove the service from the database
             if (result == MessageBoxResult.Yes)
             {
                 try
@@ -200,7 +206,7 @@ namespace ServiceBookingApp
                     MessageBox.Show($"Error deleting service: {ex.Message}");
                 }
             }
-        }
+        } // Event handler for deleting a service
 
         private void ClearInputs()
         {
@@ -208,6 +214,6 @@ namespace ServiceBookingApp
             PriceBox.Text = "";
             DurationBox.Text = "";
             DescriptionBox.Text = "";
-        }
+        } // Method to clear input fields after adding a service
     }
 }

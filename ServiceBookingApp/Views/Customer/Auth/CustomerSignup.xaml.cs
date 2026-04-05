@@ -86,14 +86,11 @@ namespace ServiceBookingApp
                     PhoneNumber = phoneTBX.Text,
                     Password = hashedPassword 
                 };
-
                 db.Customers.Add(newCustomer);
                 db.SaveChanges();
-
                 MessageBox.Show("Account created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 this.NavigationService.GoBack();
-            }
-        }
+            } 
+        } 
     }
 }
