@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceBookingApp"
         mc:Ignorable="d"
+        d:DesignHeight="600" d:DesignWidth="800"
         Title="BusinessSignup" 
         Background="White">
     <Grid>
