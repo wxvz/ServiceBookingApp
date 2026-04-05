@@ -49,7 +49,7 @@ namespace ServiceBookingApp
 
         private void ServicesButton_Click(object sender, RoutedEventArgs e)
         {
-            DashboardFrame.Navigate(new CreateServicesPage());
+            DashboardFrame.Navigate(new ManageServicesPage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
         }
@@ -76,7 +76,12 @@ namespace ServiceBookingApp
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            SessionManager.Logout();
+            var result = MessageBox.Show("Log Out?","Logout", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            // User clicks no
+            if (result != MessageBoxResult.Yes) return;
+
+            SessionManager.LogOut();
             MessageBox.Show("You have been logged out.");
 
             // Navigate back to the login page  
