@@ -19,12 +19,12 @@ namespace ServiceBookingApp
     /// <summary>
     /// Interaction logic for EditService.xaml
     /// </summary>
-    public partial class manageServiceSchedulePage : Page
+    public partial class ManageServiceSchedulePage : Page
     {
         private ServiceBookingContext db = new ServiceBookingContext();
         private List<ServiceSchedule> allSchedules = new List<ServiceSchedule>();
         
-        public manageServiceSchedulePage()
+        public ManageServiceSchedulePage()
         {
             InitializeComponent();
         }
@@ -134,7 +134,7 @@ namespace ServiceBookingApp
 
         private void SaveSchedule_Click(object sender, RoutedEventArgs e)
         {
-            // If "Select a service" is selected, we cannot add a schedule
+            // If "Select a service" or null is selected, we cannot add a schedule
             if (ServiceFilterComboBox.SelectedIndex == 0) 
             {
                 MessageBox.Show("Please select a service to add a schedule for.");

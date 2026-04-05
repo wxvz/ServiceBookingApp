@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace ServiceBookingApp
 {
-    public partial class CreateServicesPage : Page
+    public partial class ManageServicesPage : Page
     {
         ServiceBookingContext db = new ServiceBookingContext();
         private Service _selectedService;

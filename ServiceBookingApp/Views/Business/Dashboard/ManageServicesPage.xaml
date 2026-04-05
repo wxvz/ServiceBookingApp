@@ -38,7 +38,7 @@
                         <TextBlock Text="Name:" VerticalAlignment="Center" Margin="5"/>
                         <TextBox x:Name="NameBox" Grid.Column="1" Margin="5"/>
 
-                        <TextBlock Text="Price:" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Price (Euro):" Grid.Column="2" VerticalAlignment="Center" Margin="5"/>
                         <TextBox x:Name="PriceBox" Grid.Column="3" Margin="5"/>
 
                         <TextBlock Text="Duration (min):" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
