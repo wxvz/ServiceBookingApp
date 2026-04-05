@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LiveCharts;
 
 namespace ServiceBookingApp
 {
@@ -19,10 +21,39 @@ namespace ServiceBookingApp
     /// </summary>
     public partial class BusinessDashboard : Page
     {
+        // Chart data properties
+        public SeriesCollection ServiceBookingsChart { get; set; }
+
+        // Database context
         ServiceBookingContext db = new ServiceBookingContext();
         public BusinessDashboard()
         {
             InitializeComponent();
+        }
+        private void LoadChartData()
+        {
+            // Initialize the chart data collection
+            ServiceBookingsChart = new SeriesCollection();
+            
+            // Load Services for chart 
+            var serviceStats = db.Services
+                .Where(s => s.BusinessId == SessionManager.CurrentBusiness.BusinessId)
+                .Select(s => new
+                {
+                    ServiceName = s.Name,
+                    BookingCount = s.Bookings.Count()
+                }).ToList();
+            foreach (var stats in serviceStats)
+            {
+                ServiceBookingsChart.Add(new PieSeries
+                {
+                    Title = stats.ServiceName,
+                    Values = new ChartValues<int> { stats.BookingCount },
+                    DataLabels = true
+                });
+            }
+            // Set the DataContext for data binding
+            DataContext = this;
         }
         private void LoadBusiness(object sender, RoutedEventArgs e)
         { 
@@ -38,6 +69,8 @@ namespace ServiceBookingApp
             // Display the business details
             totalBookingsTBX.Text = $"Total Bookings: {totalBookings}";
             totalRevenueTBX.Text = $"Total Revenue: €{totalRevenue:F2}";
+            // Load chart data
+            LoadChartData();
         }
         private void ServicesButton_Click(object sender, RoutedEventArgs e)
         {

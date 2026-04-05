@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceBookingApp"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="ServiceBookingApp.BusinessDashboard"
         mc:Ignorable="d"
         Title="BusinessDashboard" MinHeight="720" MinWidth="1080"
@@ -69,9 +70,17 @@
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center"
                     Grid.Column="2" Grid.Row="2"/>
-        
+
         <!-- TODO: Statistics charts -->
-         
+        <lvc:PieChart Series="{Binding ServiceBookingsChart}" 
+              InnerRadius="50" 
+              Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"
+              LegendLocation="Right"  
+              Margin="10"
+              />
+
+       
+
         <!-- Navigation -->
         
         <Rectangle Fill="LightGray" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" />
