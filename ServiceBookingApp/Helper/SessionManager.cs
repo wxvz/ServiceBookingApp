@@ -29,7 +29,7 @@ namespace ServiceBookingApp
             File.WriteAllText(SessionFile, $"Business:{business.BusinessId}");
         }
 
-        public static void Login(Customer customer)
+        public static void LogIn(Customer customer)
         {
             CurrentCustomer = customer;
             CurrentBusiness = null;
@@ -37,7 +37,7 @@ namespace ServiceBookingApp
             File.WriteAllText(SessionFile, $"Customer:{customer.CustomerId}");
         }
 
-        public static void Logout()
+        public static void LogOut()
         {
             CurrentBusiness = null;
             CurrentCustomer = null;
@@ -79,7 +79,7 @@ namespace ServiceBookingApp
             catch
             {
                 // If the file is corrupted or DB fails. clear it and force a new login
-                Logout();
+                LogOut();
             }
         }
     }
