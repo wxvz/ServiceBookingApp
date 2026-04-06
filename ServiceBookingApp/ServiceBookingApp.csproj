@@ -104,6 +104,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\Business\Dashboard\ViewProfilePage.xaml.cs">
+      <DependentUpon>ViewProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Business\Dashboard\EditProfilePage.xaml.cs">
+      <DependentUpon>EditProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Business\Dashboard\ViewBookingsPage.xaml.cs">
+      <DependentUpon>ViewBookingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Business\Dashboard\ManageBookingsPage.xaml.cs">
+      <DependentUpon>ManageBookingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202604020229169_Initial_Create.cs" />
     <Compile Include="Migrations\202604020229169_Initial_Create.Designer.cs">
       <DependentUpon>202604020229169_Initial_Create.cs</DependentUpon>
@@ -129,6 +141,22 @@
       <DependentUpon>ManageServicesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\SessionManager.cs" />
+    <Page Include="Views\Business\Dashboard\ViewProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Business\Dashboard\EditProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Business\Dashboard\ViewBookingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Business\Dashboard\ManageBookingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Business\Dashboard\BusinessDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
