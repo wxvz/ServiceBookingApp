@@ -92,7 +92,7 @@
             </lvc:CartesianChart.AxisX>
             
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Revenue" LabelFormatter="{Binding CurrencyFormatter}" MinValue="0"/>
+                <lvc:Axis Title="Monthly Revenue" LabelFormatter="{Binding CurrencyFormatter}" MinValue="0"/>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 

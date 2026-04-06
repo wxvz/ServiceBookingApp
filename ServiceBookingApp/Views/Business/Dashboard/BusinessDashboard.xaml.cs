@@ -139,7 +139,7 @@ namespace ServiceBookingApp
                 MonthLabels = monthlyRevenue.Select(m => m.MonthName).ToArray();
                 MonthlyRevenueChart.Add(new ColumnSeries
                 {
-                    Title = "Revenue",
+                    Title = "Monthly Revenue",
                     Values = new ChartValues<decimal>(monthlyRevenue.Select(m => m.totalRevenueTBX)),
                     Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#83A0A0"))
 
