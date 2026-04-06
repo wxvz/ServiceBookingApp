@@ -16,10 +16,8 @@ namespace ServiceBookingApp
         public static Business CurrentBusiness { get; private set; }
         public static Customer CurrentCustomer { get; private set; }
         public static bool IsLoggedIn => CurrentBusiness != null || CurrentCustomer != null;
-
         // Using a text file for session persistence.
         private static readonly string SessionFile = "../../User_Session.txt";
-
         public static void LogIn(Business business)
         {
             // Clear local storage before setting new session
