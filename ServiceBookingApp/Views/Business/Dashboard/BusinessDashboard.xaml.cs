@@ -23,6 +23,10 @@ namespace ServiceBookingApp
     {
         // Chart data properties
         public SeriesCollection ServiceBookingsChart { get; set; }
+        public SeriesCollection MonthlyRevenueChart { get; set; }
+        public string[] MonthLabels { get; set; }
+        // Formatter for currency values in the charts
+        public Func<double, string> CurrencyFormatter { get; set; } 
 
         // Database context
         ServiceBookingContext db = new ServiceBookingContext();
@@ -30,12 +34,20 @@ namespace ServiceBookingApp
         {
             InitializeComponent();
         }
-        private void LoadChartData()
+
+        private void ChartContext()
         {
+            DataContext = null;
+            DataContext = this;
+        } // Set the DataContext for chart data binding 
+        private void LoadChartData(int totalBookings)
+        {
+            
             // Initialize the chart data collection
             ServiceBookingsChart = new SeriesCollection();
-            
-            // Load Services for chart 
+            MonthlyRevenueChart = new SeriesCollection();
+
+            // PIE CHART DATA - Bookings per Service 
             var serviceStats = db.Services
                 .Where(s => s.BusinessId == SessionManager.CurrentBusiness.BusinessId)
                 .Select(s => new
@@ -43,18 +55,87 @@ namespace ServiceBookingApp
                     ServiceName = s.Name,
                     BookingCount = s.Bookings.Count()
                 }).ToList();
-            foreach (var stats in serviceStats)
+
+            // If there are no services, add a placeholder entry to the chart
+            if (!serviceStats.Any())
             {
                 ServiceBookingsChart.Add(new PieSeries
                 {
-                    Title = stats.ServiceName,
-                    Values = new ChartValues<int> { stats.BookingCount },
+                    Title = "No Services",
+                    Values = new ChartValues<int> { 1 },
                     DataLabels = true
                 });
+                ChartContext(); // Refresh the chart context to display the placeholder
             }
-            // Set the DataContext for data binding
-            DataContext = this;
-        }
+            // If there are no bookings, add a placeholder entry to the chart
+            if (totalBookings == 0)
+            {
+                ServiceBookingsChart.Add(new PieSeries
+                {
+                    Title = "No Bookings",
+                    Values = new ChartValues<int> { 1 },
+                    DataLabels = true
+                });
+                ChartContext();
+            }
+            // Add data to the chart
+            else
+            {
+                foreach (var stats in serviceStats)
+                {
+                    ServiceBookingsChart.Add(new PieSeries
+                    {
+                        Title = stats.ServiceName,
+                        Values = new ChartValues<int> { stats.BookingCount },
+                        DataLabels = true
+                    });
+                }
+                ChartContext();
+            }
+            // BAR CHART DATA - Monthly Revenue
+            // Load monthly revenue data 
+            var payments = db.Payments
+                .Where(p => p.BusinessId == SessionManager.CurrentBusiness.BusinessId)
+                .ToList();
+            // Group payments by month and calculate total revenue for each month
+            var monthlyRevenue = payments
+                .GroupBy(p => new
+                {
+                    p.PaymentDate.Year, p.PaymentDate.Month 
+                }) 
+                .Select(g => new
+                {
+                    // Create a month name like "Jan 2024" for display
+                    MonthName = new DateTime(g.Key.Year, g.Key.Month, 1).ToString("MMM yyyy"),
+                    totalRevenueTBX = g.Sum(p => p.Amount)
+                })
+                .OrderBy(g => g.MonthName)
+                .ToList();
+            // If there are no payments, add a placeholder entry to the chart
+            if (!monthlyRevenue.Any())
+            {
+                MonthLabels = new[] { "No Revenue" };
+                MonthlyRevenueChart.Add(new ColumnSeries
+                {
+                    Title = "Revenue",
+                    Values = new ChartValues<decimal> { 0 }
+                });
+                ChartContext();
+            }
+            else // Add data to the chart
+            {
+                MonthLabels = monthlyRevenue.Select(m => m.MonthName).ToArray();
+                MonthlyRevenueChart.Add(new ColumnSeries
+                {
+                    Title = "Revenue",
+                    Values = new ChartValues<decimal>(monthlyRevenue.Select(m => m.totalRevenueTBX))
+                });
+                ChartContext();
+            }
+            CurrencyFormatter = value => $"€{value:F2}"; // Format values as euro with 2 decimal places
+            ChartContext(); // Reload DataContext For LAst Time with all values
+           
+        } // Fetchs Business Data and displays as charts using live chart extension
         private void LoadBusiness(object sender, RoutedEventArgs e)
         { 
             // Load the current business from the session and display its name
@@ -70,34 +151,34 @@ namespace ServiceBookingApp
             totalBookingsTBX.Text = $"Total Bookings: {totalBookings}";
             totalRevenueTBX.Text = $"Total Revenue: €{totalRevenue:F2}";
             // Load chart data
-            LoadChartData();
-        }
+            LoadChartData(totalBookings);
+        } // Loads Business Data from Session On Window Loaded 
         private void ServicesButton_Click(object sender, RoutedEventArgs e)
         {
             // Navigate to the Manage Services page within the dashboard frame
             DashboardFrame.Navigate(new ManageServicesPage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
-        }
+        } // Event Handler for Service's Button
         private void DashboardButton_Click(object sender, RoutedEventArgs e)
         {
             // Navigate back to the main dashboard page within the dashboard frame
             DashboardFrame.Visibility = Visibility.Hidden;
             ShowDashboardContent();
             LoadBusiness(null, null); // Refresh stats
-        }
+        }  // Event Handler Dashboard Button
         private void HideDashboardContent()
         {
             totalBookingsTBX.Visibility = Visibility.Hidden;
             totalRevenueTBX.Visibility = Visibility.Hidden;
             // Hide other dashboard specific elements
-        }
+        } // Hide Main Dashboard Content
         private void ShowDashboardContent()
         {
             // Show dashboard specific elements
             totalBookingsTBX.Visibility = Visibility.Visible;
             totalRevenueTBX.Visibility = Visibility.Visible;
-        }
+        } // Show Main Dashboard Content
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             var result = MessageBox.Show("Log Out?","Logout", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -108,20 +189,20 @@ namespace ServiceBookingApp
             MessageBox.Show("You have been logged out.");
             // Navigate back to the login page  
             NavigationService.Navigate(new HomePage());
-        }
+        }  // Event Handler for Logout Button
         private void ManageServices_Click(object sender, RoutedEventArgs e)
         {
             // Navigate to the Manage Services page within the dashboard frame
             DashboardFrame.Navigate(new ManageServicesPage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
-        }
+        } // Event Handler for Manage Service button
         private void ManageSchedules_Click(object sender, RoutedEventArgs e)
         {
             // Navigate to the Manage Service Schedule page within the dashboard frame
             DashboardFrame.Navigate(new ManageServiceSchedulePage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
-        }
+        } // Event HandlerManage Schedule's Button
     }
 }

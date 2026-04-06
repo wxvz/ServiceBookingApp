@@ -75,11 +75,24 @@
         <lvc:PieChart Series="{Binding ServiceBookingsChart}" 
               InnerRadius="50" 
               Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"
-              LegendLocation="Right"  
+              LegendLocation="Bottom"  
               Margin="10"
               />
-
-       
+        
+        <!-- bar cHART FOR rEVENUE-->
+        <lvc:CartesianChart Series="{Binding MonthlyRevenueChart}" 
+              Grid.Column="2" Grid.Row="4" Grid.RowSpan="2"
+              LegendLocation="None"  
+              Margin="10"
+              >
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Margin="0,0,0,10" Labels="{Binding MonthLabels}"/>
+            </lvc:CartesianChart.AxisX>
+            
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Revenue" LabelFormatter="{Binding CurrencyFormatter}" MinValue="0"/>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
 
         <!-- Navigation -->
         
