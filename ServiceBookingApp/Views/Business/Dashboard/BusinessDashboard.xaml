@@ -26,7 +26,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Rectangle Fill="CadetBlue" Grid.Row="0" Grid.ColumnSpan="3"/>
+        <Rectangle Fill="Teal" Grid.Row="0" Grid.ColumnSpan="3"/>
 
         <TextBlock Text="Dashboard" 
            FontSize="20" 
@@ -50,7 +50,8 @@
            Grid.Column="0"/>
 
        
-        <TextBlock Text="Manage your bookings and services." 
+        <TextBlock x:Name="DashboardHeaderTBX"
+                Text="Manage your bookings and services."    
                 FontSize="18" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" 
@@ -72,15 +73,16 @@
                     Grid.Column="2" Grid.Row="2"/>
 
         <!-- TODO: Statistics charts -->
-        <lvc:PieChart Series="{Binding ServiceBookingsChart}" 
+        <lvc:PieChart x:Name="PieChartStats" 
+              Series="{Binding ServiceBookingsChart}" 
               InnerRadius="50" 
               Grid.Column="1" Grid.Row="4" Grid.RowSpan="2"
               LegendLocation="Bottom"  
-              Margin="10"
-              />
+              Margin="10"/>
         
         <!-- bar cHART FOR rEVENUE-->
-        <lvc:CartesianChart Series="{Binding MonthlyRevenueChart}" 
+        <lvc:CartesianChart x:Name="BarChartStats"
+              Series="{Binding MonthlyRevenueChart}" 
               Grid.Column="2" Grid.Row="4" Grid.RowSpan="2"
               LegendLocation="None"  
               Margin="10"
@@ -112,7 +114,7 @@
 
             <StackPanel>
                 <Expander Header="Profile" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Center" 
-                    Background="Transparent" Foreground="#FF03A9F4" HorizontalAlignment="Left">
+                    Background="Transparent" Foreground="Teal" HorizontalAlignment="Left">
                     <StackPanel Margin="10,0,0,0">
                         <Button Content="View Profile" Style="{StaticResource MaterialDesignFlatButton}" Click="ViewProfile_Click"/>
                         <Button Content="Edit Profile" Style="{StaticResource MaterialDesignFlatButton}" Click="EditProfile_Click"/>
@@ -123,7 +125,7 @@
 
             <StackPanel>
                 <Expander Grid.Row="2" Grid.Column="0" Header="Bookings" FontSize="16" Margin="10,0" VerticalAlignment="Center" 
-                          Background="Transparent" Foreground="#FF03A9F4" HorizontalAlignment="Left">
+                          Background="Transparent" Foreground="Teal" HorizontalAlignment="Left">
                     <StackPanel Margin="10,0,0,0">
                         <Button Content="View Bookings" Style="{StaticResource MaterialDesignFlatButton}" Click="ViewBookings_Click"/>
                         <Button Content="Manage Bookings" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageBookings_Click"/>
@@ -134,7 +136,7 @@
 
             <StackPanel>
                 <Expander Grid.Row="3" Grid.Column="0" Header="Services" FontSize="16" Margin="10,0" VerticalAlignment="Center" 
-                          Background="Transparent" Foreground="#FF03A9F4" HorizontalAlignment="Left">
+                          Background="Transparent" Foreground="Teal" HorizontalAlignment="Left">
                     <StackPanel Margin="10,0,0,0">
                         <Button Content="Manage Services" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageServices_Click" />
                         <Button Content="Manage Schedules" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageSchedules_Click" />

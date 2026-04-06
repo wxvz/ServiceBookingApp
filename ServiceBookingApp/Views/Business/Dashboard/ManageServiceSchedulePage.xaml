@@ -25,7 +25,7 @@
                    Margin="20"/>
 
         <!-- Service Selection Area -->
-        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="20,0,20,10" Padding="15" Background="AliceBlue">
+        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="20,0,20,10" Padding="15" Background="#F1FFFA">
             <StackPanel>
                 <TextBlock Text="Select Service to View Schedules" 
                            FontSize="14" 
@@ -69,7 +69,7 @@
 
             <!-- Update Schedule Panel (Hidden by Default) -->
             <Border Grid.Column="1" x:Name="UpdateSchedulePanel" Width="280" BorderBrush="LightGray" 
-                    BorderThickness="1" Background="AliceBlue" Padding="15" Visibility="Collapsed">
+                    BorderThickness="1" Background="#F1FFFA" Padding="15" Visibility="Collapsed">
                 <StackPanel>
                     <TextBlock Text="Update Schedule" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
 
