@@ -74,21 +74,33 @@ namespace ServiceBookingApp
                 {
                     Title = "No Bookings",
                     Values = new ChartValues<int> { 1 },
-                    DataLabels = true
+                    DataLabels = true,
+                    Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4C5F6B"))
+
                 });
                 ChartContext();
             }
             // Add data to the chart
             else
             {
+                //Array of custom colours from coolors.co (pERSONALLY procured BY ME)
+                string[] Colours = { 
+                    "#C2D3CD", "#EEEEFF", "#96E8BC", "#B6F9C9", "#E5E7E6", "#C9FFE2", "#9FA4A9",
+                    "#ADA8B6", "#A2A79E", "#B7B7B7", "#C7CFFD", "#82ABA1", "#909590", "#E1DEE9"
+                }; 
+                int colourIndex = 0;
+                // for each  Stat in Service Service Add to chart
                 foreach (var stats in serviceStats)
                 {
                     ServiceBookingsChart.Add(new PieSeries
                     {
                         Title = stats.ServiceName,
                         Values = new ChartValues<int> { stats.BookingCount },
-                        DataLabels = true
+                        DataLabels = true,
+                        // Apply the color and increment the index (loop back if we have more services than colours)
+                        Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Colours[colourIndex % Colours.Length]))
                     });
+                    colourIndex++;
                 }
                 ChartContext();
             }
@@ -128,7 +140,9 @@ namespace ServiceBookingApp
                 MonthlyRevenueChart.Add(new ColumnSeries
                 {
                     Title = "Revenue",
-                    Values = new ChartValues<decimal>(monthlyRevenue.Select(m => m.totalRevenueTBX))
+                    Values = new ChartValues<decimal>(monthlyRevenue.Select(m => m.totalRevenueTBX)),
+                    Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#83A0A0"))
+
                 });
                 ChartContext();
             }
@@ -169,15 +183,18 @@ namespace ServiceBookingApp
         }  // Event Handler Dashboard Button
         private void HideDashboardContent()
         {
+            DashboardHeaderTBX.Visibility = Visibility.Hidden;
             totalBookingsTBX.Visibility = Visibility.Hidden;
             totalRevenueTBX.Visibility = Visibility.Hidden;
-            // Hide other dashboard specific elements
+            BarChartStats.Visibility = Visibility.Hidden;
+            PieChartStats.Visibility = Visibility.Hidden;
         } // Hide Main Dashboard Content
         private void ShowDashboardContent()
         {
-            // Show dashboard specific elements
             totalBookingsTBX.Visibility = Visibility.Visible;
             totalRevenueTBX.Visibility = Visibility.Visible;
+            BarChartStats.Visibility = Visibility.Visible;
+            PieChartStats.Visibility = Visibility.Visible;
         } // Show Main Dashboard Content
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
