@@ -99,38 +99,50 @@
         <Rectangle Fill="LightGray" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" />
 
         <StackPanel Grid.Column="0" Grid.Row="1"  Grid.RowSpan="5">
-            <Button Content="Dashboard" 
-                Style="{StaticResource MaterialDesignFlatButton}"
-                FontSize="16" 
-                Grid.Column="0"
-                Grid.Row="1"
-                HorizontalContentAlignment="Left"
-                Margin="10,10,10,0"
-                Click="DashboardButton_Click"/>
+            
 
-            <Button Content="Bookings"
-                Style="{StaticResource MaterialDesignFlatButton}"
-                FontSize="16" 
-                Grid.Column="0"
-                Grid.Row="2" 
-                HorizontalContentAlignment="Left"
-                Margin="10,0"/>
+            <StackPanel>
+                <Button Content="Dashboard" 
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16" 
+                        HorizontalContentAlignment="Left"
+                        Margin="10,10,10,0"
+                        Click="DashboardButton_Click"/>
+            </StackPanel>
 
-            <Expander Grid.Row="3" Grid.Column="0" Header="Services" FontSize="16" Margin="10,0" VerticalAlignment="Center" 
-                      Background="Transparent" Foreground="#FF03A9F4" HorizontalAlignment="Left">
-                <StackPanel Margin="10,0,0,0">
-                    <Button Content="Manage Services" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageServices_Click" />
-                    <Button Content="Manage Schedules" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageSchedules_Click" />
-                </StackPanel>
-            </Expander>
+            <StackPanel>
+                <Expander Header="Profile" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Center" 
+                    Background="Transparent" Foreground="#FF03A9F4" HorizontalAlignment="Left">
+                    <StackPanel Margin="10,0,0,0">
+                        <Button Content="View Profile" Style="{StaticResource MaterialDesignFlatButton}" Click="ViewProfile_Click"/>
+                        <Button Content="Edit Profile" Style="{StaticResource MaterialDesignFlatButton}" Click="EditProfile_Click"/>
 
-            <Button Content="Schedules"
-                Style="{StaticResource MaterialDesignFlatButton}"
-                FontSize="16" 
-                Grid.Column="0"
-                Grid.Row="4"
-                HorizontalContentAlignment="Left"
-                Margin="10,0"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+
+            <StackPanel>
+                <Expander Grid.Row="2" Grid.Column="0" Header="Bookings" FontSize="16" Margin="10,0" VerticalAlignment="Center" 
+                          Background="Transparent" Foreground="#FF03A9F4" HorizontalAlignment="Left">
+                    <StackPanel Margin="10,0,0,0">
+                        <Button Content="View Bookings" Style="{StaticResource MaterialDesignFlatButton}" Click="ViewBookings_Click"/>
+                        <Button Content="Manage Bookings" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageBookings_Click"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+
+
+            <StackPanel>
+                <Expander Grid.Row="3" Grid.Column="0" Header="Services" FontSize="16" Margin="10,0" VerticalAlignment="Center" 
+                          Background="Transparent" Foreground="#FF03A9F4" HorizontalAlignment="Left">
+                    <StackPanel Margin="10,0,0,0">
+                        <Button Content="Manage Services" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageServices_Click" />
+                        <Button Content="Manage Schedules" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageSchedules_Click" />
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            
+            
 
             <Button Content="Logout" 
                 Style="{StaticResource MaterialDesignFlatButton}"
