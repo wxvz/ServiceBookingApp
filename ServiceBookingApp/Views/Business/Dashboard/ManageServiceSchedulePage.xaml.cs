@@ -91,7 +91,7 @@ namespace ServiceBookingApp
         private void ServiceFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FilterSchedulesByService();
-        }
+        } 
 
         private void FilterSchedulesByService()
         {
@@ -332,7 +332,6 @@ namespace ServiceBookingApp
                 }
             }
         }// Event handler for deleting a schedule from the database
-
         private void ClearInputs()
         {
             
