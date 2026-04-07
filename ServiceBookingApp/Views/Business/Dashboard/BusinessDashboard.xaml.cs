@@ -92,15 +92,20 @@ namespace ServiceBookingApp
                 // for each  Stat in Service Service Add to chart
                 foreach (var stats in serviceStats)
                 {
-                    ServiceBookingsChart.Add(new PieSeries
+                    if (stats.BookingCount > 0)
                     {
-                        Title = stats.ServiceName,
-                        Values = new ChartValues<int> { stats.BookingCount },
-                        DataLabels = true,
-                        // Apply the color and increment the index (loop back if we have more services than colours)
-                        Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Colours[colourIndex % Colours.Length]))
-                    });
-                    colourIndex++;
+                        ServiceBookingsChart.Add(new PieSeries
+                        {
+                            Title = stats.ServiceName,
+                            Values = new ChartValues<int> { stats.BookingCount },
+                            DataLabels = true,
+                            // Apply the color and increment the index (loop back if we have more services than colours)
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Colours[colourIndex % Colours.Length])),
+                            // Set label color for better visibility
+                            Foreground = Brushes.Black
+                        });
+                        colourIndex++;
+                    }
                 }
                 ChartContext();
             }
@@ -142,7 +147,6 @@ namespace ServiceBookingApp
                     Title = "Monthly Revenue",
                     Values = new ChartValues<decimal>(monthlyRevenue.Select(m => m.totalRevenueTBX)),
                     Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#83A0A0"))
-
                 });
                 ChartContext();
             }
@@ -191,6 +195,7 @@ namespace ServiceBookingApp
         } // Hide Main Dashboard Content
         private void ShowDashboardContent()
         {
+            DashboardHeaderTBX.Visibility = Visibility.Visible;
             totalBookingsTBX.Visibility = Visibility.Visible;
             totalRevenueTBX.Visibility = Visibility.Visible;
             BarChartStats.Visibility = Visibility.Visible;
