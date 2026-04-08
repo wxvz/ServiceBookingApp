@@ -119,14 +119,15 @@ namespace ServiceBookingApp
                 .GroupBy(p => new
                 {
                     p.PaymentDate.Year, p.PaymentDate.Month 
-                }) 
+                })
+                .OrderBy(g => g.Key.Year)
+                .ThenBy(g => g.Key.Month)
                 .Select(g => new
                 {
                     // Create a month name like "Jan 2024" for display
                     MonthName = new DateTime(g.Key.Year, g.Key.Month, 1).ToString("MMM yyyy"),
                     totalRevenueTBX = g.Sum(p => p.Amount)
                 })
-                .OrderBy(g => g.MonthName)
                 .ToList();
             // If there are no payments, add a placeholder entry to the chart
             if (!monthlyRevenue.Any())
@@ -146,7 +147,8 @@ namespace ServiceBookingApp
                 {
                     Title = "Monthly Revenue",
                     Values = new ChartValues<decimal>(monthlyRevenue.Select(m => m.totalRevenueTBX)),
-                    Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#83A0A0"))
+                    Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#83A0A0")),
+                    DataLabels = true
                 });
                 ChartContext();
             }
