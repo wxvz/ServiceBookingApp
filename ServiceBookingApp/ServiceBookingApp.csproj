@@ -104,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\202604080100115_Initial_Create.cs" />
+    <Compile Include="Migrations\202604080100115_Initial_Create.Designer.cs">
+      <DependentUpon>202604080100115_Initial_Create.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Business\Dashboard\ViewProfilePage.xaml.cs">
       <DependentUpon>ViewProfilePage.xaml</DependentUpon>
     </Compile>
@@ -115,10 +119,6 @@
     </Compile>
     <Compile Include="Views\Business\Dashboard\ManageBookingsPage.xaml.cs">
       <DependentUpon>ManageBookingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202604020229169_Initial_Create.cs" />
-    <Compile Include="Migrations\202604020229169_Initial_Create.Designer.cs">
-      <DependentUpon>202604020229169_Initial_Create.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Business\Dashboard\BusinessDashboard.xaml.cs">
       <DependentUpon>BusinessDashboard.xaml</DependentUpon>
@@ -234,8 +234,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202604020229169_Initial_Create.resx">
-      <DependentUpon>202604020229169_Initial_Create.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202604080100115_Initial_Create.resx">
+      <DependentUpon>202604080100115_Initial_Create.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
