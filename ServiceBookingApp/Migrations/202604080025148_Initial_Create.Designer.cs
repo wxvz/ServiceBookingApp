@@ -13,7 +13,7 @@ namespace ServiceBookingApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202604020229169_Initial_Create"; }
+            get { return "202604080025148_Initial_Create"; }
         }
         
         string IMigrationMetadata.Source

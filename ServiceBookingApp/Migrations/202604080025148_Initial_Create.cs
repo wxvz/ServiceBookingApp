@@ -45,6 +45,7 @@
                 c => new
                     {
                         PaymentId = c.Int(nullable: false),
+                        BookingId = c.Int(nullable: false),
                         BusinessId = c.Int(nullable: false),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PaymentDate = c.DateTime(nullable: false),
