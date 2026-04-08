@@ -20,28 +20,28 @@ namespace DataManagement
             using (ServiceBookingContext db = new ServiceBookingContext())
             {
                 Console.WriteLine("Generating dummy data...");
-
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword("password123");
                 var businesses = new List<Business>
                 {
-                    new Business { Name = "Dublin Auto Repair", City = "Dublin", Email = "contact@dublinauto.ie", PhoneNumber = "01 234 5678", Password = "password123" },
-                    new Business { Name = "Cork IT Support", City = "Cork", Email = "support@corkit.ie", PhoneNumber = "021 987 6543", Password = "password123" },
-                    new Business { Name = "Galway Barbers", City = "Galway", Email = "info@galwaybarbers.ie", PhoneNumber = "091 123 4567", Password = "password123" },
-                    new Business { Name = "Limerick Cleaning", City = "Limerick", Email = "cleaningsouth@limerick.ie", PhoneNumber = "061 456 7890", Password = "password123" },
-                    new Business { Name = "Waterford Plumbers", City = "Waterford", Email = "plumber@waterford.ie", PhoneNumber = "083 654 3210", Password = "password123" }
+                    new Business { Name = "Dublin Auto Repair", City = "Dublin", Email = "contact@dublinauto.ie", PhoneNumber = "01 234 5678", Password = hashedPassword },
+                    new Business { Name = "Cork IT Support", City = "Cork", Email = "support@corkit.ie", PhoneNumber = "021 987 6543", Password = hashedPassword },
+                    new Business { Name = "Galway Barbers", City = "Galway", Email = "info@galwaybarbers.ie", PhoneNumber = "091 123 4567", Password = hashedPassword },
+                    new Business { Name = "Limerick Cleaning", City = "Limerick", Email = "cleaningsouth@limerick.ie", PhoneNumber = "061 456 7890", Password = hashedPassword },
+                    new Business { Name = "Waterford Plumbers", City = "Waterford", Email = "plumber@waterford.ie", PhoneNumber = "083 654 3210", Password = hashedPassword }
                 };
                 db.Businesses.AddRange(businesses);
                 db.SaveChanges(); // Save to generate IDs
 
                 var customers = new List<Customer>
                 {
-                    new Customer { Name = "John Doe", Email = "john.d@example.com", PhoneNumber = "087 111 2222", Password = "password123" },
-                    new Customer { Name = "Jane Smith", Email = "jane.s@example.com", PhoneNumber = "086 333 4444", Password = "password123" },
-                    new Customer { Name = "Alice Johnson", Email = "alice.j@example.com", PhoneNumber = "085 555 6666", Password = "password123" },
-                    new Customer { Name = "Bob Brown", Email = "bob.b@example.com", PhoneNumber = "089 777 8888", Password = "password123" },
-                    new Customer { Name = "Charlie Davis", Email = "charlie.d@example.com", PhoneNumber = "087 999 0000", Password = "password123" },
-                    new Customer { Name = "Diana Evans", Email = "diana.e@example.com", PhoneNumber = "086 222 3333", Password = "password123" },
-                    new Customer { Name = "Evan Foster", Email = "evan.f@example.com", PhoneNumber = "085 444 5555", Password = "password123" },
-                    new Customer { Name = "Fiona Green", Email = "fiona.g@example.com", PhoneNumber = "083 666 7777", Password = "password123" }
+                    new Customer { Name = "John Doe", Email = "john.d@example.com", PhoneNumber = "087 111 2222", Password = hashedPassword },
+                    new Customer { Name = "Jane Smith", Email = "jane.s@example.com", PhoneNumber = "086 333 4444", Password = hashedPassword },
+                    new Customer { Name = "Alice Johnson", Email = "alice.j@example.com", PhoneNumber = "085 555 6666", Password = hashedPassword },
+                    new Customer { Name = "Bob Brown", Email = "bob.b@example.com", PhoneNumber = "089 777 8888", Password = hashedPassword },
+                    new Customer { Name = "Charlie Davis", Email = "charlie.d@example.com", PhoneNumber = "087 999 0000", Password = hashedPassword },
+                    new Customer { Name = "Diana Evans", Email = "diana.e@example.com", PhoneNumber = "086 222 3333", Password = hashedPassword },
+                    new Customer { Name = "Evan Foster", Email = "evan.f@example.com", PhoneNumber = "085 444 5555", Password = hashedPassword },
+                    new Customer { Name = "Fiona Green", Email = "fiona.g@example.com", PhoneNumber = "083 666 7777", Password = hashedPassword }
                 };
                 db.Customers.AddRange(customers);
                 db.SaveChanges();
