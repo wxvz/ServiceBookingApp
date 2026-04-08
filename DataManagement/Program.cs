@@ -12,7 +12,7 @@ namespace DataManagement
         static void Main(string[] args)
         {
             //Run to populate the database with dummy data for testing
-            Data();
+            //Data();
         }
 
         static void Data()
