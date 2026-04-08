@@ -19,20 +19,17 @@ namespace ServiceBookingApp
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // Booking (Principal) to Payment (Dependent)
+            // One to one relationship between Booking and Payment
             modelBuilder.Entity<Booking>()
                 .HasOptional(b => b.Payment)
                 .WithRequired(p => p.Booking);
-
+                
             // Service (Principal) to ServiceSchedule (Dependent)
             modelBuilder.Entity<Service>()
                 .HasMany(s => s.ServiceSchedules)
                 .WithRequired(ss => ss.Service)
                 .HasForeignKey(ss => ss.ServiceId)
                 .WillCascadeOnDelete(true); // Cascade delete schedules when a service is deleted
-
-
-
 
             // Bookings in a business with many bookings and have business id will not cascade delete
             modelBuilder.Entity<Booking>()
