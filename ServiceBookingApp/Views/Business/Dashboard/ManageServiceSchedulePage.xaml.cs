@@ -266,11 +266,13 @@ namespace ServiceBookingApp
                 // Get the selected service ID from the schedule being updated and the selected day of week from the update form
                 int selectedServiceId = schedule.ServiceId;
                 var selectedDay = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), UpdateDayComboBox.SelectedItem.ToString());
+                var serviceActivated = UpdateActiveCheckBox.IsChecked;
+
                 // Check for conflicts with existing active schedules for the same service and day, excluding the current schedule being updated
                 var conflictingSchedule = db.ServiceSchedules
                     .Where(s => s.ServiceId == selectedServiceId &&
                                s.DayOfWeek == selectedDay &&
-                               s.IsActive &&
+                               s.IsActive == serviceActivated &&
                                ((startTime >= s.StartTime && startTime < s.EndTime) ||
                                 (endTime > s.StartTime && endTime <= s.EndTime) ||
                                 (startTime <= s.StartTime && endTime >= s.EndTime)))
