@@ -6,9 +6,74 @@
       xmlns:local="clr-namespace:ServiceBookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ManageBookingsPage">
+      Title="ManageBookingsPage"
+      Loaded="Page_Loaded">
 
-    <Grid>
-        
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Manage Bookings" FontSize="24" FontWeight="Bold" Margin="20,20,0,20"/>
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="20,0,20,10" Padding="15" Background="#F1FFFA">
+            <StackPanel>
+                <TextBlock Text="Filter by Booking Status" 
+                   FontSize="14" 
+                   FontWeight="SemiBold" 
+                   Margin="0,0,0,5"/>
+                <ComboBox x:Name="BookingStatusFilterCBX"
+                  SelectionChanged="BookingStatusFilterCBX_SelectionChanged"
+                  MinWidth="200"
+                  />
+            </StackPanel>
+        </Border>
+
+
+        <DataGrid x:Name="BookingsDataGrid" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" Margin="20" Background="White" RowBackground="#F9F9F9" AlternatingRowBackground="#FFFFFF" BorderBrush="Gray" BorderThickness="1" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Customer.Name}" Width="*"/>
+                    <DataGridTextColumn Header="Service" Binding="{Binding Service.Name}" Width="*"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:dd MMM yyyy\}}" Width="*"/>
+                    <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="*"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                    <DataGridTemplateColumn Header="Actions" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" Click="EditBooking_Click" Margin="2" Padding="5,2"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        <Border x:Name="EditPanel" Grid.Row="2" Visibility="Collapsed" Background="White" Margin="20" Padding="20" BorderBrush="Gray" BorderThickness="1">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Edit Booking" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+                <TextBlock Text="Date" Margin="0,0,0,5"/>
+                <DatePicker x:Name="EditDatePicker" Width="200" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Time (HH:mm)" Margin="0,0,0,5"/>
+                <TextBox x:Name="EditTimeTextBox" Width="200" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Status" Margin="0,0,0,5"/>
+                <ComboBox x:Name="EditStatusComboBox" Width="200" Margin="0,0,0,20">
+                    <ComboBoxItem Content="Pending"/>
+                    <ComboBoxItem Content="Confirmed"/>
+                    <ComboBoxItem Content="Completed"/>
+                    <ComboBoxItem Content="Cancelled"/>
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="Save" Click="SaveBooking_Click" Width="80" Margin="0,0,10,0"/>
+                    <Button Content="Cancel" Click="CancelEdit_Click" Width="80"/>
+                </StackPanel>
+                <StackPanel>
+                    <Button Content="Delete" Width="80" Margin="0,20,0,0" Click="DeleteBookingBtn_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>
