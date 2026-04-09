@@ -20,9 +20,41 @@ namespace ServiceBookingApp
     /// </summary>
     public partial class ViewBookingsPage : Page
     {
+        public ServiceBookingContext db = new ServiceBookingContext();
+
         public ViewBookingsPage()
         {
             InitializeComponent();
         }
+
+        private void ViewBookingsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadUpcomingBookings();
+        }
+
+        private void LoadUpcomingBookings()
+        {
+            if (SessionManager.CurrentBusiness == null) return;
+
+            try
+            {
+                var today = DateTime.Today;
+                var threeMonthsFromNow = today.AddMonths(3);
+
+                var upcoming = db.Bookings
+                    .Where(b => b.BusinessId == SessionManager.CurrentBusiness.BusinessId &&
+                                b.Date >= today && b.Date <= threeMonthsFromNow &&
+                                (b.Status == (BookingStatus)0 || b.Status == (BookingStatus)1)) // Pending or Confirmed
+                    .OrderBy(b => b.Date).ThenBy(b => b.Time)
+                    .ToList();
+
+                UpcomingBookingsDataGrid.ItemsSource = upcoming;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading bookings: " + ex.Message);
+            }
+        }
+       
     }
 }

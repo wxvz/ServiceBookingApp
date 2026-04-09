@@ -6,9 +6,37 @@
       xmlns:local="clr-namespace:ServiceBookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ViewBookingsPage">
+      Title="ViewBookingsPage"
+      Background="White"
+      Loaded="ViewBookingsPage_Loaded">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
+        <TextBlock Text="Upcoming Bookings" FontSize="24" FontWeight="Bold" Margin="20,20,0,20"/>
+
+        <DataGrid x:Name="UpcomingBookingsDataGrid" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" Margin="20" Background="White" RowBackground="#F9F9F9" AlternatingRowBackground="#FFFFFF" BorderBrush="Gray" BorderThickness="1" HeadersVisibility="Column" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Service" Binding="{Binding Service.Name}" Width="*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=\{0:dd MMM yyyy\}}" Width="*"/>
+                <DataGridTextColumn Header="Time" Binding="{Binding Time}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Border Background="White" Padding="10" Margin="10" BorderBrush="Gray" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Customer Details" FontWeight="Bold" FontSize="14" Margin="0,0,0,5"/>
+                            <TextBlock Text="{Binding Customer.Name, StringFormat=Name: \{0\}}"/>
+                            <TextBlock Text="{Binding Customer.Email, StringFormat=Email: \{0\}}"/>
+                            <TextBlock Text="{Binding Customer.PhoneNumber, StringFormat=Phone: \{0\}}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
     </Grid>
 </Page>
