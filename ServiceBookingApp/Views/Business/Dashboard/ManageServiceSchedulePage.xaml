@@ -25,7 +25,7 @@
                    Margin="20"/>
 
         <!-- Service Selection Area -->
-        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="20,0,20,10" Padding="15" Background="#F1FFFA">
+        <Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Margin="20,0,20,10" Padding="15" Background="#F1FFFA">
             <StackPanel>
                 <TextBlock Text="Select Service to View Schedules" 
                            FontSize="14" 
@@ -48,7 +48,7 @@
             </Grid.ColumnDefinitions>
 
             <DataGrid Grid.Column="0" x:Name="SchedulesDataGrid" AutoGenerateColumns="False" 
-                      Margin="0,0,15,0" CanUserAddRows="False" SelectionMode="Single">
+                      Margin="0,0,15,0" CanUserAddRows="False" SelectionMode="Single" BorderBrush="Gray" BorderThickness="1">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Day" Binding="{Binding DayOfWeek}" Width="120" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Start Time" Binding="{Binding StartTime}" Width="100" IsReadOnly="True"/>
@@ -68,8 +68,9 @@
             </DataGrid>
 
             <!-- Update Schedule Panel (Hidden by Default) -->
-            <Border Grid.Column="1" x:Name="UpdateSchedulePanel" Width="280" BorderBrush="LightGray" 
-                    BorderThickness="1" Background="#F1FFFA" Padding="15" Visibility="Collapsed">
+            <Border Grid.Column="1" x:Name="UpdateSchedulePanel" Width="280" BorderBrush="Gray" 
+                    BorderThickness="1" Background="#F1FFFA" Padding="15" Visibility="Collapsed"
+                    >
                 <StackPanel>
                     <TextBlock Text="Update Schedule" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
 

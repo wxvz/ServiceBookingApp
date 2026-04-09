@@ -192,7 +192,7 @@ namespace ServiceBookingApp
                     DayOfWeek = selectedDay,
                     StartTime = startTime,
                     EndTime = endTime,
-                    IsActive = ActiveCheckBox.IsChecked ?? true
+                    IsActive = ActiveCheckBox.IsChecked ?? true // catch nulls
                 };
                 // Add the new schedule to the database and save changes
                 db.ServiceSchedules.Add(newSchedule);
