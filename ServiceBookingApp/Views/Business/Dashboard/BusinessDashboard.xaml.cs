@@ -84,8 +84,8 @@ namespace ServiceBookingApp
             else
             {
                 //Array of custom colours from coolors.co (pERSONALLY procured BY ME)
-                string[] Colours = { 
-                    "#C2D3CD", "#EEEEFF", "#96E8BC", "#B6F9C9", "#E5E7E6", "#C9FFE2", "#9FA4A9",
+                string[] colours = { 
+                    "#C2D3CD", "#689689", "#96E8BC", "#B6F9C9", "#E5E7E6", "#C9FFE2", "#9FA4A9",
                     "#ADA8B6", "#A2A79E", "#B7B7B7", "#C7CFFD", "#82ABA1", "#909590", "#E1DEE9"
                 }; 
                 int colourIndex = 0;
@@ -100,7 +100,7 @@ namespace ServiceBookingApp
                             Values = new ChartValues<int> { stats.BookingCount },
                             DataLabels = true,
                             // Apply the color and increment the index (loop back if we have more services than colours)
-                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Colours[colourIndex % Colours.Length])),
+                            Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString(colours[colourIndex % colours.Length])),
                             // Set label color for better visibility
                             Foreground = Brushes.Black
                         });
