@@ -205,11 +205,11 @@ namespace ServiceBookingApp
             EditPanel.Visibility = Visibility.Collapsed;
         } // Event Handler for Cancel Edit
 
-        private void DeleteBookingBtn_Click(object sender, RoutedEventArgs e)
+        private void RefundBookingBtn_Click(object sender, RoutedEventArgs e)
         {
             if (editedBooking == null) return;
 
-            var result = MessageBox.Show($"Are you sure you want to delete the booking for {editedBooking.Customer.Name} on {editedBooking.Date.ToShortDateString()} at {editedBooking.Time}?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show($"Are you sure you want to refund the booking for {editedBooking.Customer.Name} on {editedBooking.Date.ToShortDateString()} at {editedBooking.Time}?", "Confirm Refund", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 try

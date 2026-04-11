@@ -71,7 +71,7 @@
                     <Button Content="Cancel" Click="CancelEdit_Click" Width="80"/>
                 </StackPanel>
                 <StackPanel>
-                    <Button Content="Delete" Width="80" Margin="0,20,0,0" Click="DeleteBookingBtn_Click"/>
+                    <Button Content="Refund" Width="80" Margin="0,20,0,0" Click="RefundBookingBtn_Click"/>
                 </StackPanel>
             </StackPanel>
         </Border>
