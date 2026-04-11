@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ServiceBookingApp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="ManageBookingsPage"
       Loaded="Page_Loaded">
 
@@ -31,7 +31,7 @@
         </Border>
 
 
-        <DataGrid x:Name="BookingsDataGrid" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" Margin="20" Background="White" RowBackground="#F9F9F9" AlternatingRowBackground="#FFFFFF" BorderBrush="Gray" BorderThickness="1" HeadersVisibility="Column">
+        <DataGrid x:Name="BookingsDataGrid" Grid.Row="2"  AutoGenerateColumns="False" IsReadOnly="True" Margin="20" Background="White" RowBackground="#F9F9F9" AlternatingRowBackground="#FFFFFF" BorderBrush="Gray" BorderThickness="1" HeadersVisibility="Column">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Customer.Name}" Width="*"/>
                     <DataGridTextColumn Header="Service" Binding="{Binding Service.Name}" Width="*"/>
@@ -71,7 +71,7 @@
                     <Button Content="Cancel" Click="CancelEdit_Click" Width="80"/>
                 </StackPanel>
                 <StackPanel>
-                    <Button Content="Refund" Width="80" Margin="0,20,0,0" Click="RefundBookingBtn_Click"/>
+                    <Button Content="Refund" Width="80" Margin="0,20,0,0" Click="RefundBookingBtn_Click" Background="#CA6875" BorderBrush="Black"  />
                 </StackPanel>
             </StackPanel>
         </Border>
