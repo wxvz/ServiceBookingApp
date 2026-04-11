@@ -108,9 +108,6 @@
     <Compile Include="Migrations\202604080100115_Initial_Create.Designer.cs">
       <DependentUpon>202604080100115_Initial_Create.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Business\Dashboard\ViewProfilePage.xaml.cs">
-      <DependentUpon>ViewProfilePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Business\Dashboard\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
@@ -141,10 +138,6 @@
       <DependentUpon>ManageServicesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\SessionManager.cs" />
-    <Page Include="Views\Business\Dashboard\ViewProfilePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Business\Dashboard\EditProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
