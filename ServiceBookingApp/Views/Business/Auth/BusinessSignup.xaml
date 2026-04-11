@@ -59,14 +59,14 @@
                  HorizontalAlignment="Center" 
                  VerticalAlignment="Top" Margin="0,95,0,0" Width="200"/>
         
-        <TextBlock Text="City:"
+        <TextBlock Text="Address:"
                    FontSize="18"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
                    Grid.ColumnSpan="4"
                    Grid.Row="1" Margin="170,145,0,0"/>
         
-        <TextBox x:Name="CityTBX"
+        <TextBox x:Name="AddressTBX"
                  FontSize="18"
                  Grid.Row="1"
                  Grid.ColumnSpan="4"

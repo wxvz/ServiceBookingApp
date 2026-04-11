@@ -25,7 +25,7 @@
                 new Business
                 {
                     Name = "Dublin Hair & Beauty",
-                    City = "Dublin",
+                    Address = "11, O'Connell Street, Dublin",
                     Email = "admin@example.ie",
                     PhoneNumber = "+353 1 234 5678",
                     Password = hashedPassword 

@@ -34,7 +34,7 @@ namespace ServiceBookingApp
         {
             // Trim input fields to remove leading and whitespace
             businessNameTBX.Text = businessNameTBX.Text.Trim();
-            CityTBX.Text = CityTBX.Text.Trim();
+            AddressTBX.Text = AddressTBX.Text.Trim();
             emailTBX.Text = emailTBX.Text.Trim();
             phoneTBX.Text = phoneTBX.Text.Trim();
             passwordPBX.Password = passwordPBX.Password.Trim();
@@ -60,7 +60,7 @@ namespace ServiceBookingApp
             }
             // Check if any field is empty
             if (string.IsNullOrWhiteSpace(businessNameTBX.Text) ||
-                string.IsNullOrWhiteSpace(CityTBX.Text) ||
+                string.IsNullOrWhiteSpace(AddressTBX.Text) ||
                 string.IsNullOrWhiteSpace(emailTBX.Text) ||
                 string.IsNullOrWhiteSpace(phoneTBX.Text) ||
                 string.IsNullOrWhiteSpace(passwordPBX.Password))
@@ -85,7 +85,7 @@ namespace ServiceBookingApp
                 var newBusiness = new Business
                 {
                     Name = businessNameTBX.Text,
-                    City = CityTBX.Text,
+                    Address = AddressTBX.Text,
                     Email = emailTBX.Text,
                     PhoneNumber = phoneTBX.Text,
                     Password = hashedPassword

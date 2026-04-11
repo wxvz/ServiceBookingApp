@@ -23,11 +23,11 @@ namespace DataManagement
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword("password123");
                 var businesses = new List<Business>
                 {
-                    new Business { Name = "Dublin Auto Repair", City = "Dublin", Email = "contact@dublinauto.ie", PhoneNumber = "01 234 5678", Password = hashedPassword },
-                    new Business { Name = "Cork IT Support", City = "Cork", Email = "support@corkit.ie", PhoneNumber = "021 987 6543", Password = hashedPassword },
-                    new Business { Name = "Galway Barbers", City = "Galway", Email = "info@galwaybarbers.ie", PhoneNumber = "091 123 4567", Password = hashedPassword },
-                    new Business { Name = "Limerick Cleaning", City = "Limerick", Email = "cleaningsouth@limerick.ie", PhoneNumber = "061 456 7890", Password = hashedPassword },
-                    new Business { Name = "Waterford Plumbers", City = "Waterford", Email = "plumber@waterford.ie", PhoneNumber = "083 654 3210", Password = hashedPassword }
+                    new Business { Name = "Dublin Auto Repair", Address = "Example Street, Dublin", Email = "contact@dublinauto.ie", PhoneNumber = "01 234 5678", Password = hashedPassword },
+                    new Business { Name = "Cork IT Support", Address = "Example Street, Cork", Email = "support@corkit.ie", PhoneNumber = "021 987 6543", Password = hashedPassword },
+                    new Business { Name = "Galway Barbers", Address = "Example Street, Galway", Email = "info@galwaybarbers.ie", PhoneNumber = "091 123 4567", Password = hashedPassword },
+                    new Business { Name = "Limerick Cleaning", Address = "Example Street, Limerick", Email = "cleaningsouth@limerick.ie", PhoneNumber = "061 456 7890", Password = hashedPassword },
+                    new Business { Name = "Waterford Plumbers", Address = "Example Street, Waterford", Email = "plumber@waterford.ie", PhoneNumber = "083 654 3210", Password = hashedPassword }
                 };
                 db.Businesses.AddRange(businesses);
                 db.SaveChanges(); // Save to generate IDs
