@@ -108,6 +108,10 @@
     <Compile Include="Migrations\202604080100115_Initial_Create.Designer.cs">
       <DependentUpon>202604080100115_Initial_Create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202604111529359_Business_Description.cs" />
+    <Compile Include="Migrations\202604111529359_Business_Description.Designer.cs">
+      <DependentUpon>202604111529359_Business_Description.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Business\Dashboard\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
@@ -229,6 +233,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202604080100115_Initial_Create.resx">
       <DependentUpon>202604080100115_Initial_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604111529359_Business_Description.resx">
+      <DependentUpon>202604111529359_Business_Description.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
