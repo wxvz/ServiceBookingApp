@@ -5,10 +5,49 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ServiceBookingApp"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditProfilePage">
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="EditProfilePage"
+      Background="White">
 
-    <Grid>
-        
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" 
+                   Text="Edit Business Profile" 
+                   FontSize="28" 
+                   FontWeight="Bold" 
+                   Foreground="#333333" 
+                   Margin="0,0,0,20"/>
+
+        <!-- Form Elements -->
+
+        <StackPanel Grid.Row="1" Margin="0,0,20,0">
+
+            <TextBlock Text="Business Name" FontWeight="SemiBold" Margin="0,10,0,5" Foreground="#555555"/>
+            <TextBox x:Name="BusinessNameTBX" Height="35" Padding="5" FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1" />
+
+            <TextBlock Text="Phone Number" FontWeight="SemiBold" Margin="0,15,0,5" Foreground="#555555"/>
+            <TextBox x:Name="PhoneTBX" Height="35" Padding="5" FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1" />
+
+            <TextBlock Text="Email Address" FontWeight="SemiBold" Margin="0,15,0,5" Foreground="#555555"/>
+            <TextBox x:Name="EmailTBX" Height="35" Padding="5" FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1" />
+
+            <TextBlock Text="Business Address" FontWeight="SemiBold" Margin="0,15,0,5" Foreground="#555555"/>
+            <TextBox x:Name="AddressTBX" Height="35" Padding="5" FontSize="14" BorderBrush="#CCCCCC" BorderThickness="1" />
+
+            <TextBlock Text="Description" FontWeight="SemiBold" Margin="0,15,0,5" Foreground="#555555"/>
+            <TextBox x:Name="DescriptionTBX" Height="100" Padding="5" FontSize="14" TextWrapping="Wrap" AcceptsReturn="True" BorderBrush="#CCCCCC" BorderThickness="1" />
+        </StackPanel>
+
+        <!-- buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Cancel" Width="100" Height="40" Margin="0,0,10,0" Background="#F0F0F0" FontWeight="SemiBold" BorderBrush="Gray" Cursor="Hand"/>
+            <Button Content="Save Changes" Width="120" Height="40" Foreground="White" FontWeight="SemiBold" BorderThickness="0" Cursor="Hand"/>
+        </StackPanel>
     </Grid>
 </Page>
