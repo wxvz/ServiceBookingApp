@@ -228,12 +228,7 @@ namespace ServiceBookingApp
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
         } // Event HandlerManage Schedule's Button
-        private void ViewProfile_Click(object sender, RoutedEventArgs e)
-        {
-            DashboardFrame.Navigate(new ViewProfilePage());
-            DashboardFrame.Visibility = Visibility.Visible;
-            HideDashboardContent();
-        }
+        
         private void EditProfile_Click(object sender, RoutedEventArgs e)
         {
             DashboardFrame.Navigate(new EditProfilePage());
