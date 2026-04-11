@@ -80,6 +80,7 @@ namespace ServiceBookingApp
                     db.SaveChanges();
                     
                     MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LoadBusinessDetails(); // Refresh the displayed details after saving
                 }
                 catch (Exception ex)
                 {
@@ -89,3 +90,4 @@ namespace ServiceBookingApp
         }
     }
 }
+    
