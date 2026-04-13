@@ -4,21 +4,101 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ServiceBookingApp"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="CustomerDashboard"
+      Title="CustomerDashboard" MinHeight="720" MinWidth="1080"
       Background="White"
       Loaded="Window_Loaded">
 
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="22*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <Rectangle Fill="#139174" Grid.Row="0" Grid.ColumnSpan="3"/>
+
+        <TextBlock Text="Customer Dashboard" 
+           FontSize="20" 
+           FontWeight="Bold" 
+           Foreground="AliceBlue"
+           HorizontalAlignment="Center" 
+           VerticalAlignment="Center" 
+           Grid.ColumnSpan="3" 
+           Grid.Row="0"
+           Grid.Column="1"/>
+
+        <TextBlock x:Name="customerName"
+           Text="Welcome" 
+           FontSize="16" 
+           FontWeight="Bold" 
+           Foreground="AliceBlue"
+           HorizontalAlignment="Center" 
+           VerticalAlignment="Center" 
+           Grid.ColumnSpan="1" 
+           Grid.Row="0"
+           Grid.Column="0"/>
+
+        <!-- Navigation Sidebar -->
+        <Rectangle Fill="LightGray" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" />
+
+        <StackPanel Grid.Column="0" Grid.Row="1"  Grid.RowSpan="5">
+            <StackPanel>
+                <Button Content="Dashboard Home" 
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        FontSize="16" 
+                        HorizontalContentAlignment="Left"
+                        Margin="10,10,10,0"
+                        Click="DashboardButton_Click"/>
+            </StackPanel>
+
+            <StackPanel>
+                <Expander Header="Profile" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Center" 
+                    Background="Transparent" Foreground="#139174" HorizontalAlignment="Left">
+                    <StackPanel Margin="10,0,0,0">
+                        <Button Content="Edit Profile" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+
+            <StackPanel>
+                <Expander Header="Bookings" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Center" 
+                          Background="Transparent" Foreground="#139174" HorizontalAlignment="Left" IsExpanded="True">
+                    <StackPanel Margin="10,0,0,0">
+                        <Button Content="Book a Service" Style="{StaticResource MaterialDesignFlatButton}"/>
+                        <Button Content="Manage Bookings" Style="{StaticResource MaterialDesignFlatButton}"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+
+            <Button Content="Logout" 
+                Style="{StaticResource MaterialDesignFlatButton}"
+                FontSize="16" 
+                Grid.Column="0"
+                Grid.Row="5" 
+                Click="LogoutButton_Click"
+                HorizontalContentAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="10,10,10,0"/>
+        </StackPanel>
+        
+        
+        <StackPanel x:Name="HomeContent" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Welcome to your Dashboard" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+            <TextBlock Text="From here you can book services, manage your profile and see your booking history." FontSize="16" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        
+        <Frame x:Name="DashboardFrame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
 
     </Grid>
 </Page>
