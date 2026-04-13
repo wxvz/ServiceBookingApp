@@ -128,7 +128,7 @@ namespace DataManagement
                 var random = new Random();
                 var bookings = new List<Booking>();
                 Console.WriteLine("Generating Bookings...");
-                for (int i = 0; i < 60; i++) // Generate 50 random bookings over different months
+                for (int i = 0; i < 60; i++) // Generate 60 random bookings over different months
                 {
                     var customer = customers[random.Next(customers.Count)];
                     var service = services[random.Next(services.Count)];
@@ -148,7 +148,7 @@ namespace DataManagement
                         .Select(s => new { s.StartTime, s.EndTime })
                         .ToList();
                     // Randomly select a time slot from the available times
-                    var randomTimeSlot = availableTimes[random.Next(availableTimes.Count) ];
+                    var randomTimeSlot = availableTimes[random.Next(availableTimes.Count)];
                     // Random time within the selected time slot (int)eger minutes between start and end time
                     // Ensure we have enough time before EndTime to actually complete the service
                     int availableMinutes = (int)(randomTimeSlot.EndTime - randomTimeSlot.StartTime).TotalMinutes;
