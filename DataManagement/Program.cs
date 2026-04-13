@@ -20,7 +20,7 @@ namespace DataManagement
             using (ServiceBookingContext db = new ServiceBookingContext())
             {
                 Console.WriteLine("Generating dummy data...");
-                string hashedPassword = BCrypt.Net.BCrypt.HashPassword("password123");
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword("1234");
                 var businesses = new List<Business>
                 {
                     new Business { Name = "Dublin Auto Repair", Address = "Example Street, Dublin", Email = "contact@dublinauto.ie", PhoneNumber = "01 234 5678", Password = hashedPassword },
