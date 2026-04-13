@@ -234,18 +234,18 @@ namespace ServiceBookingApp
             DashboardFrame.Navigate(new EditProfilePage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
-        }
+        } // Event Handler for Edit Profile Button
         private void ViewBookings_Click(object sender, RoutedEventArgs e)
         {
             DashboardFrame.Navigate(new ViewBookingsPage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
-        }
+        } // Event Handler for View Bookings Button
         private void ManageBookings_Click(object sender, RoutedEventArgs e)
         {
             DashboardFrame.Navigate(new ManageBookingsPage());
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
-        }
+        } // Event Handler for Manage Bookings Button
     }
 }

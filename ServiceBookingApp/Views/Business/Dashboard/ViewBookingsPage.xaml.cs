@@ -38,14 +38,16 @@ namespace ServiceBookingApp
 
             try
             {
+                // Load bookings for the next 3 months
                 var today = DateTime.Today;
                 var threeMonthsFromNow = today.AddMonths(3);
 
+                // Only show Pending and Confirmed bookings
                 var upcoming = db.Bookings
                     .Where(b => b.BusinessId == SessionManager.CurrentBusiness.BusinessId &&
                                 b.Date >= today && b.Date <= threeMonthsFromNow &&
-                                (b.Status == (BookingStatus)0 || b.Status == (BookingStatus)1)) // Pending or Confirmed
-                    .OrderBy(b => b.Date).ThenBy(b => b.Time)
+                                (b.Status == (BookingStatus)0 || b.Status == (BookingStatus)1)) 
+                    .OrderBy(b => b.Date).ThenBy(b => b.Time) // Sort by date then time
                     .ToList();
 
                 UpcomingBookingsDataGrid.ItemsSource = upcoming;

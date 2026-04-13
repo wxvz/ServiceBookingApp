@@ -91,12 +91,14 @@ namespace ServiceBookingApp
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
+            // Reload the business details to discard any unsaved changes
             var business = db.Businesses.Find(SessionManager.CurrentBusiness.BusinessId);
             BusinessNameTBX.Text = business.Name;
             AddressTBX.Text = business.Address;
             PhoneTBX.Text = business.PhoneNumber;
             EmailTBX.Text = business.Email;
-            if(string.IsNullOrEmpty(business.Description))
+            // If the description is empty, show the placeholder text
+            if (string.IsNullOrEmpty(business.Description))
             {
                 DescriptionTBX.Text = "Enter in your business description.";
             }
