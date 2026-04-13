@@ -88,6 +88,23 @@ namespace ServiceBookingApp
                 }
             }
         }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            var business = db.Businesses.Find(SessionManager.CurrentBusiness.BusinessId);
+            BusinessNameTBX.Text = business.Name;
+            AddressTBX.Text = business.Address;
+            PhoneTBX.Text = business.PhoneNumber;
+            EmailTBX.Text = business.Email;
+            if(string.IsNullOrEmpty(business.Description))
+            {
+                DescriptionTBX.Text = "Enter in your business description.";
+            }
+            else
+            {
+                DescriptionTBX.Text = business.Description;
+            }
+        }
     }
 }
     
