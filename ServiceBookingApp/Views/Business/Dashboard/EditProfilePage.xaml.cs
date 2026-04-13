@@ -33,15 +33,17 @@ namespace ServiceBookingApp
 
         private void LoadBusinessDetails()
         {
-            if (SessionManager.CurrentBusiness != null)
+            var business = db.Businesses.Find(SessionManager.CurrentBusiness.BusinessId);
+            if (business != null)
             {
-                BusinessNameTBX.Text = SessionManager.CurrentBusiness.Name;
-                AddressTBX.Text = SessionManager.CurrentBusiness.Address;
-                PhoneTBX.Text = SessionManager.CurrentBusiness.PhoneNumber;
-                EmailTBX.Text = SessionManager.CurrentBusiness.Email;
-                if (!string.IsNullOrEmpty(SessionManager.CurrentBusiness.Description))
+                BusinessNameTBX.Text = business.Name;
+                AddressTBX.Text = business.Address;
+                PhoneTBX.Text = business.PhoneNumber;
+                EmailTBX.Text = business.Email;
+                
+                if (!string.IsNullOrEmpty(business.Description))
                 {
-                    DescriptionTBX.Text = SessionManager.CurrentBusiness.Description;
+                    DescriptionTBX.Text = business.Description;
                 }
                 else
                 {

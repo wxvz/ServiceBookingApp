@@ -51,6 +51,7 @@ namespace DataManagement
                     new Service { BusinessId = businesses[0].BusinessId, Name = "Oil Change", Description = "Full synthetic oil change", Price = 80m, Duration = TimeSpan.FromMinutes(45) },
                     new Service { BusinessId = businesses[0].BusinessId, Name = "Tire Rotation", Description = "Rotate all 4 tires", Price = 40m, Duration = TimeSpan.FromMinutes(30) },
                     new Service { BusinessId = businesses[1].BusinessId, Name = "Virus Removal", Description = "Deep scan and malware removal", Price = 100m, Duration = TimeSpan.FromHours(2) },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "Screen Repair", Description = "Repair or replace screen", Price = 120m, Duration = TimeSpan.FromHours(1.5) },
                     new Service { BusinessId = businesses[1].BusinessId, Name = "OS Install", Description = "Install Windows/Linux", Price = 120m, Duration = TimeSpan.FromHours(1.5) },
                     new Service { BusinessId = businesses[2].BusinessId, Name = "Men's Haircut", Description = "Standard style haircut", Price = 25m, Duration = TimeSpan.FromMinutes(30) },
                     new Service { BusinessId = businesses[2].BusinessId, Name = "Beard Trim", Description = "Professional beard grooming", Price = 15m, Duration = TimeSpan.FromMinutes(20) },
