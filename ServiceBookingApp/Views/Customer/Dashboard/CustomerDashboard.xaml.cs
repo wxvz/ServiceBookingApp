@@ -49,7 +49,14 @@ namespace ServiceBookingApp
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+            var result = MessageBox.Show("Log Out?", "Logout", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            // If user clicks no return 
+            if (result != MessageBoxResult.Yes) return;
+            // Clear session and log out
+            SessionManager.LogOut();
+            MessageBox.Show("You have been logged out.");
+            // Navigate back to the login page  
+            NavigationService.Navigate(new HomePage());
+        }  // Event Handler for Logout Button
     }
 }
