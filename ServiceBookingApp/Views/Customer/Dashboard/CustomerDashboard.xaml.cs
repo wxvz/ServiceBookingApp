@@ -24,5 +24,22 @@ namespace ServiceBookingApp
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void LoadCustomer()
+        {
+            // Load customer data and display on dashboard
+            SessionManager.LoadSession();
+           
+            if (SessionManager.CurrentCustomer == null)
+            {
+                MessageBox.Show("No customer logged in.");
+                return;
+            }
+
+        }
     }
 }
