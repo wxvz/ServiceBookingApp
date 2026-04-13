@@ -34,7 +34,23 @@ namespace ServiceBookingApp
         {
             InitializeComponent();
         }
-
+        private void LoadBusiness(object sender, RoutedEventArgs e)
+        {
+            // Load the current business from the session and display its name
+            SessionManager.LoadSession();
+            businessName.Text = SessionManager.CurrentBusiness.Name;
+            // Total bookings
+            int totalBookings = db.Bookings.Count(b => b.BusinessId == SessionManager.CurrentBusiness.BusinessId);
+            //Total revenue
+            decimal totalRevenue = db.Payments
+                .Where(p => p.BusinessId == SessionManager.CurrentBusiness.BusinessId)
+                .Sum(p => (decimal?)p.Amount) ?? 0;
+            // Display the business details
+            totalBookingsTBX.Text = $"Total Bookings: {totalBookings}";
+            totalRevenueTBX.Text = $"Total Revenue: €{totalRevenue:F2}";
+            // Load chart data
+            LoadChartData(totalBookings);
+        } // Loads Business Data from Session On Window Loaded 
         private void ChartContext()
         {
             DataContext = null;
@@ -120,7 +136,7 @@ namespace ServiceBookingApp
                 {
                     p.PaymentDate.Year, p.PaymentDate.Month 
                 })
-                .OrderBy(g => g.Key.Year)
+                .OrderBy(g => g.Key.Year) 
                 .ThenBy(g => g.Key.Month)
                 .Select(g => new
                 {
@@ -156,23 +172,7 @@ namespace ServiceBookingApp
             ChartContext(); // Reload DataContext For LAst Time with all values
            
         } // Fetchs Business Data and displays as charts using live chart extension
-        private void LoadBusiness(object sender, RoutedEventArgs e)
-        { 
-            // Load the current business from the session and display its name
-            SessionManager.LoadSession();
-            businessName.Text = SessionManager.CurrentBusiness.Name;
-            // Total bookings
-            int totalBookings = db.Bookings.Count(b => b.BusinessId == SessionManager.CurrentBusiness.BusinessId);
-            //Total revenue
-            decimal totalRevenue = db.Payments
-                .Where(p => p.BusinessId == SessionManager.CurrentBusiness.BusinessId)
-                .Sum(p => (decimal?)p.Amount) ?? 0;
-            // Display the business details
-            totalBookingsTBX.Text = $"Total Bookings: {totalBookings}";
-            totalRevenueTBX.Text = $"Total Revenue: €{totalRevenue:F2}";
-            // Load chart data
-            LoadChartData(totalBookings);
-        } // Loads Business Data from Session On Window Loaded 
+       
         private void ServicesButton_Click(object sender, RoutedEventArgs e)
         {
             // Navigate to the Manage Services page within the dashboard frame
