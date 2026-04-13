@@ -123,12 +123,12 @@ namespace DataManagement
                 }
                 db.ServiceSchedules.AddRange(schedules);
                 db.SaveChanges();
-                Console.WriteLine("Complete..");
+                Console.WriteLine("Schedules Generated.");
 
                 var random = new Random();
                 var bookings = new List<Booking>();
                 Console.WriteLine("Generating Bookings...");
-                for (int i = 0; i < 60; i++) // Generate 60 random bookings over different months
+                for (int i = 0; i < 80; i++) // Generate 80 random bookings over different months
                 {
                     var customer = customers[random.Next(customers.Count)];
                     var service = services[random.Next(services.Count)];
@@ -192,8 +192,8 @@ namespace DataManagement
                         };
                     }
                     bookings.Add(booking);
-                    Console.WriteLine("Complete..");
                 }
+                Console.WriteLine("Bookings Generated.");
 
                 db.Bookings.AddRange(bookings);
                 db.SaveChanges();
