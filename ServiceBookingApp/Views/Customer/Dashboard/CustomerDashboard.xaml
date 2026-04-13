@@ -53,7 +53,7 @@
 
         <StackPanel Grid.Column="0" Grid.Row="1"  Grid.RowSpan="5">
             <StackPanel>
-                <Button Content="Dashboard Home" 
+                <Button Content="Dashboard" 
                         Style="{StaticResource MaterialDesignFlatButton}"
                         FontSize="16" 
                         HorizontalContentAlignment="Left"

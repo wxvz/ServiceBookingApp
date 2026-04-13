@@ -41,5 +41,15 @@ namespace ServiceBookingApp
             }
 
         }
+
+        private void DashboardButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

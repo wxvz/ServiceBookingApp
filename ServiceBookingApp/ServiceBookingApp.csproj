@@ -128,11 +128,20 @@
     <Compile Include="Views\Business\Dashboard\BusinessDashboard.xaml.cs">
       <DependentUpon>BusinessDashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Customer\Dashboard\BookServicePage.xaml.cs">
+      <DependentUpon>BookServicePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Customer\Dashboard\CustomerDashboard.xaml.cs">
       <DependentUpon>CustomerDashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Business\Dashboard\ManageServiceSchedulePage.xaml.cs">
       <DependentUpon>ManageServiceSchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Dashboard\EditProfile.xaml.cs">
+      <DependentUpon>EditProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Dashboard\ManageBookingsPage.xaml.cs">
+      <DependentUpon>ManageBookingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -170,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Customer\Dashboard\BookServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Customer\Dashboard\CustomerDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,6 +196,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Business\Dashboard\ManageServiceSchedulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\Dashboard\EditProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\Dashboard\ManageBookingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
