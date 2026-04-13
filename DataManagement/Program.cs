@@ -83,15 +83,15 @@ namespace DataManagement
                         Status = bookingDate < DateTime.Now ? BookingStatus.Completed : BookingStatus.Pending // Completed if in the past, otherwise pending
                     };
 
-                    // Attach the Payment DIRECTLY to the booking navigation property
-                    if (booking.Status == BookingStatus.Completed || random.NextDouble() > 0.5)
+                    // Attaching the Payment DIRECTLY to the booking navigation property
+                    if (booking.Status == BookingStatus.Completed || random.NextDouble() > 0.5) // Randomly decide to create a payment for pending bookings. if number generated greater than 0.5
                     {
                         booking.Payment = new Payment
                         {
                             BusinessId = business.BusinessId,
                             Amount = service.Price,
                             PaymentDate = bookingDate,
-                            Status = bookingDate < DateTime.Now ? PaymentStatus.Completed : PaymentStatus.Pending,
+                            Status = bookingDate < DateTime.Now ? PaymentStatus.Completed : PaymentStatus.Pending, // Completed if in the past, otherwise pending
                             Method = (PaymentMethod)random.Next(0, 3) // Cash, Card, etc. depending on enum
                         };
                     }
