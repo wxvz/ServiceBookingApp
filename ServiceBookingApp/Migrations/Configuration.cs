@@ -15,12 +15,12 @@
             ContextKey = "ServiceBookingApp.ServiceBookingContext";
         }
 
-        protected override void Seed(ServiceBookingContext context)
+        protected override void Seed(ServiceBookingContext db)
         {
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword("1234");
 
             //Seeeeeeeding Dataaaaaa
-            context.Businesses.AddOrUpdate(
+            db.Businesses.AddOrUpdate(
                 b => b.Email,
                 new Business
                 {
@@ -33,11 +33,11 @@
             );
 
             // Save changes so the Business Id is generated for dependents
-            context.SaveChanges(); 
+            db.SaveChanges(); 
 
-            var adminBusiness = context.Businesses.FirstOrDefault(b => b.Email == "admin@example.ie");
+            var adminBusiness = db.Businesses.FirstOrDefault(b => b.Email == "admin@example.ie");
 
-            context.Customers.AddOrUpdate(
+            db.Customers.AddOrUpdate(
                 c => c.Email,
                 new Customer
                 {
@@ -49,7 +49,7 @@
                 }
             );
 
-            context.Services.AddOrUpdate(
+            db.Services.AddOrUpdate(
                 s => s.Name,
                 new Service
                 {
@@ -57,16 +57,17 @@
                     Name = "Haircut & Style",
                     Price = 45.00m,
                     Duration = TimeSpan.FromMinutes(45),
-                    Description = "Professional haircut and styling service"
+                    Description = "Professional haircut and styling service",
+                    IsActive = false
                 }
             );
 
-            context.SaveChanges();
+            db.SaveChanges();
 
-            var haircut = context.Services.FirstOrDefault(s => s.Name == "Haircut & Style");
-            var guestCustomer = context.Customers.FirstOrDefault(c => c.Email == "guest@example.ie");
+            var haircut = db.Services.FirstOrDefault(s => s.Name == "Haircut & Style");
+            var guestCustomer = db.Customers.FirstOrDefault(c => c.Email == "guest@example.ie");
 
-            context.Bookings.AddOrUpdate(
+            db.Bookings.AddOrUpdate(
                 b => new { b.CustomerId, b.ServiceId },
                 new Booking
                 {
@@ -78,10 +79,10 @@
                     Status = BookingStatus.Confirmed
                 }
             );
-            context.SaveChanges();
-            var Booking = context.Bookings.FirstOrDefault(b => b.CustomerId == guestCustomer.CustomerId && b.ServiceId == haircut.ServiceId);
+            db.SaveChanges();
+            var Booking = db.Bookings.FirstOrDefault(b => b.CustomerId == guestCustomer.CustomerId && b.ServiceId == haircut.ServiceId);
 
-            context.Payments.AddOrUpdate(
+            db.Payments.AddOrUpdate(
                 p => p.PaymentId, // The primary key is also the foreign key
                 new Payment
                 {
@@ -94,7 +95,7 @@
                 }
             );
 
-            context.SaveChanges();
+            db.SaveChanges();
         }
     }
 }
