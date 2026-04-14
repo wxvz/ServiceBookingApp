@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LiveCharts;
+using ServiceBookingApp.Views.Business.Dashboard;
 
 namespace ServiceBookingApp
 {
@@ -254,5 +255,12 @@ namespace ServiceBookingApp
             DashboardFrame.Visibility = Visibility.Visible;
             HideDashboardContent();
         } // Event Handler for Manage Bookings Button
+
+        private void Notifications_Click(object sender, RoutedEventArgs e)
+        {
+            DashboardFrame.Navigate(new CustomerRequests());
+            DashboardFrame.Visibility = Visibility.Visible;
+            HideDashboardContent();
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace ServiceBookingApp.Models
         public virtual List<Service> Services { get; set; }
         public virtual List<Booking> Bookings { get; set; }
         public virtual List<Payment> Payments { get; set; }
+        public virtual List<CustomerRequest> CustomerRequests { get; set; }
 
     }
 

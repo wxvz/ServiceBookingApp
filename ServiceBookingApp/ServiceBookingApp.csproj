@@ -120,7 +120,14 @@
     <Compile Include="Migrations\202604141759390_Service_isActive.Designer.cs">
       <DependentUpon>202604141759390_Service_isActive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202604142057012_CustomerRequests.cs" />
+    <Compile Include="Migrations\202604142057012_CustomerRequests.Designer.cs">
+      <DependentUpon>202604142057012_CustomerRequests.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\CustomerRequest.cs" />
+    <Compile Include="Views\Business\Dashboard\CustomerRequests.xaml.cs">
+      <DependentUpon>CustomerRequests.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Business\Dashboard\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
@@ -166,6 +173,10 @@
       <DependentUpon>ManageServicesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helper\SessionManager.cs" />
+    <Page Include="Views\Business\Dashboard\CustomerRequests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Business\Dashboard\EditProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202604141759390_Service_isActive.resx">
       <DependentUpon>202604141759390_Service_isActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604142057012_CustomerRequests.resx">
+      <DependentUpon>202604142057012_CustomerRequests.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

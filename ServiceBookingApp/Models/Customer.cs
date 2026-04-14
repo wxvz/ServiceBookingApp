@@ -18,8 +18,9 @@ namespace ServiceBookingApp.Models
         public string PhoneNumber {  get; set; } = string.Empty;
         public string Password {  get; set; } = string.Empty;
 
-        // Navigation property
+        // Navigation properties
         public virtual List<Booking> Bookings { get; set; }
+        public virtual List<CustomerRequest> CustomerRequests { get; set; }
 
     }
 }

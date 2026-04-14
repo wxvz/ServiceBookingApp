@@ -53,6 +53,42 @@ namespace ServiceBookingApp
                 .WithRequired(b => b.Business)
                 .HasForeignKey(b => b.BusinessId)
                 .WillCascadeOnDelete(false);
+
+            // Customer -> Bookings: Prevent cascade delete on Customer deletion##
+            modelBuilder.Entity<Booking>()
+                .HasRequired(b => b.Customer)
+                .WithMany(c => c.Bookings)
+                .HasForeignKey(b => b.CustomerId)
+                .WillCascadeOnDelete(false);
+            // Customer -> CustomerRequests: Prevent cascade delete on Customer deletion
+            modelBuilder.Entity<CustomerRequest>()
+                .HasRequired(cr => cr.Customer)
+                .WithMany(c => c.CustomerRequests)
+                .HasForeignKey(cr => cr.CustomerId)
+                .WillCascadeOnDelete(false);
+
+
+            // Business -> CustomerRequests: Prevent cascade delete on Business deletion
+            modelBuilder.Entity<CustomerRequest>()
+                .HasRequired(cr => cr.Business)
+                .WithMany(b => b.CustomerRequests)
+                .HasForeignKey(cr => cr.BusinessId)
+                .WillCascadeOnDelete(false);
+
+            // Customer -> CustomerRequests: Prevent cascade delete on Customer deletion
+            modelBuilder.Entity<Customer>()
+                .HasMany(c => c.CustomerRequests)
+                .WithRequired(cr => cr.Customer)
+                .HasForeignKey(cr => cr.CustomerId)
+                .WillCascadeOnDelete(false);
+
+            // Booking -> CustomerRequests: Prevent cascade delete on Booking deletion
+            modelBuilder.Entity<CustomerRequest>()
+                .HasRequired(cr => cr.Booking)
+                .WithMany() 
+                .HasForeignKey(cr => cr.BookingId)
+                .WillCascadeOnDelete(false);
+
         }
     }
 }
