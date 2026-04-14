@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ServiceBookingApp
+namespace ServiceBookingApp.Models
 {
     public class ServiceSchedule
     {

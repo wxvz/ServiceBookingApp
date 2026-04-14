@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ServiceBookingApp
+namespace ServiceBookingApp.Models
 {
     public class Business
     {

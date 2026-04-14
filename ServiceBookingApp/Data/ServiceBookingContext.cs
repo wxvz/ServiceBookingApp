@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ServiceBookingApp.Models;
 
 namespace ServiceBookingApp
 {
@@ -16,6 +17,7 @@ namespace ServiceBookingApp
         public DbSet<Business> Businesses { get; set; }
         public DbSet<ServiceSchedule> ServiceSchedules { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<CustomerRequest> CustomerRequests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

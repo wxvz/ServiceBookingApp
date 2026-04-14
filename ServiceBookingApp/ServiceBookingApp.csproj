@@ -120,6 +120,7 @@
     <Compile Include="Migrations\202604141759390_Service_isActive.Designer.cs">
       <DependentUpon>202604141759390_Service_isActive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerRequest.cs" />
     <Compile Include="Views\Business\Dashboard\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
