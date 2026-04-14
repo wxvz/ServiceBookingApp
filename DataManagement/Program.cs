@@ -12,13 +12,19 @@ namespace DataManagement
         static void Main(string[] args)
         {
             //Run to populate the database with dummy data for testing
-            //Data();
+            Data();
         }
 
         static void Data()
         {
             using (ServiceBookingContext db = new ServiceBookingContext())
             {
+                if (db.Businesses.Count() > 1 || db.Customers.Count() > 1)
+                {
+                    Console.WriteLine("Database already contains data. Clear the database before running this method.");
+                    return;
+                }
+
                 Console.WriteLine("Generating dummy data...");
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword("1234");
                 var businesses = new List<Business>
