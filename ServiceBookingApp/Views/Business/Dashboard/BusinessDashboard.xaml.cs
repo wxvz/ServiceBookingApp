@@ -38,6 +38,13 @@ namespace ServiceBookingApp
         {
             // Load the current business from the session and display its name
             SessionManager.LoadSession();
+            if (SessionManager.CurrentBusiness == null)
+            {
+                MessageBox.Show("No business logged in.");
+                this.NavigationService.Navigate(new BusinessLogin());
+                return;
+            }
+
             businessName.Text = SessionManager.CurrentBusiness.Name;
             // Total bookings
             int totalBookings = db.Bookings.Count(b => b.BusinessId == SessionManager.CurrentBusiness.BusinessId);
