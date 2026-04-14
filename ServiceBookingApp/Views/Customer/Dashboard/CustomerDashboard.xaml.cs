@@ -20,6 +20,7 @@ namespace ServiceBookingApp
     /// </summary>
     public partial class CustomerDashboard : Page
     {
+        List<Booking> customerBookings = new List<Booking>();
         public CustomerDashboard()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace ServiceBookingApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            LoadCustomer();
         }
         private void LoadCustomer()
         {
@@ -37,15 +38,18 @@ namespace ServiceBookingApp
             if (SessionManager.CurrentCustomer == null)
             {
                 MessageBox.Show("No customer logged in.");
+                this.NavigationService.Navigate(new CustomerLogin());
                 return;
             }
+            var customer = SessionManager.CurrentCustomer;
+            string[] fullName = customer.Name.Split(' ');
+            string firstName = fullName[0];
 
+            customerNameTBX.Text = $"Hi, {firstName}.";
+
+            customerBookings = SessionManager.CurrentCustomer.Bookings.ToList();// query the database for the current customers bookings and store them in a list
         }
-
-        private void DashboardButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {

@@ -14,10 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="4*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="20*"/>
+            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
@@ -37,8 +34,8 @@
            Grid.Row="0"
            Grid.Column="1"/>
 
-        <TextBlock x:Name="customerName"
-           Text="Welcome" 
+        <TextBlock x:Name="customerNameTBX"
+           Text="" 
            FontSize="16" 
            FontWeight="Bold" 
            Foreground="AliceBlue"
@@ -49,17 +46,9 @@
            Grid.Column="0"/>
 
         <!-- Navigation Sidebar -->
-        <Rectangle Fill="LightGray" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" />
+        <Rectangle Fill="LightGray" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="1" />
 
         <StackPanel Grid.Column="0" Grid.Row="1"  Grid.RowSpan="5">
-            <StackPanel>
-                <Button Content="Dashboard" 
-                        Style="{StaticResource MaterialDesignFlatButton}"
-                        FontSize="16" 
-                        HorizontalContentAlignment="Left"
-                        Margin="10,10,10,0"
-                        Click="DashboardButton_Click"/>
-            </StackPanel>
 
             <StackPanel>
                 <Expander Header="Profile" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Center" 
@@ -98,7 +87,7 @@
         </StackPanel>
 
         
-        <Frame x:Name="DashboardFrame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
+        <Frame x:Name="DashboardFrame" NavigationUIVisibility="Hidden" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1"/>
 
     </Grid>
 </Page>
