@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceBookingApp.Views.Customer.Dashboard;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,9 @@ namespace ServiceBookingApp
     /// </summary>
     public partial class CustomerDashboard : Page
     {
-        List<Booking> customerBookings = new List<Booking>();
+        private List<Booking> customerBookings = new List<Booking>();
+        private ServiceBookingContext db = new ServiceBookingContext();
+
         public CustomerDashboard()
         {
             InitializeComponent();
@@ -47,9 +50,22 @@ namespace ServiceBookingApp
 
             customerNameTBX.Text = $"Hi, {firstName}.";
 
-            customerBookings = SessionManager.CurrentCustomer.Bookings.ToList();// query the database for the current customers bookings and store them in a list
+            customerBookings = db.Bookings
+                .Where(b => b.CustomerId == customer.CustomerId)
+                .ToList();// query the database for the current customers bookings and store them in a list
         }
-        
+        private void EditProfile_Btn(object sender, RoutedEventArgs e)
+        {
+            DashboardFrame.Navigate(new EditProfile());
+            DashboardFrame.Visibility = Visibility.Visible;
+            HomeContent.Visibility = Visibility.Hidden;
+        }
+        private void BookService_Btn(object sender, RoutedEventArgs e)
+        {
+            DashboardFrame.Navigate(new BookServicePage());
+            DashboardFrame.Visibility = Visibility.Visible;
+            HomeContent.Visibility = Visibility.Hidden;
+        }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -62,5 +78,7 @@ namespace ServiceBookingApp
             // Navigate back to the login page  
             NavigationService.Navigate(new HomePage());
         }  // Event Handler for Logout Button
+
+        
     }
 }

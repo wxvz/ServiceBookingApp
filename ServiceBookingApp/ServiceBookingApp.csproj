@@ -132,8 +132,14 @@
     <Compile Include="Views\Business\Dashboard\BusinessDashboard.xaml.cs">
       <DependentUpon>BusinessDashboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Customer\Dashboard\BookServicePage.xaml.cs">
+    <Compile Include="Views\Customer\Booking Flow\BookServicePage.xaml.cs">
       <DependentUpon>BookServicePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Booking Flow\BusinessBookingProfile.xaml.cs">
+      <DependentUpon>BusinessBookingProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Booking Flow\PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Customer\Dashboard\CustomerDashboard.xaml.cs">
       <DependentUpon>CustomerDashboard.xaml</DependentUpon>
@@ -183,7 +189,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Customer\Dashboard\BookServicePage.xaml">
+    <Page Include="Views\Customer\Booking Flow\BookServicePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\Booking Flow\BusinessBookingProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\Booking Flow\PaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

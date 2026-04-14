@@ -54,7 +54,7 @@
                 <Expander Header="Profile" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Center" 
                     Background="Transparent" Foreground="#139174" HorizontalAlignment="Left">
                     <StackPanel Margin="10,0,0,0">
-                        <Button Content="Edit Profile" Style="{StaticResource MaterialDesignFlatButton}"/>
+                        <Button Content="Edit Profile" Style="{StaticResource MaterialDesignFlatButton}" Click="EditProfile_Btn"/>
                     </StackPanel>
                 </Expander>
             </StackPanel>
@@ -63,7 +63,7 @@
                 <Expander Header="Bookings" FontSize="16" Margin="10,10,10,0" VerticalAlignment="Center" 
                           Background="Transparent" Foreground="#139174" HorizontalAlignment="Left" IsExpanded="True">
                     <StackPanel Margin="10,0,0,0">
-                        <Button Content="Book a Service" Style="{StaticResource MaterialDesignFlatButton}"/>
+                        <Button Content="Book a Service" Style="{StaticResource MaterialDesignFlatButton}" Click="BookService_Btn"/>
                         <Button Content="Manage Bookings" Style="{StaticResource MaterialDesignFlatButton}"/>
                     </StackPanel>
                 </Expander>
