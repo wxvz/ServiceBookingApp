@@ -68,7 +68,8 @@ namespace ServiceBookingApp
                     Name = NameBox.Text,
                     Price = price,
                     Duration = TimeSpan.FromMinutes(durationMinutes),
-                    Description = DescriptionBox.Text
+                    Description = DescriptionBox.Text,
+                    IsActive = IsActiveCheckBox.IsChecked ??  true
                 };
                 // Adding new service to database
                 db.Services.Add(newService);
@@ -104,6 +105,7 @@ namespace ServiceBookingApp
             UpdatePriceBox.Text = service.Price.ToString("F2");
             UpdateDurationBox.Text = service.Duration.TotalMinutes.ToString();
             UpdateDescriptionBox.Text = service.Description;
+            UpdateIsActiveCheckBox.IsChecked = service.IsActive;
 
             // Show Update Panel n Hide Create Panel
             CreateServicePanel.Visibility = Visibility.Collapsed;
@@ -140,6 +142,7 @@ namespace ServiceBookingApp
                 _selectedService.Price = price;
                 _selectedService.Duration = TimeSpan.FromMinutes(durationMinutes);
                 _selectedService.Description = UpdateDescriptionBox.Text;
+                _selectedService.IsActive = UpdateIsActiveCheckBox.IsChecked ?? true;
                 // Save changes to database
                 db.SaveChanges();
                 // Show success message and reload services

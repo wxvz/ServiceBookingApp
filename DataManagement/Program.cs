@@ -50,44 +50,44 @@ namespace DataManagement
                 var services = new List<Service>
                 {
                     // Services for Dublin Auto Repair
-                    new Service { BusinessId = businesses[0].BusinessId, Name = "Oil Change", Description = "Full synthetic oil change", Price = 80m, Duration = TimeSpan.FromMinutes(45) },
-                    new Service { BusinessId = businesses[0].BusinessId, Name = "NCT Practice Test", Description = "Will preformance test you car for an upcoming NCT Test", Price = 120m, Duration = TimeSpan.FromMinutes(65) },
-                    new Service { BusinessId = businesses[0].BusinessId, Name = "Brake Inspection", Description = "Full brake system check and report", Price = 50m, Duration = TimeSpan.FromMinutes(45) },
-                    new Service { BusinessId = businesses[0].BusinessId, Name = "Full Car Valet", Description = "Interior and exterior deep cleaning", Price = 100m, Duration = TimeSpan.FromHours(2) },
+                    new Service { BusinessId = businesses[0].BusinessId, Name = "Oil Change", Description = "Full synthetic oil change", Price = 80m, Duration = TimeSpan.FromMinutes(45), IsActive = true },
+                    new Service { BusinessId = businesses[0].BusinessId, Name = "NCT Practice Test", Description = "Will preformance test you car for an upcoming NCT Test", Price = 120m, Duration = TimeSpan.FromMinutes(65), IsActive = true },
+                    new Service { BusinessId = businesses[0].BusinessId, Name = "Brake Inspection", Description = "Full brake system check and report", Price = 50m, Duration = TimeSpan.FromMinutes(45), IsActive = true },
+                    new Service { BusinessId = businesses[0].BusinessId, Name = "Full Car Valet", Description = "Interior and exterior deep cleaning", Price = 100m, Duration = TimeSpan.FromHours(2), IsActive = true },
                     new Service { BusinessId = businesses[0].BusinessId, Name = "Tire Rotation", Description = "Rotate all 4 tires", Price = 40m, Duration = TimeSpan.FromMinutes(30) },
-                    new Service { BusinessId = businesses[0].BusinessId, Name = "Engine Diagnostics", Description = "Computer diagnostics to find engine faults", Price = 65m, Duration = TimeSpan.FromMinutes(45) },
-                    new Service { BusinessId = businesses[0].BusinessId, Name = "Battery Replacement", Description = "Supply and fit new car battery", Price = 110m, Duration = TimeSpan.FromMinutes(30) },
+                    new Service { BusinessId = businesses[0].BusinessId, Name = "Engine Diagnostics", Description = "Computer diagnostics to find engine faults", Price = 65m, Duration = TimeSpan.FromMinutes(45), IsActive = true },
+                    new Service { BusinessId = businesses[0].BusinessId, Name = "Battery Replacement", Description = "Supply and fit new car battery", Price = 110m, Duration = TimeSpan.FromMinutes(30), IsActive = true },
 
                     // Services for Cork IT Support
-                    new Service { BusinessId = businesses[1].BusinessId, Name = "Virus Removal", Description = "Deep scan and malware removal", Price = 100m, Duration = TimeSpan.FromHours(2) },
-                    new Service { BusinessId = businesses[1].BusinessId, Name = "Screen Repair", Description = "Repair or replace screen", Price = 120m, Duration = TimeSpan.FromHours(1.5) },
-                    new Service { BusinessId = businesses[1].BusinessId, Name = "OS Install", Description = "Install Windows/Linux", Price = 120m, Duration = TimeSpan.FromHours(1.5) },
-                    new Service { BusinessId = businesses[1].BusinessId, Name = "Data Recovery", Description = "Recover files from damaged hard drives", Price = 150m, Duration = TimeSpan.FromHours(3) },
-                    new Service { BusinessId = businesses[1].BusinessId, Name = "Network Setup", Description = "Home or small office network configuration", Price = 80m, Duration = TimeSpan.FromHours(1) },
-                    new Service { BusinessId = businesses[1].BusinessId, Name = "Hardware Upgrade", Description = "Install RAM, SSD, or new GPU", Price = 60m, Duration = TimeSpan.FromHours(1) },
-                    new Service { BusinessId = businesses[1].BusinessId, Name = "Cloud Backup Setup", Description = "Configure automated cloud backups", Price = 75m, Duration = TimeSpan.FromHours(1.5) },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "Virus Removal", Description = "Deep scan and malware removal", Price = 100m, Duration = TimeSpan.FromHours(2), IsActive = true },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "Screen Repair", Description = "Repair or replace screen", Price = 120m, Duration = TimeSpan.FromHours(1.5), IsActive = true },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "OS Install", Description = "Install Windows/Linux", Price = 120m, Duration = TimeSpan.FromHours(1.5), IsActive = true },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "Data Recovery", Description = "Recover files from damaged hard drives", Price = 150m, Duration = TimeSpan.FromHours(3), IsActive = true },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "Network Setup", Description = "Home or small office network configuration", Price = 80m, Duration = TimeSpan.FromHours(1), IsActive = true },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "Hardware Upgrade", Description = "Install RAM, SSD, or new GPU", Price = 60m, Duration = TimeSpan.FromHours(1), IsActive = true },
+                    new Service { BusinessId = businesses[1].BusinessId, Name = "Cloud Backup Setup", Description = "Configure automated cloud backups", Price = 75m, Duration = TimeSpan.FromHours(1.5), IsActive = true },
 
                     // Services for Galway Barbers
-                    new Service { BusinessId = businesses[2].BusinessId, Name = "Men's Haircut", Description = "Standard style haircut", Price = 25m, Duration = TimeSpan.FromMinutes(30) },
-                    new Service { BusinessId = businesses[2].BusinessId, Name = "Beard Trim", Description = "Professional beard grooming", Price = 15m, Duration = TimeSpan.FromMinutes(20) },
-                    new Service { BusinessId = businesses[2].BusinessId, Name = "Hot Towel Shave", Description = "Traditional straight razor shave", Price = 30m, Duration = TimeSpan.FromMinutes(30) },
-                    new Service { BusinessId = businesses[2].BusinessId, Name = "Kids Haircut", Description = "Standard haircut for children under 12", Price = 15m, Duration = TimeSpan.FromMinutes(20) },
-                    new Service { BusinessId = businesses[2].BusinessId, Name = "Head Shave", Description = "Full clean head shave with razor", Price = 20m, Duration = TimeSpan.FromMinutes(30) },
-                    new Service { BusinessId = businesses[2].BusinessId, Name = "Hair & Beard Combo", Description = "Full grooming package", Price = 45m, Duration = TimeSpan.FromMinutes(50) },
+                    new Service { BusinessId = businesses[2].BusinessId, Name = "Men's Haircut", Description = "Standard style haircut", Price = 25m, Duration = TimeSpan.FromMinutes(30), IsActive = true },
+                    new Service { BusinessId = businesses[2].BusinessId, Name = "Beard Trim", Description = "Professional beard grooming", Price = 15m, Duration = TimeSpan.FromMinutes(20), IsActive = true },
+                    new Service { BusinessId = businesses[2].BusinessId, Name = "Hot Towel Shave", Description = "Traditional straight razor shave", Price = 30m, Duration = TimeSpan.FromMinutes(30), IsActive = true },
+                    new Service { BusinessId = businesses[2].BusinessId, Name = "Kids Haircut", Description = "Standard haircut for children under 12", Price = 15m, Duration = TimeSpan.FromMinutes(20), IsActive = true },
+                    new Service { BusinessId = businesses[2].BusinessId, Name = "Head Shave", Description = "Full clean head shave with razor", Price = 20m, Duration = TimeSpan.FromMinutes(30), IsActive = true },
+                    new Service { BusinessId = businesses[2].BusinessId, Name = "Hair & Beard Combo", Description = "Full grooming package", Price = 45m, Duration = TimeSpan.FromMinutes(50), IsActive = true },
 
                     // Services for Limerick Cleaning
-                    new Service { BusinessId = businesses[3].BusinessId, Name = "House Cleaning", Description = "3 hours standard cleaning", Price = 150m, Duration = TimeSpan.FromHours(3) },
-                    new Service { BusinessId = businesses[3].BusinessId, Name = "Carpet Deep Clean", Description = "Steam cleaning for up to 3 rooms", Price = 120m, Duration = TimeSpan.FromHours(2) },
-                    new Service { BusinessId = businesses[3].BusinessId, Name = "Window Washing", Description = "Exterior and interior window cleaning", Price = 80m, Duration = TimeSpan.FromHours(1.5) },
-                    new Service { BusinessId = businesses[3].BusinessId, Name = "Deep Cleaning", Description = "Intense deep clean for tenancy turnover", Price = 250m, Duration = TimeSpan.FromHours(5) },
-                    new Service { BusinessId = businesses[3].BusinessId, Name = "Oven Deep Cleaning", Description = "Professional grease removal", Price = 60m, Duration = TimeSpan.FromHours(1.5) },
+                    new Service { BusinessId = businesses[3].BusinessId, Name = "House Cleaning", Description = "3 hours standard cleaning", Price = 150m, Duration = TimeSpan.FromHours(3), IsActive = true },
+                    new Service { BusinessId = businesses[3].BusinessId, Name = "Carpet Deep Clean", Description = "Steam cleaning for up to 3 rooms", Price = 120m, Duration = TimeSpan.FromHours(2), IsActive = true },
+                    new Service { BusinessId = businesses[3].BusinessId, Name = "Window Washing", Description = "Exterior and interior window cleaning", Price = 80m, Duration = TimeSpan.FromHours(1.5), IsActive = true },
+                    new Service { BusinessId = businesses[3].BusinessId, Name = "Deep Cleaning", Description = "Intense deep clean for tenancy turnover", Price = 250m, Duration = TimeSpan.FromHours(5), IsActive = true},
+                    new Service { BusinessId = businesses[3].BusinessId, Name = "Oven Deep Cleaning", Description = "Professional grease removal", Price = 60m, Duration = TimeSpan.FromHours(1.5), IsActive = true},
 
                     // Services for Waterford Plumbers
-                    new Service { BusinessId = businesses[4].BusinessId, Name = "Pipe Repair", Description = "Fix leaking pipes", Price = 90m, Duration = TimeSpan.FromHours(1) },
-                    new Service { BusinessId = businesses[4].BusinessId, Name = "Drain Unblocking", Description = "Clear blocked sinks or main drains", Price = 75m, Duration = TimeSpan.FromHours(1) },
-                    new Service { BusinessId = businesses[4].BusinessId, Name = "Boiler Servicing", Description = "Annual gas or oil boiler maintenance", Price = 110m, Duration = TimeSpan.FromHours(1.5) },
-                    new Service { BusinessId = businesses[4].BusinessId, Name = "Radiator Installation", Description = "Install a new radiator unit", Price = 130m, Duration = TimeSpan.FromHours(2) },
-                    new Service { BusinessId = businesses[4].BusinessId, Name = "Emergency Callout", Description = "Emergency leak or burst pipe response", Price = 200m, Duration = TimeSpan.FromHours(1) }
+                    new Service { BusinessId = businesses[4].BusinessId, Name = "Pipe Repair", Description = "Fix leaking pipes", Price = 90m, Duration = TimeSpan.FromHours(1) , IsActive = true},
+                    new Service { BusinessId = businesses[4].BusinessId, Name = "Drain Unblocking", Description = "Clear blocked sinks or main drains", Price = 75m, Duration = TimeSpan.FromHours(1), IsActive = true},
+                    new Service { BusinessId = businesses[4].BusinessId, Name = "Boiler Servicing", Description = "Annual gas or oil boiler maintenance", Price = 110m, Duration = TimeSpan.FromHours(1.5), IsActive = true},
+                    new Service { BusinessId = businesses[4].BusinessId, Name = "Radiator Installation", Description = "Install a new radiator unit", Price = 130m, Duration = TimeSpan.FromHours(2), IsActive = true},
+                    new Service { BusinessId = businesses[4].BusinessId, Name = "Emergency Callout", Description = "Emergency leak or burst pipe response", Price = 200m, Duration = TimeSpan.FromHours(1), IsActive = true}
                 };
                 db.Services.AddRange(services);
                 db.SaveChanges();

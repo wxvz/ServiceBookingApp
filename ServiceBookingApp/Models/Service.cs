@@ -21,7 +21,7 @@ namespace ServiceBookingApp
         public decimal Price { get; set; }
         public TimeSpan Duration { get; set; }
         public string Description { get; set; } = string.Empty;
-        
+        public bool IsActive { get; set; } = true;
 
 
         // Navigation properties
