@@ -146,6 +146,9 @@
     <Compile Include="Views\Customer\Booking Flow\BusinessBookingProfile.xaml.cs">
       <DependentUpon>BusinessBookingProfile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Customer\Booking Flow\ConfirmBookingPage.xaml.cs">
+      <DependentUpon>ConfirmBookingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Customer\Booking Flow\PaymentPage.xaml.cs">
       <DependentUpon>PaymentPage.xaml</DependentUpon>
     </Compile>
@@ -208,6 +211,10 @@
     <Page Include="Views\Customer\Booking Flow\BusinessBookingProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\Booking Flow\ConfirmBookingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Customer\Booking Flow\PaymentPage.xaml">
       <SubType>Designer</SubType>
