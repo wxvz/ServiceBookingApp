@@ -1,12 +1,10 @@
 ﻿namespace ServiceBookingApp.Migrations
 {
-    using ServiceBookingApp;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using System.Windows.Controls;
     using ServiceBookingApp.Models;
+    using ServiceBookingApp.Data;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ServiceBookingContext>
     {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ServiceBookingApp.Models;
 
-namespace ServiceBookingApp
+namespace ServiceBookingApp.Data
 {
     public class ServiceBookingContext : DbContext
     {

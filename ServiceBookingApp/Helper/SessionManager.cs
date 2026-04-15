@@ -3,8 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ServiceBookingApp.Models;
+using ServiceBookingApp.Data;
 
-namespace ServiceBookingApp
+namespace ServiceBookingApp.Helper
 {
     /// <summary>
     /// SessionManager is a static class responsible
