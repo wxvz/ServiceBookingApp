@@ -19,13 +19,13 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
     /// <summary>
     /// Interaction logic for ManageBookingsPage.xaml
     /// </summary>
-    public partial class ManageBookingsPage : Page
+    public partial class CustomerBookingsPage : Page
     {
         public ServiceBookingContext db = new ServiceBookingContext();
         List<Booking> allBookings = new List<Booking>();
         private Booking editedBooking;
 
-        public ManageBookingsPage()
+        public CustomerBookingsPage()
         {
             InitializeComponent();
             this.Loaded += Page_Loaded;

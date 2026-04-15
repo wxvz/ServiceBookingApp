@@ -67,6 +67,12 @@ namespace ServiceBookingApp
             DashboardFrame.Visibility = Visibility.Visible;
             HomeContent.Visibility = Visibility.Hidden;
         }
+        private void ManageBookings_Btn(object sender, RoutedEventArgs e)
+        {
+            DashboardFrame.Navigate(new CustomerBookingsPage());
+            DashboardFrame.Visibility = Visibility.Visible;
+            HomeContent.Visibility = Visibility.Hidden;
+        }
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {

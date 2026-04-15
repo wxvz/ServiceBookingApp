@@ -158,8 +158,8 @@
     <Compile Include="Views\Customer\Dashboard\EditProfile.xaml.cs">
       <DependentUpon>EditProfile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Customer\Dashboard\ManageBookingsPage.xaml.cs">
-      <DependentUpon>ManageBookingsPage.xaml</DependentUpon>
+    <Compile Include="Views\Customer\Dashboard\CustomerBookingsPage.xaml.cs">
+      <DependentUpon>CustomerBookingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -233,7 +233,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Customer\Dashboard\ManageBookingsPage.xaml">
+    <Page Include="Views\Customer\Dashboard\CustomerBookingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

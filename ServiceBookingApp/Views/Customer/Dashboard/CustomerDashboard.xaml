@@ -64,7 +64,7 @@
                           Background="Transparent" Foreground="#139174" HorizontalAlignment="Left" IsExpanded="True">
                     <StackPanel Margin="10,0,0,0">
                         <Button Content="Book a Service" Style="{StaticResource MaterialDesignFlatButton}" Click="BookService_Btn"/>
-                        <Button Content="Manage Bookings" Style="{StaticResource MaterialDesignFlatButton}"/>
+                        <Button Content="View Bookings" Style="{StaticResource MaterialDesignFlatButton}" Click="ManageBookings_Btn"/>
                     </StackPanel>
                 </Expander>
             </StackPanel>

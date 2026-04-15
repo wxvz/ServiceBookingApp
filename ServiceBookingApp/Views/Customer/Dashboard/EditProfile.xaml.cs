@@ -29,7 +29,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
         {
             if (SessionManager.CurrentCustomer == null)
             {
-                this.NavigationService.Navigate(new CustomerLogin());
+                NavigationService.Navigate(new CustomerLogin());
                 MessageBox.Show("No customer is currently logged in.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
