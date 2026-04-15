@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ServiceBookingApp.Models;
 
-namespace ServiceBookingApp.Views.Customer.Dashboard
+namespace ServiceBookingApp.Views.Customer.Booking_Flow
 {
     /// <summary>
     /// Interaction logic for BookServicePage.xaml

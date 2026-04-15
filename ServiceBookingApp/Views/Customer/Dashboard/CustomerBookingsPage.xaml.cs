@@ -28,7 +28,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
         public CustomerBookingsPage()
         {
             InitializeComponent();
-            this.Loaded += Page_Loaded;
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -167,7 +167,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
 
             DateTime newDate = EditDatePicker.SelectedDate.Value;
 
-            // Ensures new time also respects 24hr or future rule generally.
+            // Ensures new time also respects 24hr or future rule generally. (Cant book within 24 hours for now)
             if (newDate.Date.Add(newTime) <= DateTime.Now.AddHours(24))
             {
                 MessageBox.Show("New booking time must be at least 24 hours from now.", "Invalid Time", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -176,22 +176,29 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
 
             try
             {
-                var newRequest = new CustomerRequest
+                var result = MessageBox.Show($"Are you sure you want to request a change to {editedBooking.Date.ToShortDateString()} at {editedBooking.Time}?", "Confirm Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.OK)
                 {
-                    BusinessId = editedBooking.BusinessId,
-                    BookingId = editedBooking.BookingId,
-                    BookingDateTime = editedBooking.Date.Add(editedBooking.Time),
-                    CustomerName = SessionManager.CurrentCustomer.Name,
-                    Request = RequestType.Rebooking
-                };
+                    var customerName = editedBooking.Customer.Name;
 
-                db.CustomerRequests.Add(newRequest);
-                db.SaveChanges();
-                
-                MessageBox.Show("Rebooking request sent to the business successfully.");
+                    var newRequest = new CustomerRequest
+                    {
+                        BusinessId = editedBooking.BusinessId,
+                        BookingId = editedBooking.BookingId,
+                        CustomerId = editedBooking.CustomerId,
+                        BookingDateTime = editedBooking.Date.Add(editedBooking.Time),
+                        CustomerName = customerName,
+                        Request = RequestType.Rebooking
+                    };
 
-                CancelEdit_Click(null, null);
-                LoadBookings();
+                    db.CustomerRequests.Add(newRequest);
+                    db.SaveChanges();
+
+                    MessageBox.Show("Rebooking request sent to the business successfully.");
+
+                    CancelEdit_Click(null, null);
+                    LoadBookings();
+                }
             }
             catch (Exception ex)
             {
@@ -215,12 +222,15 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
             {
                 try
                 {
+                    var customerName = editedBooking.Customer.Name;
+
                     var newRequest = new CustomerRequest
                     {
                         BusinessId = editedBooking.BusinessId,
                         BookingId = editedBooking.BookingId,
+                        CustomerId = editedBooking.CustomerId,
                         BookingDateTime = editedBooking.Date.Add(editedBooking.Time),
-                        CustomerName = SessionManager.CurrentCustomer.Name,
+                        CustomerName = customerName,
                         Request = RequestType.Cancellation
                     };
 
