@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ServiceBookingApp;
 using ServiceBookingApp.Models;
+using ServiceBookingApp.Data;
 
 namespace DataManagement
 {
