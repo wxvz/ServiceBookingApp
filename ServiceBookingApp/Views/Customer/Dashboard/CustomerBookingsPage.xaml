@@ -42,7 +42,7 @@
                     <DataGridTemplateColumn Header="Actions" Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Edit/Cancel" Click="EditBooking_Click" Margin="2" Padding="5,2"/>
+                                <Button Content="Edit/Cancel" Click="EditBooking_Click" Margin="2" Padding="5,2" Foreground="White"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

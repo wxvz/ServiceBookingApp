@@ -170,7 +170,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
             try
             {
                 var result = MessageBox.Show($"Are you sure you want to request a change to {editedBooking.Date.ToShortDateString()} at {editedBooking.Time}?", "Confirm Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                if (result == MessageBoxResult.OK)
+                if (result == MessageBoxResult.Yes)
                 {
                     var customerName = editedBooking.Customer.Name;
 
