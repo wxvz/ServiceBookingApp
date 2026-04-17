@@ -10,8 +10,12 @@ using ServiceBookingApp.Helper;
 namespace ServiceBookingApp.Views.Business.Dashboard
 {
     /// <summary>
-    /// Interaction logic for CustomerRequests.xaml
+    /// Deals with the management of customer requests for refunds, rebookings and cancellations. 
+    /// Business users can view all active requests, filter by request type and take action on each request by either approving or dismissing it. 
+    /// Approved requests will update the associated booking status accordingly 
+    /// While dismissed requests will simply be removed from the system without affecting the original booking.
     /// </summary>
+ 
     public partial class CustomerRequests : Page
     {
         public ServiceBookingContext db = new ServiceBookingContext();
@@ -82,7 +86,7 @@ namespace ServiceBookingApp.Views.Business.Dashboard
                 RequestsDataGrid.ItemsSource = noRequestsSource;
                 return;
             }
-
+            // Get the selected request type from the ComboBox
             string selectedStatus = RequestTypeFilterCBX.SelectedItem.ToString();
             if (selectedStatus == "-- All --")
             {
@@ -90,6 +94,7 @@ namespace ServiceBookingApp.Views.Business.Dashboard
             }
             else
             {
+                // Try parse the selected status into the RequestType enum
                 if (Enum.TryParse(selectedStatus, out RequestType parsedType))
                 {
                     var filteredRequests = allRequests
@@ -106,10 +111,11 @@ namespace ServiceBookingApp.Views.Business.Dashboard
 
         private void ActionRequest_Click(object sender, RoutedEventArgs e)
         {
+            // Get the selected request from the DataGrid row
             if (sender is Button button && button.DataContext is CustomerRequest req)
             {
                 selectedRequest = req;
-                
+                // Display request details in the ActionPanel
                 RequestDetailsTextBlock.Text = $"Customer: {req.CustomerName}\n" +
                                                $"Booking Date/Time: {req.BookingDateTime.ToString("f")}\n" +
                                                $"Type of Request: {req.Request}";
@@ -125,6 +131,7 @@ namespace ServiceBookingApp.Views.Business.Dashboard
 
             try
             {
+                // Fetch the request from the database
                 var req = db.CustomerRequests.Find(selectedRequest.Id);
                 if (req != null)
                 {
@@ -167,9 +174,11 @@ namespace ServiceBookingApp.Views.Business.Dashboard
         {
             if (selectedRequest == null) return;
 
+            
             var result = MessageBox.Show($"Are you sure you want to dismiss the {selectedRequest.Request} request from {selectedRequest.CustomerName}? The original booking will not be changed.",
                 "Confirm Dismissal", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            
+
+            // If the user confirms, remove the request from the database without changing the booking status.
             if (result == MessageBoxResult.Yes)
             {
                 try
