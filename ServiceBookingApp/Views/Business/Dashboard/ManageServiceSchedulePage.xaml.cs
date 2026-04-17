@@ -65,16 +65,33 @@ namespace ServiceBookingApp
                 var services = db.Services
                     .Where(s => s.BusinessId == SessionManager.CurrentBusiness.BusinessId)
                     .ToList();
-                ServiceFilterComboBox.ItemsSource = services;
-                // Add a dummy Service object to act as the placeholder for the "Select a Service" option in the filter combo box
-                var filterServices = new List<Service>
+
+                
+                
+                // If there are no Services then no Services will be the placeholder
+                
+                if (services.Count == 0)
                 {
-                    new Service { Name = "--- Select a Service ---", ServiceId = -1 }
-                };
-                // Add actual services to the filter list
-                filterServices.AddRange(services);
-                ServiceFilterComboBox.ItemsSource = filterServices;
-                ServiceFilterComboBox.SelectedIndex = 0; // Select placeholder by default
+                    var noServices = new List<Service> { new Service { Name = "-- No Services Created --", ServiceId = -1 } };
+                    ServiceFilterComboBox.ItemsSource = noServices;
+                    ServiceFilterComboBox.SelectedIndex = 0;
+                    return;
+                }
+                else
+                {
+                    ServiceFilterComboBox.ItemsSource = services;
+                    // Else add  a dummy Service object to act as the placeholder for the "Select a Service" option 
+                    var filterServices = new List<Service>
+                    {
+                        new Service { Name = "--- Select a Service ---", ServiceId = -1 }
+                    };
+                    // Add actual services to the filter list
+                    filterServices.AddRange(services);
+                    ServiceFilterComboBox.ItemsSource = filterServices;
+                    ServiceFilterComboBox.SelectedIndex = 0; // Select placeholder by default
+                }
+
+               
             }
             catch (Exception ex)
             {

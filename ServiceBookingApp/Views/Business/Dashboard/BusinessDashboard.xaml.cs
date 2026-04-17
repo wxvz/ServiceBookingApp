@@ -74,25 +74,12 @@ namespace ServiceBookingApp
                     BookingCount = s.Bookings.Count()
                 }).ToList();
 
-            // If there are no services, add a placeholder entry to the chart
-            if (!serviceStats.Any())
-            {
-                ServiceBookingsChart.Add(new PieSeries
-                {
-                    Title = "No Services",
-                    Values = new ChartValues<int> { 1 },
-                    DataLabels = true
-                });
-                ChartContext(); // Refresh the chart context to display the placeholder
-            }
-            // If there are no bookings, add a placeholder entry to the chart
             if (totalBookings == 0)
             {
                 ServiceBookingsChart.Add(new PieSeries
                 {
                     Title = "No Bookings",
                     Values = new ChartValues<int> { 1 },
-                    DataLabels = true,
                     Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4C5F6B"))
 
                 });

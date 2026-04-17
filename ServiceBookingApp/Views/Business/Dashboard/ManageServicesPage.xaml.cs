@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using ServiceBookingApp.Models;
 using ServiceBookingApp.Helper;
 using ServiceBookingApp.Data;
+using System.Collections.Generic;
 
 namespace ServiceBookingApp
 {
@@ -34,7 +35,15 @@ namespace ServiceBookingApp
                 var services = db.Services
                                  .Where(s => s.BusinessId == SessionManager.CurrentBusiness.BusinessId)
                                  .ToList();
-                ServicesDataGrid.ItemsSource = services;
+                if (services.Count == 0)
+                {
+                    var noServices = new List<Service> { new Service { Name = "No Services " } };
+                    ServicesDataGrid.ItemsSource = noServices;
+                }
+                else
+                {
+                    ServicesDataGrid.ItemsSource = services;
+                }
             }
         } // Method to load services for the current business session
 
