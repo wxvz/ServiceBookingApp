@@ -128,23 +128,24 @@ namespace ServiceBookingApp.Views.Business.Dashboard
                 var req = db.CustomerRequests.Find(selectedRequest.Id);
                 if (req != null)
                 {
-                    // Fetch real booking explicitly from DB here if needed
+                    // Fetch customers booking booking 
                     var relatedBooking = db.Bookings.Find(req.BookingId);
 
                     switch (req.Request)
                     {
+                        // For both cancellation and refund, we cancel the booking.
                         case RequestType.Cancellation:
                             if (relatedBooking != null) relatedBooking.Status = BookingStatus.Cancelled;
                             MessageBox.Show($"Booking for {req.CustomerName} has been cancelled.");
                             break;
                             
-                        case RequestType.Refund: // Assuming they cancel on refund request as well, change if specific financial api is built.
+                        case RequestType.Refund:
                             if (relatedBooking != null) relatedBooking.Status = BookingStatus.Cancelled;
                             MessageBox.Show($"Refund process initiated for {req.CustomerName} and booking cancelled.");
                             break;
 
                         case RequestType.Rebooking:
-                            MessageBox.Show($"Rebooking contact info sent via email to {req.CustomerName}."); // Simulated rebooking process manually handled by business outside app or via a built messaging feature.
+                            MessageBox.Show($"Rebooking contact info to {req.CustomerName}."); 
                             break;
                     }
 
@@ -166,7 +167,8 @@ namespace ServiceBookingApp.Views.Business.Dashboard
         {
             if (selectedRequest == null) return;
 
-            var result = MessageBox.Show($"Are you sure you want to dismiss the {selectedRequest.Request} request from {selectedRequest.CustomerName}? The original booking will not be changed.", "Confirm Dismissal", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show($"Are you sure you want to dismiss the {selectedRequest.Request} request from {selectedRequest.CustomerName}? The original booking will not be changed.",
+                "Confirm Dismissal", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             
             if (result == MessageBoxResult.Yes)
             {
