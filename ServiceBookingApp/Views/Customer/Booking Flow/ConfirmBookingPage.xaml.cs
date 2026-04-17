@@ -21,6 +21,7 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
         private Service _selectedService;
         private List<ServiceSchedule> _serviceSchedules;
         private List<Booking> _existingBookings;
+        
 
         public ConfirmBookingPage(int serviceId)
         {
@@ -49,6 +50,18 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
                     
                     // Set DatePicker minimum date
                     BookingDatePicker.DisplayDateStart = DateTime.Today;
+
+                    // If no schedules available disable booking
+                    if (_serviceSchedules.Count == 0)
+                    {
+                        MessageBox.Show("This service is currently unavailable for booking.");
+                        ConfirmButton.IsEnabled = false;
+                    }
+
+                    // Load Payment Methods into ComboBox
+                    PaymentMethodComboBox.ItemsSource = Enum.GetValues(typeof(PaymentMethod));
+
+
                 }
                 else
                 {
@@ -158,17 +171,41 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
 
         private void ConfirmBooking_Click(object sender, RoutedEventArgs e)
         {
+            // Validate selections
             if (!BookingDatePicker.SelectedDate.HasValue || AvailableTimeComboBox.SelectedItem == null)
             {
                 MessageBox.Show("Please select a date and time slot.");
                 return;
             }
-
-            if (SessionManager.CurrentCustomer == null)
+            if (PaymentMethodComboBox.SelectedItem == null)
             {
-                MessageBox.Show("You must be logged in to book a service.");
+                MessageBox.Show("Please choose a payment method");
                 return;
             }
+            
+            // CARD payment method validation check
+            var selectedPaymentMethod = (PaymentMethod)PaymentMethodComboBox.SelectedItem;
+            if (selectedPaymentMethod == PaymentMethod.Card)
+            {
+                if (string.IsNullOrWhiteSpace(CardNumberTextBox.Text) || CardNumberTextBox.Text.Length < 16 || !CardNumberTextBox.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Please enter a valid 16 digit card number.");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(ExpiryDateTextBox.Text) || !ExpiryDateTextBox.Text.Contains("/"))
+                {
+                    MessageBox.Show("Please enter a valid expiry date in MM/YY format.");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(CvvTextBox.Text) || CvvTextBox.Text.Length < 3 || !CvvTextBox.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Please enter a valid CVV.");
+                    return;
+                }
+            }
+            
 
             try
             {
@@ -196,7 +233,15 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
                     ServiceId = _selectedService.ServiceId,
                     Date = bookingDate,
                     Time = bookingTime,
-                    Status = BookingStatus.Pending
+                    Status = BookingStatus.Pending,
+                };
+
+                var newPayment = new Payment
+                {
+                    Booking = newBooking,
+                    Amount = _selectedService.Price,
+                    Method = (PaymentMethod)PaymentMethodComboBox.SelectedItem,
+                    BusinessId = _selectedService.BusinessId
                 };
 
                 db.Bookings.Add(newBooking);
@@ -218,6 +263,23 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
             if (NavigationService.CanGoBack)
             {
                 NavigationService.GoBack();
+            }
+        }
+
+        private void PaymentMethodComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PaymentMethodComboBox.SelectedItem != null && CardDetailsPanel != null)
+            {
+                var selectedMethod = (PaymentMethod)PaymentMethodComboBox.SelectedItem;
+
+                if (selectedMethod == PaymentMethod.Card)
+                {
+                    CardDetailsPanel.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    CardDetailsPanel.Visibility = Visibility.Collapsed;
+                }
             }
         }
     }
