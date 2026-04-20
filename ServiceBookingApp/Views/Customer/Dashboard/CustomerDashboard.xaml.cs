@@ -19,7 +19,6 @@ namespace ServiceBookingApp
     /// </summary>
     public partial class CustomerDashboard : Page
     {
-        private List<Booking> customerBookings = new List<Booking>();
         private ServiceBookingContext db = new ServiceBookingContext();
 
         public CustomerDashboard()
@@ -47,10 +46,6 @@ namespace ServiceBookingApp
             string firstName = fullName[0];
 
             customerNameTBX.Text = $"Hi, {firstName}.";
-
-            customerBookings = db.Bookings
-                .Where(b => b.CustomerId == customer.CustomerId)
-                .ToList();// query the database for the current customers bookings and store them in a list
         }
         private void EditProfile_Btn(object sender, RoutedEventArgs e)
         {
