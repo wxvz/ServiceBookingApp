@@ -46,7 +46,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
 
                 var today = DateTime.Today;
                 bool changed = false;
-
+                // Checks all bookings that customer has and saves any bookings that are pending or confirmed that are before today.
                 foreach (var b in rawBookings)
                 {
                     if ((b.Status == (BookingStatus)0 || b.Status == (BookingStatus)1) && b.Date < today) 
@@ -75,7 +75,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
         {
             string[] status = { "-- All --", "Pending", "Confirmed", "Completed", "Cancelled" };
             BookingStatusFilterCBX.ItemsSource = status;
-            BookingStatusFilterCBX.SelectedIndex = 0;
+            BookingStatusFilterCBX.SelectedIndex = 1;
         }
 
         private void BookingStatusFilterCBX_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -119,7 +119,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
         {
             if (sender is Button button && button.DataContext is Booking booking)
             {
-                // Verify 24 hour rule
+                // Verify 24 hour rule (if customer tries to edit booking within 24 hrs)
                 DateTime bookingDateTime = booking.Date.Date.Add(booking.Time);
                 if (bookingDateTime <= DateTime.Now.AddHours(24) && bookingDateTime > DateTime.Now)
                 {
@@ -217,7 +217,8 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
         {
             if (editedBooking == null) return;
 
-            var result = MessageBox.Show($"Are you sure you want to request a cancellation/refund for {editedBooking.Service.Name} on {editedBooking.Date.ToShortDateString()} at {editedBooking.Time}?", "Confirm Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            var result = MessageBox.Show($"Are you sure you want to request a cancellation/refund for {editedBooking.Service.Name} on {editedBooking.Date.ToShortDateString()} at {editedBooking.Time}?",
+                "Confirm Request", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 try
@@ -238,6 +239,7 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
                     db.SaveChanges();
 
                     MessageBox.Show("Cancellation request sent to the business successfully.");
+                    // Returns to previous page
                     CancelEdit_Click(null, null); 
                 }
                 catch (Exception ex)
