@@ -184,20 +184,23 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
                         Request = RequestType.Rebooking
                     };
                     var existingReq = db.CustomerRequests
-                        .Select(cr => cr.BookingId == editedBooking.BookingId);
+                        .Where(cr => cr.BookingId == editedBooking.BookingId && cr.CustomerId == editedBooking.CustomerId)
+                        .ToList();
                         
-                    if (existingReq == null)
+                    if (existingReq.Count > 0)
                     {
                         MessageBox.Show("You have already sent a booking request you may wait or contact the business to resolve");
+                        editedBooking = null;
                         return;
                     }
-                    db.CustomerRequests.Add(newRequest);
-                    db.SaveChanges();
-
-                    MessageBox.Show("Rebooking request sent to the business successfully.");
-
-                    CancelEdit_Click(null, null);
-                    LoadBookings();
+                    else
+                    {
+                        db.CustomerRequests.Add(newRequest);
+                        db.SaveChanges();
+                        MessageBox.Show("Rebooking request sent to the business successfully.");
+                        CancelEdit_Click(null, null);
+                        LoadBookings();
+                    }
                 }
             }
             catch (Exception ex)
