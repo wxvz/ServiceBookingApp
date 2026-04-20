@@ -226,30 +226,56 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
                     return;
                 }
 
-                var newBooking = new Booking
+                if (selectedPaymentMethod == PaymentMethod.Card)
                 {
-                    CustomerId = SessionManager.CurrentCustomer.CustomerId,
-                    BusinessId = _selectedService.BusinessId,
-                    ServiceId = _selectedService.ServiceId,
-                    Date = bookingDate,
-                    Time = bookingTime,
-                    Status = BookingStatus.Pending,
-                };
+                    var newBooking = new Booking
+                    {
+                        CustomerId = SessionManager.CurrentCustomer.CustomerId,
+                        BusinessId = _selectedService.BusinessId,
+                        ServiceId = _selectedService.ServiceId,
+                        Date = bookingDate,
+                        Time = bookingTime,
+                        Status = BookingStatus.Completed,
+                    };
 
-                var newPayment = new Payment
+                    var newPayment = new Payment
+                    {
+                        Booking = newBooking,
+                        Amount = _selectedService.Price,
+                        Method = (PaymentMethod)PaymentMethodComboBox.SelectedItem,
+                        BusinessId = _selectedService.BusinessId
+                    };
+
+                    db.Bookings.Add(newBooking);
+                    db.SaveChanges();
+                } 
+                else
                 {
-                    Booking = newBooking,
-                    Amount = _selectedService.Price,
-                    Method = (PaymentMethod)PaymentMethodComboBox.SelectedItem,
-                    BusinessId = _selectedService.BusinessId
-                };
+                    var newBooking = new Booking
+                    {
+                        CustomerId = SessionManager.CurrentCustomer.CustomerId,
+                        BusinessId = _selectedService.BusinessId,
+                        ServiceId = _selectedService.ServiceId,
+                        Date = bookingDate,
+                        Time = bookingTime,
+                        Status = BookingStatus.Pending,
+                    };
 
-                db.Bookings.Add(newBooking);
-                db.SaveChanges();
+                    var newPayment = new Payment
+                    {
+                        Booking = newBooking,
+                        Amount = _selectedService.Price,
+                        Method = (PaymentMethod)PaymentMethodComboBox.SelectedItem,
+                        BusinessId = _selectedService.BusinessId
+                    };
+
+                    db.Bookings.Add(newBooking);
+                    db.SaveChanges();
+                }
 
                 MessageBox.Show("Booking confirmed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 
-                // Navigate back to the main search page or the customer bookings page
+                // Back to customer bookings page
                 NavigationService.Navigate(new BookServicePage());
             }
             catch (Exception ex)
