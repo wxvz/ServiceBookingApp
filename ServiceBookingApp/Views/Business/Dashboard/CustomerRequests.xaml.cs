@@ -116,9 +116,19 @@ namespace ServiceBookingApp.Views.Business.Dashboard
             {
                 selectedRequest = req;
                 // Display request details in the ActionPanel
-                RequestDetailsTextBlock.Text = $"Customer: {req.CustomerName}\n" +
-                                               $"Booking Date/Time: {req.BookingDateTime.ToString("f")}\n" +
+                if (req.Request != RequestType.Rebooking)
+                {
+                    RequestDetailsTextBlock.Text = $"Customer: {req.CustomerName}\n" +
+                                               $"Booking Date/Time: {req.BookingDateTime:f}\n" +
                                                $"Type of Request: {req.Request}";
+                }
+                else
+                {
+                    RequestDetailsTextBlock.Text = $"Customer: {req.CustomerName}\n" +
+                                               $"Updated Booking: {req.BookingDateTime:f}\n" +
+                                               $"Previous Booking: {req.Booking.Date.Add(req.Booking.Time):f}\n"+
+                                               $"Type of Request: {req.Request}";
+                }
 
                 RequestsDataGrid.Visibility = Visibility.Collapsed;
                 ActionPanel.Visibility = Visibility.Visible;

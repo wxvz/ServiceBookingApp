@@ -173,17 +173,24 @@ namespace ServiceBookingApp.Views.Customer.Dashboard
                 if (result == MessageBoxResult.Yes)
                 {
                     var customerName = editedBooking.Customer.Name;
-
+                    
                     var newRequest = new CustomerRequest
                     {
                         BusinessId = editedBooking.BusinessId,
                         BookingId = editedBooking.BookingId,
                         CustomerId = editedBooking.CustomerId,
-                        BookingDateTime = editedBooking.Date.Add(editedBooking.Time),
+                        BookingDateTime = newDate.Add(newTime),
                         CustomerName = customerName,
                         Request = RequestType.Rebooking
                     };
-
+                    var existingReq = db.CustomerRequests
+                        .Select(cr => cr.BookingId == editedBooking.BookingId);
+                        
+                    if (existingReq == null)
+                    {
+                        MessageBox.Show("You have already sent a booking request you may wait or contact the business to resolve");
+                        return;
+                    }
                     db.CustomerRequests.Add(newRequest);
                     db.SaveChanges();
 
