@@ -183,10 +183,18 @@ namespace ServiceBookingApp
                     b.Date = newDate;
                     b.Time = newTime;
                     b.Status = newStatus;
-                    if (newStatus == BookingStatus.Completed && b.Payment != null && b.Payment.Method == PaymentMethod.Cash && b.Payment.Status == PaymentStatus.Pending)
+                    if (b.Payment != null && b.Payment.Method == PaymentMethod.Cash)
                     {
-                        b.Payment.Status = PaymentStatus.Completed; // Cash is collected at the appointment
-                        b.Payment.PaymentDate = b.Date;
+                        if (newStatus == BookingStatus.Completed && b.Payment.Status == PaymentStatus.Pending)
+                        {
+                            b.Payment.Status = PaymentStatus.Completed; // Cash is collected at the appointment
+                            b.Payment.PaymentDate = b.Date;
+                        }
+                        else if (newStatus != BookingStatus.Completed && b.Payment.Status == PaymentStatus.Completed)
+                        {
+                            b.Payment.Status = PaymentStatus.Pending; // Booking no longer completed, so cash is not collected yet
+                            b.Payment.PaymentDate = b.Date;
+                        }
                     }
  
                     db.SaveChanges();
