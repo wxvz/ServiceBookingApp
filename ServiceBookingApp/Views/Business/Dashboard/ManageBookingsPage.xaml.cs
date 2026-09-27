@@ -50,6 +50,11 @@ namespace ServiceBookingApp
                     if ((b.Status == (BookingStatus)0 || b.Status == (BookingStatus)1) && b.Date < today) // Casts to pending and confirmed
                     {
                         b.Status = (BookingStatus)2; // Completed
+                        if (b.Payment != null && b.Payment.Method == PaymentMethod.Cash && b.Payment.Status == PaymentStatus.Pending)
+                        {
+                            b.Payment.Status = PaymentStatus.Completed; // Cash is collected at the appointment
+                            b.Payment.PaymentDate = b.Date;
+                        }
                         changed = true;
                     }
                 }
@@ -178,6 +183,11 @@ namespace ServiceBookingApp
                     b.Date = newDate;
                     b.Time = newTime;
                     b.Status = newStatus;
+                    if (newStatus == BookingStatus.Completed && b.Payment != null && b.Payment.Method == PaymentMethod.Cash && b.Payment.Status == PaymentStatus.Pending)
+                    {
+                        b.Payment.Status = PaymentStatus.Completed; // Cash is collected at the appointment
+                        b.Payment.PaymentDate = b.Date;
+                    }
  
                     db.SaveChanges();
 
