@@ -231,11 +231,11 @@ After seeding, every demo account uses the password **`1234`**.
 
 ```mermaid
 flowchart TD
-    Book(["🗓️ Customer books a slot"])
-    Pending["⏳ Pending"]
-    Confirmed["✅ Confirmed"]
-    Completed["🏁 Completed"]
-    Cancelled["❌ Cancelled"]
+    Book(["Customer books a slot"])
+    Pending["Pending"]
+    Confirmed["Confirmed"]
+    Completed["Completed"]
+    Cancelled["Cancelled"]
 
     Book -->|"pays by cash"| Pending
     Book -->|"pays by card"| Completed
