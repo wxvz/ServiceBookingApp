@@ -230,17 +230,31 @@ After seeding, every demo account uses the password **`1234`**.
 ### Booking lifecycle
 
 ```mermaid
-stateDiagram-v2
-    direction LR
-    [*] --> Pending: Customer books & pays by cash
-    [*] --> Completed: Customer books & pays by card
-    Pending --> Confirmed: Business confirms
-    Pending --> Cancelled: Cancellation / refund approved
-    Confirmed --> Cancelled: Cancellation / refund approved
-    Pending --> Completed: Date passes (auto)
-    Confirmed --> Completed: Date passes (auto)
-    Completed --> [*]
-    Cancelled --> [*]
+flowchart TD
+    Book(["🗓️ Customer books a slot"])
+    Pending["⏳ Pending"]
+    Confirmed["✅ Confirmed"]
+    Completed["🏁 Completed"]
+    Cancelled["❌ Cancelled"]
+
+    Book -->|"pays by cash"| Pending
+    Book -->|"pays by card"| Completed
+    Pending -->|"business confirms"| Confirmed
+    Pending -->|"date passes"| Completed
+    Confirmed -->|"date passes"| Completed
+    Pending -->|"cancel / refund approved"| Cancelled
+    Confirmed -->|"cancel / refund approved"| Cancelled
+
+    classDef start fill:#6366f1,stroke:#4338ca,color:#ffffff
+    classDef pending fill:#f59e0b,stroke:#b45309,color:#1f2937
+    classDef confirmed fill:#3b82f6,stroke:#1d4ed8,color:#ffffff
+    classDef completed fill:#22c55e,stroke:#15803d,color:#0f172a
+    classDef cancelled fill:#ef4444,stroke:#b91c1c,color:#ffffff
+    class Book start
+    class Pending pending
+    class Confirmed confirmed
+    class Completed completed
+    class Cancelled cancelled
 ```
 
 ### Smart slot generation
