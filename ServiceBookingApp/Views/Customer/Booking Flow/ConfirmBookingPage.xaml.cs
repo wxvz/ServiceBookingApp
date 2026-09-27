@@ -235,7 +235,7 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
                         ServiceId = _selectedService.ServiceId,
                         Date = bookingDate,
                         Time = bookingTime,
-                        Status = BookingStatus.Completed,
+                        Status = BookingStatus.Confirmed,
                     };
 
                     var newPayment = new Payment
