@@ -43,7 +43,7 @@ and every change request flows back to the business through a single dashboard.
 |---|---|---|
 | 🔎 | **Browse businesses** | Discover businesses and view each one's profile and active services. |
 | 📅 | **Live slot picker** | Only genuinely free time slots are offered, generated from the service schedule and length. |
-| 💳 | **Card or cash checkout** | Card payments are validated and settle the booking immediately; cash bookings stay *Pending* until paid in person. |
+| 💳 | **Card or cash checkout** | Card payments are validated and confirm the booking immediately; cash bookings stay *Pending* until paid in person. |
 | 🔁 | **Rebook & cancel requests** | Ask the business to move (24h+ notice) or cancel/refund a booking, with one open request per booking. |
 | 🧾 | **My bookings** | All bookings filterable by status, plus an editable profile. |
 
@@ -238,7 +238,7 @@ flowchart TD
     Cancelled["Cancelled"]
 
     Book -->|"pays by cash"| Pending
-    Book -->|"pays by card"| Completed
+    Book -->|"pays by card"| Confirmed
     Pending -->|"business confirms"| Confirmed
     Pending -->|"date passes"| Completed
     Confirmed -->|"date passes"| Completed

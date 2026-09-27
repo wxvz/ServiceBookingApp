@@ -235,7 +235,7 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
                         ServiceId = _selectedService.ServiceId,
                         Date = bookingDate,
                         Time = bookingTime,
-                        Status = BookingStatus.Completed,
+                        Status = BookingStatus.Confirmed,
                     };
 
                     var newPayment = new Payment
@@ -243,10 +243,13 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
                         Booking = newBooking,
                         Amount = _selectedService.Price,
                         Method = (PaymentMethod)PaymentMethodComboBox.SelectedItem,
-                        BusinessId = _selectedService.BusinessId
+                        BusinessId = _selectedService.BusinessId,
+                        Status = PaymentStatus.Completed, // Card is charged at checkout
+                        PaymentDate = DateTime.Now
                     };
 
                     db.Bookings.Add(newBooking);
+                    db.Payments.Add(newPayment);
                     db.SaveChanges();
                 } 
                 else
@@ -266,10 +269,13 @@ namespace ServiceBookingApp.Views.Customer.Booking_Flow
                         Booking = newBooking,
                         Amount = _selectedService.Price,
                         Method = (PaymentMethod)PaymentMethodComboBox.SelectedItem,
-                        BusinessId = _selectedService.BusinessId
+                        BusinessId = _selectedService.BusinessId,
+                        Status = PaymentStatus.Pending, // Cash is collected at the appointment
+                        PaymentDate = bookingDate
                     };
 
                     db.Bookings.Add(newBooking);
+                    db.Payments.Add(newPayment);
                     db.SaveChanges();
                 }
 
